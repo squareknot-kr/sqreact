@@ -24,8 +24,10 @@ function SearchContent({ children, onSearch, onDisableSearch }: SearchProps) {
 
   return (
     <div className="bg-white rounded-lg p-3.5 px-6 w-full flex items-end gap-5 shadow-xs border border-gray-100 flex-wrap min-w-0">
-      {children}
-      <div className="flex flex-col gap-1 ml-auto">
+      <div className="flex items-end gap-5 flex-wrap flex-1">
+        {children}
+      </div>
+      <div className="flex flex-col gap-1">
         <div className="text-sm font-medium text-transparent">검색</div>
         <Button
           size="sm"
