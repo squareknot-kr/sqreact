@@ -1,21 +1,19 @@
 import { useContext } from 'react';
-import { Button } from '@/shared/ui/button';
-import { SearchIcon } from '@/shared/icons/SearchIcon';
+import { Button } from '@/shared/ui/Button';
+import { SearchIcon } from '@/components/Search/SearchIcon';
 import { SearchContext } from './SearchContext';
 import { SearchProvider } from './SearchProvider';
 import { DatePicker as DatePickerComponent } from './DatePicker';
-import { PopoverCard } from '@/shared/components/PopoverCard';
+import { Popover } from '@/shared/components/Popover';
 
 type DateRange = { startDate: string; endDate: string };
 type SearchParams = Record<string, string> & DateRange;
-
-type Values = Record<string, string>;
 
 type SearchProps = {
   children: React.ReactNode;
   onSearch: (values: SearchParams) => void;
   onDisableSearch?: () => boolean;
-  initialValues?: Values;
+  initialValues?: Record<string, string>;
   initialDateRange?: DateRange;
 };
 
@@ -75,7 +73,7 @@ function Select({ label, options, keyToStore, isLoading, required, onDisableSele
   const { values, updateValues } = useContext(SearchContext);
   
   return (
-    <PopoverCard
+    <Popover
       label={label}
       options={options}
       value={values[keyToStore]}

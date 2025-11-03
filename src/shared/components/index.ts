@@ -1,2 +1,2 @@
-export { PopoverCard } from './PopoverCard';
+export { Popover } from './Popover';
 

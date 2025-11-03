@@ -2,13 +2,10 @@ import { useMemo, useState, useCallback } from "react";
 import { SearchContext } from "./SearchContext";
 import { getDateRange, DEFAULT_DATE_OPTIONS, getCurrentDate } from "@/utils/date";
 
-type Values = Record<string, string>;
-type DateRange = { startDate: string; endDate: string };
-
 type SearchProviderProps = {
   children: React.ReactNode;
-  initialValues?: Values;
-  initialDateRange?: DateRange;
+  initialValues?: Record<string, string>;
+  initialDateRange?: { startDate: string; endDate: string };
 };
 
 export const SearchProvider = ({ 
@@ -22,8 +19,8 @@ export const SearchProvider = ({
   const updateValues = useCallback((key: string, value: string) => 
     setValues(prev => ({ ...prev, [key]: value })), []);
   
-  const updateDateRange = useCallback((start: string, end: string) => 
-    setDateRange({ startDate: start, endDate: end }), []);
+  const updateDateRange = useCallback((startDate: string, endDate: string) => 
+    setDateRange({ startDate, endDate }), []);
   
   const onSelectDateOption = useCallback((days: number) => {
     const { startDate, endDate } = getDateRange(days, getCurrentDate());    

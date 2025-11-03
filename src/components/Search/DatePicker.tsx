@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { Input } from "../shared/ui/input";
-import { Label } from "../shared/ui/label";
+import { Input } from "../../shared/ui/Input";
+import { Label } from "../../shared/ui/Label";
 import { SearchContext } from "./SearchContext";
 
 export function DatePicker() {

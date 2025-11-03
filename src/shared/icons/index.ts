@@ -1,2 +1,0 @@
-export { SearchIcon } from './SearchIcon';
-
