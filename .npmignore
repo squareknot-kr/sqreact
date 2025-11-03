@@ -1,0 +1,11 @@
+node_modules
+src
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+.gitignore
+.npmignore
+README.md
+*.log
+.DS_Store
+
