@@ -10,7 +10,7 @@ export function DatePicker() {
     updateDateRange(start, end);
   };
 
-  const inputClasses = "px-3 text-sm font-medium border-gray-300 focus:border-indigo-500 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none focus:outline-none h-[38px] w-[150px]";
+  const inputClasses = "px-3 text-sm font-medium border-gray-300 focus:border-indigo-500 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none focus:outline-none h-[38px] !w-[150px] min-w-[150px] max-w-[150px]";
 
   return (
     <div className="flex flex-col gap-1 overflow-hidden">
