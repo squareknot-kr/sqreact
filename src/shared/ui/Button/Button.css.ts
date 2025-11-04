@@ -10,6 +10,7 @@ export const button = style({
   outline: 'none',
   border: 'none',
   cursor: 'pointer',
+  boxSizing: 'border-box',
   ':focus-visible': {
     outline: '2px solid transparent',
     outlineOffset: '2px',

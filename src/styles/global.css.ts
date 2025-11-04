@@ -1,13 +1,3 @@
-import { globalStyle } from '@vanilla-extract/css';
-
-globalStyle('*', {
-  boxSizing: 'border-box',
-});
-
-globalStyle('body', {
-  margin: 0,
-  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-  WebkitFontSmoothing: 'antialiased',
-  MozOsxFontSmoothing: 'grayscale',
-});
+// Global styles - 라이브러리 컴포넌트에만 필요한 스타일
+// 다른 프로젝트에 영향을 주지 않도록 globalStyle 제거
 

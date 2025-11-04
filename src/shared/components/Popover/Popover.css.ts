@@ -30,6 +30,7 @@ export const button = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   outline: 'none',
+  boxSizing: 'border-box',
   ':hover': {
     borderColor: 'rgb(99 102 241)',
   },
@@ -69,7 +70,6 @@ export const dropdown = style({
   marginTop: '4px',
   width: 'max-content',
   minWidth: '450px',
-  maxWidth: '650px',
   backgroundColor: 'white',
   border: '1px solid rgb(229 231 235)',
   borderRadius: '8px',
@@ -98,6 +98,7 @@ export const searchInput = style({
   borderRadius: '6px',
   outline: 'none',
   transition: 'colors 0.15s',
+  boxSizing: 'border-box',
   ':focus': {
     borderColor: 'rgb(99 102 241)',
     backgroundColor: 'white',

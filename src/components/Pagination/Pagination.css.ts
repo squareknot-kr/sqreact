@@ -29,6 +29,7 @@ export const pageButton = styleVariants({
     transition: 'colors 0.2s',
     backgroundColor: 'rgb(99 102 241)',
     color: 'white',
+    boxSizing: 'border-box',
     ':hover': {
       backgroundColor: 'rgb(99 102 241 / 0.9)',
     },
@@ -47,6 +48,7 @@ export const pageButton = styleVariants({
     transition: 'colors 0.2s',
     backgroundColor: 'white',
     color: 'rgb(55 65 81)',
+    boxSizing: 'border-box',
     ':hover': {
       backgroundColor: 'rgb(249 250 251)',
     },
@@ -67,6 +69,7 @@ export const navButton = style({
   justifyContent: 'center',
   cursor: 'pointer',
   transition: 'colors 0.2s',
+  boxSizing: 'border-box',
   ':hover': {
     backgroundColor: 'rgb(249 250 251)',
   },

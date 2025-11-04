@@ -11,6 +11,7 @@ export default defineConfig({
     vanillaExtractPlugin(),
     dts({
       insertTypesEntry: true,
+      exclude: ['App.tsx', 'main.tsx', 'index.html', 'vite.config.dev.ts'],
     }),
   ],
   resolve: {
@@ -34,8 +35,10 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
         },
+        entryFileNames: 'sqreact.js',
+        chunkFileNames: 'chunk-[name].js',
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'style.css';
+          if (assetInfo.name?.endsWith('.css')) return 'style.css';
           return assetInfo.name || 'assets/[name][extname]';
         },
       },
@@ -44,3 +47,4 @@ export default defineConfig({
     cssMinify: true,
   },
 });
+

@@ -25,6 +25,7 @@ export const dateInput = style({
   width: '150px !important',
   minWidth: '150px',
   maxWidth: '150px',
+  boxSizing: 'border-box',
   ':focus': {
     borderColor: 'rgb(99 102 241)',
     outline: 'none',

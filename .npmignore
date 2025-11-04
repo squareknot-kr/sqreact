@@ -1,6 +1,7 @@
 node_modules
 src
 vite.config.ts
+vite.config.dev.ts
 tsconfig.json
 tsconfig.node.json
 tsconfig.build.json
@@ -9,6 +10,8 @@ tsconfig.build.json
 *.log
 .DS_Store
 index.html
+App.tsx
+main.tsx
 pnpm-lock.yaml
 yarn.lock
 package-lock.json

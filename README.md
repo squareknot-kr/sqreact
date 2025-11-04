@@ -6,10 +6,6 @@ React 컴포넌트와 유틸리티 라이브러리
 
 ```bash
 npm install sqreact-ui
-# 또는
-pnpm add sqreact-ui
-# 또는
-yarn add sqreact-ui
 ```
 
 ### 요구사항
@@ -19,12 +15,18 @@ yarn add sqreact-ui
 
 ## 사용법
 
-### CSS 자동 적용
+### CSS 사용
 
-**CSS를 별도로 import할 필요 없습니다!** 컴포넌트를 import하면 CSS가 자동으로 적용됩니다.
+CSS는 package.json의 exports 필드를 통해 제공됩니다. 컴포넌트를 사용하려면 CSS를 import해야 합니다.
 
 ```tsx
-// CSS import 없이 컴포넌트만 import하면 자동으로 스타일이 적용됨
+// CSS import
+import 'sqreact-ui/style.css';
+// 또는
+import 'sqreact-ui/css';
+// 또는
+import 'sqreact-ui/styles';
+
 import { Search, PageList } from 'sqreact-ui';
 
 function App() {
@@ -41,7 +43,7 @@ function App() {
 }
 ```
 
-> **참고**: CSS는 빌드 타임에 JS 번들에 포함되어 자동으로 주입됩니다.
+> **참고**: CSS는 빌드 시 `dist/style.css`로 생성되며, package.json의 exports 필드를 통해 제공됩니다.
 
 ### Search 컴포넌트
 
@@ -90,23 +92,26 @@ function App() {
 
 ```bash
 # 의존성 설치
-pnpm install
+npm install
 
 # 개발 모드 (예제 앱 실행)
-pnpm dev
+npm run dev
 
 # 빌드
-pnpm build
+npm run build
 
 # 타입 체크
-pnpm type-check
+npm run type-check
+
+# 린트
+npm run lint
 ```
 
 ## 배포
 
 ```bash
 # 빌드
-pnpm build
+npm run build
 
 # npm 배포
 npm publish

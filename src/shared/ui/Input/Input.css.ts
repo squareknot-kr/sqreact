@@ -14,6 +14,7 @@ export const input = style({
   lineHeight: '1.25rem',
   transition: 'colors 0.15s',
   outline: 'none',
+  boxSizing: 'border-box',
   ':focus-visible': {
     outline: 'none',
     boxShadow: 'none',
