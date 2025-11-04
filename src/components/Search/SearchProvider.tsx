@@ -14,10 +14,31 @@ export const SearchProvider = ({
   initialDateRange = getDateRange(DEFAULT_DATE_OPTIONS[DEFAULT_DATE_OPTIONS.length - 1], getCurrentDate())
 }: SearchProviderProps) => {
   const [values, setValues] = useState(initialValues);
+  const [labels, setLabels] = useState<Record<string, string>>({});
   const [dateRange, setDateRange] = useState(initialDateRange);
 
-  const updateValues = useCallback((key: string, value: string) => 
-    setValues(prev => ({ ...prev, [key]: value })), []);
+  const updateValues = useCallback((key: string, value: string, label?: string) => {
+    setValues(prev => {
+      const newValues = { ...prev };
+      if (value) {
+        newValues[key] = value;
+      } else {
+        delete newValues[key];
+      }
+      return newValues;
+    });
+    if (label !== undefined) {
+      setLabels(prev => {
+        const newLabels = { ...prev };
+        if (value) {
+          newLabels[key] = label;
+        } else {
+          delete newLabels[key];
+        }
+        return newLabels;
+      });
+    }
+  }, []);
   
   const updateDateRange = useCallback((startDate: string, endDate: string) => 
     setDateRange({ startDate, endDate }), []);
@@ -28,8 +49,8 @@ export const SearchProvider = ({
   }, [updateDateRange]);
 
   const contextValue = useMemo(() => 
-    ({ values, dateRange, updateValues, updateDateRange, onSelectDateOption }),
-    [values, dateRange, updateValues, updateDateRange, onSelectDateOption]
+    ({ values, labels, dateRange, updateValues, updateDateRange, onSelectDateOption }),
+    [values, labels, dateRange, updateValues, updateDateRange, onSelectDateOption]
   );
   
   return (

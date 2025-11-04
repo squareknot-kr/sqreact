@@ -4,6 +4,7 @@ export const popoverContainer = style({
   position: 'relative',
   flex: '1 1 0%',
   minWidth: 0,
+  maxWidth: '100%',
 });
 
 export const label = style({
@@ -68,7 +69,9 @@ export const dropdown = style({
   position: 'absolute',
   zIndex: 50,
   marginTop: '4px',
-  width: '100%',
+  width: 'max-content',
+  minWidth: '450px',
+  maxWidth: '650px',
   backgroundColor: 'white',
   border: '1px solid rgb(229 231 235)',
   borderRadius: '8px',

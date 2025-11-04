@@ -63,3 +63,12 @@ export const searchButton = style({
   },
 });
 
+export const tagsContainer = style({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '8px',
+  marginTop: '12px',
+  paddingLeft: '24px',
+  paddingRight: '24px',
+});
+

@@ -14,6 +14,11 @@ function App() {
     console.log('페이지 변경:', page);
   };
 
+  const handleDisableSearch = () => {
+    return false;
+    console.log('검색 비활성화');
+  };
+
   return (
     <div style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
       <h1 style={{ marginBottom: '32px', fontSize: '24px', fontWeight: 'bold' }}>
@@ -24,7 +29,7 @@ function App() {
         <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>
           Search 컴포넌트
         </h2>
-        <Search onSearch={handleSearch}>
+        <Search onSearch={handleSearch} onDisableSearch={handleDisableSearch}>
           <Search.Select
             label="상태"
             options={['전체', '진행중', '완료', '취소']}
