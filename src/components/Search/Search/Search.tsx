@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import { Button } from '@/shared/ui/Button';
 import { SearchIcon } from '@/components/Search/SearchIcon';
 import { SearchContext } from '../SearchContext';
 import { SearchProvider } from '../SearchProvider';
@@ -36,8 +35,8 @@ function SearchContent({ children, onSearch, onDisableSearch }: SearchProps) {
         </div>
         <div className={styles.buttonContainer}>
           <div className={styles.buttonLabel}>검색</div>
-          <Button
-            size="sm"
+          <button
+            type="button"
             onClick={(e) => {
               onSearch({ ...values, ...dateRange });
               e.currentTarget.blur();
@@ -47,7 +46,7 @@ function SearchContent({ children, onSearch, onDisableSearch }: SearchProps) {
           >
             <SearchIcon style={{ height: '16px', width: '16px', marginRight: '4px' }} />
             <span style={{ fontSize: '14px', fontWeight: 500 }}>검색</span>
-          </Button>
+          </button>
         </div>
       </div>
       {hasTags && (

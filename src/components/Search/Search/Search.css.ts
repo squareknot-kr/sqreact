@@ -49,17 +49,31 @@ export const searchButton = style({
   paddingTop: '8px',
   paddingBottom: '8px',
   height: '38px',
+  minHeight: '38px',
+  maxHeight: '38px',
+  borderRadius: '6px',
+  border: 'none',
   cursor: 'pointer',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxSizing: 'border-box',
   ':hover': {
     backgroundColor: 'rgb(79 70 229)',
   },
   ':focus': {
     outline: 'none',
     boxShadow: 'none',
+    border: 'none',
   },
   ':focus-visible': {
     outline: 'none',
     boxShadow: 'none',
+    border: 'none',
+  },
+  ':disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
   },
 });
 
