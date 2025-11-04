@@ -1,6 +1,6 @@
 {
   "name": "sqreact-ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "React components and utilities library",
   "type": "module",
   "main": "./dist/sqreact.umd.cjs",
@@ -20,7 +20,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite --config vite.config.dev.ts",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
