@@ -69,7 +69,7 @@ export const Popover = ({
     }
   };
 
-  const displayValue = (value !== undefined && value !== null && value !== '') ? value : (required ? '' : '전체');
+  const optionValue = (value === undefined || value === null || value === '') ? '전체' : value;
 
   return (
     <div className={styles.popoverContainer} ref={popoverRef}>
@@ -81,8 +81,8 @@ export const Popover = ({
           disabled={disabled || isLoading}
           className={styles.button}
         >
-          <span className={styles.buttonText[(value === undefined || value === null || value === '') && !required ? 'placeholder' : 'default']}>
-            {displayValue}
+          <span className={styles.buttonText}>
+            {optionValue}
           </span>
           <svg
             className={`${styles.icon} ${isOpen ? styles.iconRotated : ''}`}

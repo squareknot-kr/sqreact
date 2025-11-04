@@ -44,13 +44,8 @@ export const button = style({
   },
 });
 
-export const buttonText = styleVariants({
-  default: {
-    color: 'rgb(31 41 55)',
-  },
-  placeholder: {
-    color: 'rgb(31 41 55)',
-  },
+export const buttonText = style({
+  color: 'rgb(31 41 55)',
 });
 
 export const icon = style({
