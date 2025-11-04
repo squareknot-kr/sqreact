@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { SearchIcon } from '@/components/Search/SearchIcon';
-import { SearchContext } from './SearchContext';
-import { SearchProvider } from './SearchProvider';
-import { DatePicker as DatePickerComponent } from './DatePicker';
+import { SearchContext } from '../SearchContext';
+import { SearchProvider } from '../SearchProvider';
+import { DatePicker as DatePickerComponent } from '../DatePicker/DatePicker';
 import { Popover } from '@/shared/components/Popover';
+import * as styles from './Search.css';
 
 type DateRange = { startDate: string; endDate: string };
 type SearchParams = Record<string, string> & DateRange;
@@ -21,12 +22,12 @@ function SearchContent({ children, onSearch, onDisableSearch }: SearchProps) {
   const { values, dateRange } = useContext(SearchContext);
 
   return (
-    <div className="bg-white rounded-lg p-3.5 px-6 w-full flex items-end gap-5 shadow-xs border border-gray-100 flex-wrap min-w-0">
-      <div className="flex items-end gap-5 flex-wrap flex-1">
+    <div className={styles.searchContainer}>
+      <div className={styles.childrenContainer}>
         {children}
       </div>
-      <div className="flex flex-col gap-1">
-        <div className="text-sm font-medium text-transparent">검색</div>
+      <div className={styles.buttonContainer}>
+        <div className={styles.buttonLabel}>검색</div>
         <Button
           size="sm"
           onClick={(e) => {
@@ -34,10 +35,10 @@ function SearchContent({ children, onSearch, onDisableSearch }: SearchProps) {
             e.currentTarget.blur();
           }}
           disabled={onDisableSearch?.()}
-          className="bg-indigo-500 hover:bg-indigo-600 text-white px-8 py-2 h-[38px] cursor-pointer focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+          className={styles.searchButton}
         >
-          <SearchIcon className="h-4 w-4 mr-1" />
-          <span className="text-sm font-medium">검색</span>
+          <SearchIcon style={{ height: '16px', width: '16px', marginRight: '4px' }} />
+          <span style={{ fontSize: '14px', fontWeight: 500 }}>검색</span>
         </Button>
       </div>
     </div>
@@ -91,3 +92,4 @@ function DatePicker() {
 
 Search.Select = Select;
 Search.DatePicker = DatePicker;
+

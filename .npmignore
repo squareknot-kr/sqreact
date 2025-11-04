@@ -3,9 +3,21 @@ src
 vite.config.ts
 tsconfig.json
 tsconfig.node.json
+tsconfig.build.json
 .gitignore
 .npmignore
-README.md
 *.log
 .DS_Store
+index.html
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+.vscode
+.idea
+*.local
+dist-ssr
+.eslintrc*
+.prettierrc*
+postcss.config.js
+tailwind.config.js
 

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import * as styles from './Popover.css';
 
 type PopoverProps = {
   label: string;
@@ -71,20 +72,20 @@ export const Popover = ({
   const displayValue = value || (required ? '' : '전체');
 
   return (
-    <div className="relative" ref={popoverRef}>
-      <div className="flex flex-col gap-1">
-        <label className="text-sm font-medium text-gray-700 leading-normal">{label}</label>
+    <div className={styles.popoverContainer} ref={popoverRef}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <label className={styles.label}>{label}</label>
         <button
           type="button"
           onClick={handleToggle}
           disabled={disabled || isLoading}
-          className="w-full min-w-[220px] h-[38px] px-3 text-left text-sm font-medium bg-white border border-gray-300 rounded-md hover:border-indigo-500 focus:outline-none focus:ring-0 focus:ring-offset-0 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-between transition-colors"
+          className={styles.button}
         >
-          <span className={`text-gray-700 ${!value && !required ? 'text-gray-400' : ''}`}>
+          <span className={styles.buttonText[!value && !required ? 'placeholder' : 'default']}>
             {displayValue}
           </span>
           <svg
-            className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+            className={`${styles.icon} ${isOpen ? styles.iconRotated : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -95,8 +96,8 @@ export const Popover = ({
       </div>
 
       {isOpen && (
-        <div className="absolute z-50 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-64 overflow-hidden flex flex-col transition-all duration-200 opacity-100">
-          <div className="p-2 border-b border-gray-100">
+        <div className={styles.dropdown}>
+          <div className={styles.searchContainer}>
             <input
               ref={searchInputRef}
               type="text"
@@ -104,26 +105,22 @@ export const Popover = ({
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="검색..."
-              className="w-full h-9 px-3 text-sm bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 focus:bg-white transition-colors"
+              className={styles.searchInput}
             />
           </div>
-          <div className="overflow-y-auto max-h-52">
+          <div className={styles.optionsContainer}>
             {isLoading ? (
-              <div className="px-4 py-8 text-sm text-gray-400 text-center">로딩 중...</div>
+              <div className={styles.emptyState}>로딩 중...</div>
             ) : filteredOptions.length === 0 ? (
-              <div className="px-4 py-8 text-sm text-gray-400 text-center">검색 결과가 없습니다</div>
+              <div className={styles.emptyState}>검색 결과가 없습니다</div>
             ) : (
-              <ul className="py-1">
+              <ul className={styles.optionsList}>
                 {filteredOptions.map((option) => (
                   <li key={option}>
                     <button
                       type="button"
                       onClick={() => handleSelect(option)}
-                      className={`w-full px-4 py-2.5 text-left text-sm transition-colors ${
-                        value === option
-                          ? 'bg-indigo-50 text-indigo-600 font-medium'
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
+                      className={`${styles.optionItem} ${value === option ? styles.optionItemSelected : ''}`}
                     >
                       {option}
                     </button>

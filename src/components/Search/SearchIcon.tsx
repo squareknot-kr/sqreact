@@ -1,7 +1,8 @@
-export const SearchIcon = ({ className = '' }: { className?: string }) => {
+export const SearchIcon = ({ className = '', style }: { className?: string; style?: React.CSSProperties }) => {
   return (
     <svg
       className={className}
+      style={style}
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

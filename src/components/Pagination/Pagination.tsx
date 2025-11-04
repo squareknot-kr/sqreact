@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import * as styles from './Pagination.css';
 
 interface PageItemProps {
   pageNumber: number;
@@ -9,12 +10,7 @@ interface PageItemProps {
 const PageItem = memo(function PageItem({ pageNumber, isActive, onClick }: PageItemProps) {
   return (
     <button
-      className={
-        `w-10 h-10 rounded-lg border text-[14px] font-medium flex items-center justify-center cursor-pointer transition-colors duration-200 
-         ${isActive
-           ? 'bg-primary text-primary-foreground border-primary hover:bg-primary/90'
-           : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'}`
-      }
+      className={styles.pageButton[isActive ? 'active' : 'inactive']}
       onClick={() => onClick(pageNumber)}
     >
       {pageNumber}
@@ -41,11 +37,11 @@ export const PageList = memo(function PageList({ totalPages, currentPage, onPage
   );
 
   return (
-    <div className="flex justify-center items-center my-8">
-      <div className="flex items-center gap-2">
+    <div className={styles.container}>
+      <div className={styles.pagesContainer}>
         {currentGroup > 1 && (
           <button
-            className="w-[60px] h-10 rounded-lg border border-gray-200 bg-white text-gray-700 text-[13px] font-medium flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-gray-50"
+            className={styles.navButton}
             onClick={() => onPageChange(startPage - 1)}
           >
             이전
@@ -63,7 +59,7 @@ export const PageList = memo(function PageList({ totalPages, currentPage, onPage
 
         {currentGroup < totalGroups && (
           <button
-            className="w-[60px] h-10 rounded-lg border border-gray-200 bg-white text-gray-700 text-[13px] font-medium flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-gray-50"
+            className={styles.navButton}
             onClick={() => onPageChange(endPage + 1)}
           >
             다음
@@ -73,3 +69,4 @@ export const PageList = memo(function PageList({ totalPages, currentPage, onPage
     </div>
   );
 });
+

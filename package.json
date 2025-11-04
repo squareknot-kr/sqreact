@@ -1,24 +1,26 @@
 {
-  "name": "sq-react",
-  "version": "0.1.0",
+  "name": "sqreact-ui",
+  "version": "0.1.5",
   "description": "React components and utilities library",
   "type": "module",
-  "main": "./dist/sq-react.umd.cjs",
-  "module": "./dist/sq-react.js",
+  "main": "./dist/sqreact.umd.cjs",
+  "module": "./dist/sqreact.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/sq-react.js",
-      "require": "./dist/sq-react.umd.cjs",
+      "import": "./dist/sqreact.js",
+      "require": "./dist/sqreact.umd.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./css": "./dist/style.css",
+    "./styles": "./dist/style.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.config.dev.ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
@@ -28,31 +30,47 @@
     "react",
     "components",
     "utilities",
-    "library"
+    "library",
+    "search",
+    "pagination",
+    "datepicker",
+    "ui",
+    "vanilla-extract"
   ],
-  "author": "",
+  "author": "oilater",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimseonghyeon/sqreact.git"
+  },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
   },
   "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
+    "@vanilla-extract/css": "^1.17.4",
+    "@vanilla-extract/vite-plugin": "^5.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
-    "vite-plugin-dts": "^3.6.4",
-    "tailwindcss": "^3.4.1",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.32"
+    "vite-plugin-dts": "^3.6.4"
   }
 }
-
