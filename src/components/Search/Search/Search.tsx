@@ -98,7 +98,7 @@ type SelectProps = {
   onDisableSelect?: () => boolean;
 };
 
-function Select({ label, options = [], keyToStore, isLoading, required, onDisableSelect }: SelectProps) {
+function Select({ label, options = [], keyToStore, isLoading, onDisableSelect }: SelectProps) {
   const { values, updateValues } = useContext(SearchContext);
   
   return (
@@ -109,7 +109,6 @@ function Select({ label, options = [], keyToStore, isLoading, required, onDisabl
       onChange={(value) => updateValues(keyToStore, value, label)}
       disabled={onDisableSelect?.()}
       isLoading={isLoading}
-      required={required}
     />
   );
 }

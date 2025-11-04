@@ -8,7 +8,6 @@ type PopoverProps = {
   onChange: (value: string) => void;
   disabled?: boolean;
   isLoading?: boolean;
-  required?: boolean;
 };
 
 export const Popover = ({
@@ -18,7 +17,6 @@ export const Popover = ({
   onChange,
   disabled = false,
   isLoading = false,
-  required = false,
 }: PopoverProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
