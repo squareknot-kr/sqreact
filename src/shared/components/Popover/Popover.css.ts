@@ -29,8 +29,6 @@ export const button = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  cursor: 'pointer',
-  transition: 'colors 0.15s',
   outline: 'none',
   ':hover': {
     borderColor: 'rgb(99 102 241)',
@@ -156,4 +154,3 @@ export const optionItemSelected = style({
     backgroundColor: 'rgb(238 242 255)',
   },
 });
-
