@@ -20,7 +20,7 @@ function App() {
         <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>
           Search 컴포넌트
         </h2>
-        <Search onSearch={(values) => true}>
+        <Search onSearch={() => true}>
           <Search.Select
             label="상태"
             options={['전체', '진행중', '완료', '취소']}
