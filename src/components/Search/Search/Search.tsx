@@ -23,13 +23,13 @@ function SearchContent({ children, onSearch, disabled }: {
   onSearch: (values: SearchParams) => void;
   disabled?: (values: Record<string, string>) => boolean;
 }) {
-  const { values, labels, dateRange, updateValues } = useContext(SearchContext);
+  const { selectedValues, labels, dateRange, updateValues } = useContext(SearchContext);
 
   const onRemoveTag = (key: string) => {
     updateValues(key, '');
   };
 
-  const hasTags = Object.keys(values).length > 0;
+  const hasTags = Object.keys(selectedValues).length > 0;
 
   return (
     <>
@@ -42,10 +42,10 @@ function SearchContent({ children, onSearch, disabled }: {
           <button
             type="button"
             onClick={(e) => {
-              onSearch({ ...values, ...dateRange });
+              onSearch({ ...selectedValues, ...dateRange });
               e.currentTarget.blur();
             }}
-            disabled={disabled ? disabled(values) : false}
+            disabled={disabled ? disabled(selectedValues) : false}
             className={styles.searchButton}
           >
             <SearchIcon style={{ height: '16px', width: '16px', marginRight: '4px' }} />
@@ -55,7 +55,7 @@ function SearchContent({ children, onSearch, disabled }: {
       </div>
       {hasTags && (
         <div className={styles.tagsContainer}>
-          {Object.entries(values).map(([key, value]) => (
+          {Object.entries(selectedValues).map(([key, value]) => (
             value && labels[key] && (
               <Tag
                 key={key}
@@ -105,14 +105,14 @@ function Select({
   isLoading, 
   disabled = false, 
 }: SelectProps) {
-  const { values, updateValues } = useContext(SearchContext);
-  const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
+  const { selectedValues, updateValues } = useContext(SearchContext);
+  const isDisabled = typeof disabled === 'function' ? disabled(selectedValues) : disabled;
   
   return (
     <Popover
       label={label}
       options={options}
-      value={values[keyToStore]}
+      value={selectedValues[keyToStore]}
       onChange={(value) => updateValues(keyToStore, value, label)}
       disabled={isDisabled}
       isLoading={isLoading}
