@@ -46,6 +46,11 @@ export const button = style({
 
 export const buttonText = style({
   color: 'rgb(31 41 55)',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  flex: 1,
+  minWidth: 0,
 });
 
 export const icon = style({
