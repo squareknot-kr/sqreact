@@ -95,8 +95,7 @@ type SelectProps = {
   keyToStore: string;
   isLoading?: boolean;
   required?: boolean;
-  disabled?: boolean;
-  onDisableSelect?: (values: Record<string, string>) => boolean;
+  disabled?: boolean | ((values: Record<string, string>) => boolean);
 };
 
 function Select({ 
@@ -105,10 +104,9 @@ function Select({
   keyToStore, 
   isLoading, 
   disabled = false, 
-  onDisableSelect = undefined 
 }: SelectProps) {
   const { values, updateValues } = useContext(SearchContext);
-  const isDisabled = disabled || (onDisableSelect ? onDisableSelect(values) : false);
+  const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
   
   return (
     <Popover
