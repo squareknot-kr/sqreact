@@ -47,7 +47,12 @@ function App() {
 
 ### Search 컴포넌트
 
+#### 기본 사용법 (간편)
+
+내부적으로 `useSearch` 훅을 사용하여 상태를 관리하므로 별도의 설정 없이 바로 사용할 수 있습니다.
+
 ```tsx
+import 'sqreact-ui/style.css';
 import { Search } from 'sqreact-ui';
 
 function App() {
@@ -67,6 +72,35 @@ function App() {
   );
 }
 ```
+
+#### 초기값 설정
+
+```tsx
+import 'sqreact-ui/style.css';
+import { Search } from 'sqreact-ui';
+
+function App() {
+  const handleSearch = (params) => {
+    console.log('Search params:', params);
+  };
+
+  return (
+    <Search 
+      onSearch={handleSearch}
+      initialValues={{ status: '진행중' }}
+      initialDateRange={{ startDate: '2024-01-01', endDate: '2024-01-31' }}
+    >
+      <Search.Select
+        label="상태"
+        options={['진행중', '완료', '취소']}
+        keyToStore="status"
+      />
+      <Search.DatePicker />
+    </Search>
+  );
+}
+```
+
 
 ### Pagination 컴포넌트
 

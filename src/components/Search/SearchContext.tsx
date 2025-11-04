@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 export type SearchContextType = {
   values: Record<string, string>;
-  labels: Record<string, string>; // keyToStore -> label mapping
+  labels: Record<string, string>;
   dateRange: { startDate: string; endDate: string };
   updateValues: (key: string, value: string, label?: string) => void;
   updateDateRange: (startDate: string, endDate: string) => void;

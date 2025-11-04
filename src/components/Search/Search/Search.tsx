@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { SearchIcon } from '@/components/Search/SearchIcon';
+import { SearchIcon } from '@/components/Search/Search/SearchIcon';
 import { SearchContext } from '../SearchContext';
-import { SearchProvider } from '../SearchProvider';
+import { useSearch } from '../useSearch';
 import { DatePicker as DatePickerComponent } from '../DatePicker/DatePicker';
 import { Popover } from '@/shared/components/Popover';
 import { Tag } from '../Tag';
@@ -18,7 +18,11 @@ type SearchProps = {
   initialDateRange?: DateRange;
 };
 
-function SearchContent({ children, onSearch, onDisableSearch }: SearchProps) {
+function SearchContent({ children, onSearch, onDisableSearch }: {
+  children: React.ReactNode;
+  onSearch: (values: SearchParams) => void;
+  onDisableSearch?: () => boolean;
+}) {
   const { values, labels, dateRange, updateValues } = useContext(SearchContext);
 
   const handleRemoveTag = (key: string) => {
@@ -70,29 +74,31 @@ function SearchContent({ children, onSearch, onDisableSearch }: SearchProps) {
 export function Search({ 
   children, 
   onSearch, 
-  onDisableSearch, 
-  initialValues, 
-  initialDateRange 
+  onDisableSearch,
+  initialValues,
+  initialDateRange,
 }: SearchProps) {
+  const contextValue = useSearch({ initialValues, initialDateRange });
+
   return (
-    <SearchProvider initialValues={initialValues} initialDateRange={initialDateRange}>
+    <SearchContext.Provider value={contextValue}>
       <SearchContent onSearch={onSearch} onDisableSearch={onDisableSearch}>
         {children}
       </SearchContent>
-    </SearchProvider>
+    </SearchContext.Provider>
   );
 }
 
 type SelectProps = {
   label: string;
-  options: string[];
+  options?: string[];
   keyToStore: string;
   isLoading?: boolean;
   required?: boolean;
   onDisableSelect?: () => boolean;
 };
 
-function Select({ label, options, keyToStore, isLoading, required, onDisableSelect }: SelectProps) {
+function Select({ label, options = [], keyToStore, isLoading, required, onDisableSelect }: SelectProps) {
   const { values, updateValues } = useContext(SearchContext);
   
   return (
@@ -114,4 +120,3 @@ function DatePicker() {
 
 Search.Select = Select;
 Search.DatePicker = DatePicker;
-
