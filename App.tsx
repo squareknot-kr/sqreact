@@ -5,13 +5,9 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 25;
 
-  const handleSearch = (params: any) => {
-    console.log('검색 파라미터:', params);
-  };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    console.log('페이지 변경:', page);
+    console.log('');
   };
 
   return (
@@ -24,7 +20,7 @@ function App() {
         <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>
           Search 컴포넌트
         </h2>
-        <Search onSearch={handleSearch}>
+        <Search onSearch={(values) => true}>
           <Search.Select
             label="상태"
             options={['전체', '진행중', '완료', '취소']}
