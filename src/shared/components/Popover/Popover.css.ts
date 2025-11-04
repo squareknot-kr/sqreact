@@ -31,6 +31,7 @@ export const button = style({
   justifyContent: 'space-between',
   outline: 'none',
   boxSizing: 'border-box',
+  color: 'rgb(31 41 55)',
   ':hover': {
     borderColor: 'rgb(99 102 241)',
   },
@@ -51,6 +52,7 @@ export const buttonText = style({
   whiteSpace: 'nowrap',
   flex: 1,
   minWidth: 0,
+  fontWeight: 500,
 });
 
 export const icon = style({

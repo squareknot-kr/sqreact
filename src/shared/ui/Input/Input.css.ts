@@ -12,6 +12,8 @@ export const input = style({
   paddingBottom: '8px',
   fontSize: '14px',
   lineHeight: '1.25rem',
+  color: 'rgb(31 41 55)',
+  fontWeight: 500,
   transition: 'colors 0.15s',
   outline: 'none',
   boxSizing: 'border-box',
