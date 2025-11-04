@@ -1,18 +1,8 @@
 import { SearchContext } from "./SearchContext";
 import { useSearch } from "./useSearch";
 
-type SearchProviderProps = {
-  children: React.ReactNode;
-  initialValues?: Record<string, string>;
-  initialDateRange?: { startDate: string; endDate: string };
-};
-
-export const SearchProvider = ({ 
-  children,
-  initialValues,
-  initialDateRange,
-}: SearchProviderProps) => {
-  const contextValue = useSearch({ initialValues, initialDateRange });
+export const SearchProvider = ({ children }: { children: React.ReactNode }) => {
+  const contextValue = useSearch();
   
   return (
     <SearchContext.Provider value={contextValue}>
@@ -20,4 +10,3 @@ export const SearchProvider = ({
     </SearchContext.Provider>
   );
 };
-
