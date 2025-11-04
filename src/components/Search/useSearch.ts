@@ -13,12 +13,12 @@ export function useSearch(options: UseSearchOptions = {}): SearchContextType {
     initialDateRange = getDateRange(DEFAULT_DATE_OPTIONS[DEFAULT_DATE_OPTIONS.length - 1], getCurrentDate())
   } = options;
 
-  const [selectedValues, setSelectedValues] = useState(initialValues);
+  const [values, setValues] = useState(initialValues);
   const [labels, setLabels] = useState<Record<string, string>>({});
   const [dateRange, setDateRange] = useState(initialDateRange);
 
   const updateValues = (key: string, value: string, label?: string) => {
-    setSelectedValues(prev => {
+    setValues(prev => {
       const newValues = { ...prev };
       if (value) newValues[key] = value;
       else delete newValues[key];
@@ -40,6 +40,6 @@ export function useSearch(options: UseSearchOptions = {}): SearchContextType {
     setDateRange({ startDate, endDate });
   };
 
-  return { selectedValues, labels, dateRange, updateValues, updateDateRange };
+  return { values, labels, dateRange, updateValues, updateDateRange };
 }
 

@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 
 export type SearchContextType = {
-  selectedValues: Record<string, string>;
+  values: Record<string, string>;
   labels: Record<string, string>;
   dateRange: { startDate: string; endDate: string };
   updateValues: (key: string, value: string, label?: string) => void;
@@ -10,7 +10,7 @@ export type SearchContextType = {
 };
 
 export const SearchContext = createContext<SearchContextType>({
-  selectedValues: {},
+  values: {},
   labels: {},
   dateRange: { startDate: '', endDate: '' },
   updateValues: () => {},
