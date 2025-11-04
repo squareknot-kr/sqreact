@@ -25,7 +25,7 @@ function SearchContent({ children, onSearch, onDisableSearch }: {
 }) {
   const { values, labels, dateRange, updateValues } = useContext(SearchContext);
 
-  const handleRemoveTag = (key: string) => {
+  const onRemoveTag = (key: string) => {
     updateValues(key, '');
   };
 
@@ -61,7 +61,7 @@ function SearchContent({ children, onSearch, onDisableSearch }: {
                 key={key}
                 label={labels[key]}
                 value={value}
-                onRemove={() => handleRemoveTag(key)}
+                onRemove={() => onRemoveTag(key)}
               />
             )
           ))}
@@ -96,10 +96,19 @@ type SelectProps = {
   isLoading?: boolean;
   required?: boolean;
   disabled?: boolean;
+  onDisableSelect?: (values: Record<string, string>) => boolean;
 };
 
-function Select({ label, options = [], keyToStore, isLoading, disabled = false }: SelectProps) {
+function Select({ 
+  label, 
+  options = [], 
+  keyToStore, 
+  isLoading, 
+  disabled = false, 
+  onDisableSelect = undefined 
+}: SelectProps) {
   const { values, updateValues } = useContext(SearchContext);
+  const isDisabled = disabled || (onDisableSelect ? onDisableSelect(values) : false);
   
   return (
     <Popover
@@ -107,7 +116,7 @@ function Select({ label, options = [], keyToStore, isLoading, disabled = false }
       options={options}
       value={values[keyToStore]}
       onChange={(value) => updateValues(keyToStore, value, label)}
-      disabled={disabled}
+      disabled={isDisabled}
       isLoading={isLoading}
     />
   );
