@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { SearchIcon } from '@/components/Search/Search/SearchIcon';
-import { SearchContext } from '../SearchContext';
-import { useSearch } from '../useSearch';
+import { SearchContext, SearchContextType } from '../SearchContext';
 import { DatePicker as DatePickerComponent } from '../DatePicker/DatePicker';
 import { Popover } from '@/shared/components/Popover';
 import { Tag } from '../Tag';
+import { getDateRange, DEFAULT_DATE_OPTIONS, getCurrentDate } from '@/utils/date';
 import * as styles from './Search.css';
 
 type DateRange = { startDate: string; endDate: string };
@@ -75,10 +75,43 @@ export function Search({
   children, 
   onSearch, 
   disabled,
-  initialValues,
+  initialValues = {},
   initialDateRange,
 }: SearchProps) {
-  const contextValue = useSearch({ initialValues, initialDateRange });
+  const defaultDateRange = initialDateRange || getDateRange(DEFAULT_DATE_OPTIONS[DEFAULT_DATE_OPTIONS.length - 1], getCurrentDate());
+  
+  const [values, setValues] = useState(initialValues);
+  const [labels, setLabels] = useState<Record<string, string>>({});
+  const [dateRange, setDateRange] = useState(defaultDateRange);
+
+  const updateValues = (key: string, value: string, label?: string) => {
+    setValues(prev => {
+      const newValues = { ...prev };
+      if (value) newValues[key] = value;
+      else delete newValues[key];
+      return newValues;
+    });
+    if (label !== undefined) {
+      setLabels(prev => {
+        const newLabels = { ...prev };
+        if (value) newLabels[key] = label;
+        else delete newLabels[key];
+        return newLabels;
+      });
+    }
+  };
+
+  const updateDateRange = (startDate: string, endDate: string) => {
+    setDateRange({ startDate, endDate });
+  };
+
+  const contextValue: SearchContextType = {
+    values,
+    labels,
+    dateRange,
+    updateValues,
+    updateDateRange,
+  };
 
   return (
     <SearchContext.Provider value={contextValue}>
