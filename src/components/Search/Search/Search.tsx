@@ -13,15 +13,15 @@ type SearchParams = Record<string, string> & DateRange;
 type SearchProps = {
   children: React.ReactNode;
   onSearch: (values: SearchParams) => void;
-  onDisableSearch?: () => boolean;
+  disabled?: (values: Record<string, string>) => boolean;
   initialValues?: Record<string, string>;
   initialDateRange?: DateRange;
 };
 
-function SearchContent({ children, onSearch, onDisableSearch }: {
+function SearchContent({ children, onSearch, disabled }: {
   children: React.ReactNode;
   onSearch: (values: SearchParams) => void;
-  onDisableSearch?: () => boolean;
+  disabled?: (values: Record<string, string>) => boolean;
 }) {
   const { values, labels, dateRange, updateValues } = useContext(SearchContext);
 
@@ -45,7 +45,7 @@ function SearchContent({ children, onSearch, onDisableSearch }: {
               onSearch({ ...values, ...dateRange });
               e.currentTarget.blur();
             }}
-            disabled={onDisableSearch?.()}
+            disabled={disabled ? disabled(values) : false}
             className={styles.searchButton}
           >
             <SearchIcon style={{ height: '16px', width: '16px', marginRight: '4px' }} />
@@ -74,7 +74,7 @@ function SearchContent({ children, onSearch, onDisableSearch }: {
 export function Search({ 
   children, 
   onSearch, 
-  onDisableSearch,
+  disabled,
   initialValues,
   initialDateRange,
 }: SearchProps) {
@@ -82,7 +82,7 @@ export function Search({
 
   return (
     <SearchContext.Provider value={contextValue}>
-      <SearchContent onSearch={onSearch} onDisableSearch={onDisableSearch}>
+      <SearchContent onSearch={onSearch} disabled={disabled}>
         {children}
       </SearchContent>
     </SearchContext.Provider>
