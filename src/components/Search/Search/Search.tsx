@@ -13,6 +13,8 @@ type SearchProps = {
   disabled?: (values: Record<string, string>) => boolean;
 };
 
+const getNoSpaceLabel = (label: string) => label.replace(/\s+/g, '');
+
 function SearchContent({ children, onSearch, disabled }: {
   children: React.ReactNode;
   onSearch: (values: SearchParams) => void;
@@ -82,7 +84,6 @@ export function Search({
 type SelectProps = {
   label: string;
   options?: string[];
-  keyToStore: string;
   isLoading?: boolean;
   required?: boolean;
   disabled?: boolean | ((values: Record<string, string>) => boolean);
@@ -91,19 +92,19 @@ type SelectProps = {
 function Select({ 
   label, 
   options = [], 
-  keyToStore, 
   isLoading, 
   disabled = false, 
 }: SelectProps) {
   const { values, updateValues } = useSearch();
   const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
-  
+  const labelKey = getNoSpaceLabel(label);
+
   return (
     <Popover
       label={label}
       options={options}
-      value={values[keyToStore]}
-      onChange={(value) => updateValues(keyToStore, value, label)}
+      value={values[labelKey]}
+      onChange={(value) => updateValues(labelKey, value)}
       disabled={isDisabled}
       isLoading={isLoading}
     />
