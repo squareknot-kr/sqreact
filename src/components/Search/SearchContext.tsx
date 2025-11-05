@@ -62,7 +62,22 @@ type SearchProviderProps = {
   initialDateRange?: { startDate: string; endDate: string };
 };
 
-export const SearchContext = createContext<SearchContextType | undefined>(undefined);
+const DEFAULT_CONTEXT_VALUE: SearchContextType = {
+  state: {
+    values: {},
+    labels: {},
+    dateRange: { startDate: '', endDate: '' },
+  },
+  updateValues: () => {
+    throw new Error('useSearch must be used within a SearchProvider. Please wrap your component with <SearchProvider>.');
+  },
+  updateDateRange: () => {
+    throw new Error('useSearch must be used within a SearchProvider. Please wrap your component with <SearchProvider>.');
+  },
+  __isProvider: false, // Provider 내부인지 확인하는 플래그
+} as SearchContextType & { __isProvider: boolean };
+
+export const SearchContext = createContext<SearchContextType>(DEFAULT_CONTEXT_VALUE);
 
 export function SearchProvider({ 
   children,
@@ -87,11 +102,12 @@ export function SearchProvider({
     dispatch({ type: 'UPDATE_DATE_RANGE', payload: { startDate, endDate } });
   }, []);
 
-  const contextValue: SearchContextType = {
+  const contextValue = {
     state,
     updateValues,
     updateDateRange,
-  };
+    __isProvider: true, // Provider 내부임을 표시
+  } as SearchContextType & { __isProvider: boolean };
   
   return (
     <SearchContext.Provider value={contextValue}>

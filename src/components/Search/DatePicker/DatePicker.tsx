@@ -4,8 +4,7 @@ import { useSearch } from "../useSearch";
 import * as styles from './DatePicker.css';
 
 export function DatePicker() {
-  const { state, updateDateRange } = useSearch();
-  const { dateRange } = state;
+  const { dateRange, updateDateRange } = useSearch();
   
   return (
     <div className={styles.datePickerContainer}>

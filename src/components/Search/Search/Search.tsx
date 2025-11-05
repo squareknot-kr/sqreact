@@ -19,8 +19,7 @@ function SearchContent({ children, onSearch, disabled }: {
   onSearch: (values: SearchParams) => void;
   disabled?: (values: Record<string, string>) => boolean;
 }) {
-  const { state, updateValues } = useSearch();
-  const { values, labels, dateRange } = state;
+  const { values, labels, dateRange, updateValues } = useSearch();
 
   const onRemoveTag = (key: string) => {
     updateValues(key, '');
@@ -99,8 +98,7 @@ function Select({
   isLoading, 
   disabled = false, 
 }: SelectProps) {
-  const { state, updateValues } = useSearch();
-  const { values } = state;
+  const { values, updateValues } = useSearch();
   const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
   
   return (
