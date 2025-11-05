@@ -1,6 +1,6 @@
 {
   "name": "sqreact",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React components and utilities library",
   "type": "module",
   "main": "./dist/sqreact.umd.cjs",
