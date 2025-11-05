@@ -1,11 +1,11 @@
-import { useContext } from "react";
 import { Input } from "@/shared/ui/Input";
 import { Label } from "@/shared/ui/Label";
-import { SearchContext } from "../SearchContext";
+import { useSearch } from "../useSearch";
 import * as styles from './DatePicker.css';
 
 export function DatePicker() {
-  const { dateRange, updateDateRange } = useContext(SearchContext);
+  const { state, updateDateRange } = useSearch();
+  const { dateRange } = state;
   
   return (
     <div className={styles.datePickerContainer}>

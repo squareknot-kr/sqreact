@@ -1,21 +1,17 @@
-import { useContext } from 'react';
 import { SearchIcon } from '@/components/Search/Search/SearchIcon';
-import { SearchContext } from '../SearchContext';
-import { SearchProvider } from '../SearchProvider';
+import { SearchProvider } from '../SearchContext';
 import { DatePicker as DatePickerComponent } from '../DatePicker/DatePicker';
 import { Popover } from '@/shared/components/Popover';
 import { Tag } from '../Tag';
 import * as styles from './Search.css';
+import { useSearch } from '../useSearch';
 
-type DateRange = { startDate: string; endDate: string };
-type SearchParams = Record<string, string> & DateRange;
+type SearchParams = Record<string, string> & { startDate: string; endDate: string };
 
 type SearchProps = {
   children: React.ReactNode;
   onSearch: (values: SearchParams) => void;
   disabled?: (values: Record<string, string>) => boolean;
-  initialValues?: Record<string, string>;
-  initialDateRange?: DateRange;
 };
 
 function SearchContent({ children, onSearch, disabled }: {
@@ -23,12 +19,13 @@ function SearchContent({ children, onSearch, disabled }: {
   onSearch: (values: SearchParams) => void;
   disabled?: (values: Record<string, string>) => boolean;
 }) {
-  const { values, labels, dateRange, updateValues } = useContext(SearchContext);
+  const { state, updateValues } = useSearch();
+  const { values, labels, dateRange } = state;
 
   const onRemoveTag = (key: string) => {
     updateValues(key, '');
   };
-
+  
   const hasTags = Object.keys(values).length > 0;
 
   return (
@@ -53,6 +50,7 @@ function SearchContent({ children, onSearch, disabled }: {
           </button>
         </div>
       </div>
+      
       {hasTags && (
         <div className={styles.tagsContainer}>
           {Object.entries(values).map(([key, value]) => (
@@ -75,11 +73,9 @@ export function Search({
   children, 
   onSearch, 
   disabled,
-  initialValues,
-  initialDateRange,
 }: SearchProps) {
   return (
-    <SearchProvider initialValues={initialValues} initialDateRange={initialDateRange}>
+    <SearchProvider>
       <SearchContent onSearch={onSearch} disabled={disabled}>
         {children}
       </SearchContent>
@@ -103,7 +99,8 @@ function Select({
   isLoading, 
   disabled = false, 
 }: SelectProps) {
-  const { values, updateValues } = useContext(SearchContext);
+  const { state, updateValues } = useSearch();
+  const { values } = state;
   const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
   
   return (
