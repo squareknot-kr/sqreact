@@ -1,5 +1,4 @@
 import { SearchIcon } from '@/components/Search/Search/SearchIcon';
-import { SearchProvider } from '../SearchContext';
 import { DatePicker as DatePickerComponent } from '../DatePicker/DatePicker';
 import { Popover } from '@/shared/components/Popover';
 import { Tag } from '../Tag';
@@ -74,11 +73,9 @@ export function Search({
   disabled,
 }: SearchProps) {
   return (
-    <SearchProvider>
-      <SearchContent onSearch={onSearch} disabled={disabled}>
-        {children}
-      </SearchContent>
-    </SearchProvider>
+    <SearchContent onSearch={onSearch} disabled={disabled}>
+      {children}
+    </SearchContent>
   );
 }
 
