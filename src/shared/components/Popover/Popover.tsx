@@ -51,7 +51,7 @@ export const Popover = ({
   };
 
   const filteredOptions = options.filter(option =>
-    option.toLowerCase().includes(searchTerm.toLowerCase())
+    option?.toLowerCase().includes(searchTerm?.toLowerCase() || '')
   );
 
   const handleSelect = (option: string) => {
