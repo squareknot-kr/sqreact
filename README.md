@@ -35,6 +35,7 @@ function App() {
       <Search.Select
         label="상태"
         options={['진행중', '완료', '취소']}
+        storeKey="status"
       />
       <Search.DatePicker />
     </Search>
@@ -64,6 +65,7 @@ function App() {
       <Search.Select
         label="상태"
         options={['진행중', '완료', '취소']}
+        storeKey="status"
       />
       <Search.DatePicker />
     </Search>
@@ -91,6 +93,7 @@ function App() {
       <Search.Select
         label="상태"
         options={['진행중', '완료', '취소']}
+        storeKey="status"
       />
       <Search.DatePicker />
     </Search>
