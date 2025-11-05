@@ -2,9 +2,19 @@ import { Input } from "@/shared/ui/Input";
 import { Label } from "@/shared/ui/Label";
 import { useSearch } from "../useSearch";
 import * as styles from './DatePicker.css';
+import { useEffect } from "react";
 
-export function DatePicker() {
+export function DatePicker({ startDate = undefined, endDate = undefined }: { 
+  startDate?: string;
+  endDate?: string;
+}) {
   const { dateRange, updateDateRange } = useSearch();
+
+  useEffect(() => {
+    if (startDate || endDate) {
+      updateDateRange(startDate || dateRange.startDate, endDate || dateRange.endDate);
+    }
+  }, [startDate, endDate]);
   
   return (
     <div className={styles.datePickerContainer}>

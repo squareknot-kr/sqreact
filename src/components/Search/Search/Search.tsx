@@ -19,11 +19,6 @@ function SearchContent({ children, onSearch, disabled }: {
   disabled?: (values: Record<string, string>) => boolean;
 }) {
   const { values, labels, dateRange, updateValues } = useSearch();
-
-  const onRemoveTag = (key: string) => {
-    updateValues(key, '');
-  };
-  
   const hasTags = Object.keys(values).length > 0;
 
   return (
@@ -57,7 +52,7 @@ function SearchContent({ children, onSearch, disabled }: {
                 key={key}
                 label={labels[key]}
                 value={value}
-                onRemove={() => onRemoveTag(key)}
+                onRemove={() => updateValues(key, '')}
               />
             )
           ))}

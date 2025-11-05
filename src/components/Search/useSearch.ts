@@ -36,7 +36,7 @@ const globalStore = {
   },
   
   updateValues(key: string, value: string, label?: string) {
-    if (value) {
+    if (value && value !== '전체') {
       this.state.values[key] = value;
       if (label) {
         this.state.labels[key] = label;
