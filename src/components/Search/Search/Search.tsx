@@ -101,7 +101,7 @@ function Select({
   return (
     <Popover
       label={label}
-      options={options}
+      options={['전체', ...options]}
       value={values[storeKey]}
       onChange={(value) => updateValues(storeKey, value, label)}
       disabled={isDisabled}
