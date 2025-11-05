@@ -1,11 +1,11 @@
-# sqreact-ui
+# sqreact
 
 React 컴포넌트와 유틸리티 라이브러리
 
 ## 설치
 
 ```bash
-npm install sqreact-ui
+npm install sqreact
 ```
 
 ### 요구사항
@@ -21,13 +21,13 @@ CSS는 package.json의 exports 필드를 통해 제공됩니다. 컴포넌트를
 
 ```tsx
 // CSS import
-import 'sqreact-ui/style.css';
+import 'sqreact/style.css';
 // 또는
-import 'sqreact-ui/css';
+import 'sqreact/css';
 // 또는
-import 'sqreact-ui/styles';
+import 'sqreact/styles';
 
-import { Search, PageList } from 'sqreact-ui';
+import { Search, PageList } from 'sqreact';
 
 function App() {
   return (
@@ -52,8 +52,8 @@ function App() {
 내부적으로 `useSearch` 훅을 사용하여 상태를 관리하므로 별도의 설정 없이 바로 사용할 수 있습니다.
 
 ```tsx
-import 'sqreact-ui/style.css';
-import { Search } from 'sqreact-ui';
+import 'sqreact/style.css';
+import { Search } from 'sqreact';
 
 function App() {
   const handleSearch = (params) => {
@@ -76,8 +76,8 @@ function App() {
 #### 초기값 설정
 
 ```tsx
-import 'sqreact-ui/style.css';
-import { Search } from 'sqreact-ui';
+import 'sqreact/style.css';
+import { Search } from 'sqreact';
 
 function App() {
   const handleSearch = (params) => {
@@ -105,7 +105,7 @@ function App() {
 ### Pagination 컴포넌트
 
 ```tsx
-import { PageList } from 'sqreact-ui';
+import { PageList } from 'sqreact';
 
 function App() {
   const handlePageChange = (page: number) => {

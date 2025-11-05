@@ -13,7 +13,7 @@ function App() {
   return (
     <div style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
       <h1 style={{ marginBottom: '32px', fontSize: '24px', fontWeight: 'bold' }}>
-        sqreact-ui 테스트
+        sqreact 테스트
       </h1>
 
       <div style={{ marginBottom: '40px' }}>
