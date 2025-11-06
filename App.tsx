@@ -31,7 +31,7 @@ function App() {
             options={['공지', '이벤트', '업데이트']}
             storeKey="category"
           />
-          <Search.DatePicker />
+          <Search.DatePicker startDate="2025-10-01" endDate="2025-10-31" />
         </Search>
       </div>
 

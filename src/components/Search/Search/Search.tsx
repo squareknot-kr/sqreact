@@ -105,8 +105,11 @@ function Select({
   );
 }
 
-function DatePicker() {
-  return <DatePickerComponent />;
+function DatePicker({ startDate = undefined, endDate = undefined }: { 
+  startDate?: string;
+  endDate?: string;
+}) {
+  return <DatePickerComponent startDate={startDate} endDate={endDate} />;
 }
 
 Search.Select = Select;
