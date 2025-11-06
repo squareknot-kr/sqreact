@@ -31,7 +31,16 @@
     "react",
     "components",
     "pagination",
-    "datepicker"
+    "datepicker",
+    "searchbar",
+    "search",
+    "pagelist",
+    "page",
+    "react components",
+    "component library",
+    "ui library",
+    "ui",
+    "ui components"
   ],
   "author": "oilater",
   "license": "MIT",
