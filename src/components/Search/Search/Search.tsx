@@ -77,7 +77,7 @@ export function Search({
 type SelectProps = {
   label: string;
   options?: string[];
-  storeKey: string;
+  valueKey: string;
   isLoading?: boolean;
   required?: boolean;
   disabled?: boolean | ((values: Record<string, string>) => boolean);
@@ -86,7 +86,7 @@ type SelectProps = {
 function Select({ 
   label, 
   options = [], 
-  storeKey, 
+  valueKey, 
   isLoading, 
   disabled = false, 
 }: SelectProps) {
@@ -97,8 +97,8 @@ function Select({
     <Popover
       label={label}
       options={['전체', ...options]}
-      value={values[storeKey]}
-      onChange={(value) => updateValues(storeKey, value, label)}
+      value={values[valueKey]}
+      onChange={(value) => updateValues(valueKey, value, label)}
       disabled={isDisabled}
       isLoading={isLoading}
     />

@@ -24,12 +24,12 @@ function App() {
           <Search.Select
             label="상태"
             options={['진행중', '완료', '취소']}
-            storeKey="status"
+            valueKey="status"
           />
           <Search.Select
             label="카테고리"
             options={['공지', '이벤트', '업데이트']}
-            storeKey="category"
+            valueKey="category"
           />
           <Search.DatePicker startDate="2025-10-01" endDate="2025-10-31" />
         </Search>
