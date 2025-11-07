@@ -35,10 +35,9 @@ export const buttonContainer = style({
   flexShrink: 0,
 });
 
-export const buttonLabel = style({
+export const searchButtonLabel = style({
   fontSize: '14px',
   fontWeight: 500,
-  color: 'transparent',
 });
 
 export const searchButton = style({

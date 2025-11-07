@@ -1,84 +1,31 @@
-import { useState, useEffect, useCallback } from 'react';
-import { getDateRange, getCurrentDate } from '@/utils/date';
+import { useSyncExternalStore } from 'react';
+import { DateRange, SearchLabels, SearchValues } from './Search/type';
+import { searchStore } from './Search/store';
 
 export type UseSearchReturn = {
-  values: Record<string, string>;
-  labels: Record<string, string>;
-  dateRange: { startDate: string; endDate: string };
+  values: SearchValues;
+  labels: SearchLabels;
+  dateRange: DateRange;
   updateValues: (key: string, value: string, label?: string) => void;
   updateDateRange: (startDate: string, endDate: string) => void;
 };
 
-type SearchState = {
-  values: Record<string, string>;
-  labels: Record<string, string>;
-  dateRange: { startDate: string; endDate: string };
-};
-
-// 전역 store
-const globalStore = {
-  state: {
-    values: {},
-    labels: {},
-    dateRange: getDateRange(150, getCurrentDate()),
-  } as SearchState,
-  listeners: new Set<() => void>(),
-  
-  subscribe(listener: () => void) {
-    this.listeners.add(listener);
-    return () => {
-      this.listeners.delete(listener);
-    };
-  },
-  
-  notify() {
-    this.listeners.forEach(listener => listener());
-  },
-  
-  updateValues(key: string, value: string, label?: string) {
-    if (value && value !== '전체') {
-      this.state.values[key] = value;
-      if (label) {
-        this.state.labels[key] = label;
-      }
-    } else {
-      delete this.state.values[key];
-      if (label !== undefined) {
-        delete this.state.labels[key];
-      }
-    }
-    this.notify();
-  },
-  
-  updateDateRange(startDate: string, endDate: string) {
-    this.state.dateRange.startDate = startDate;
-    this.state.dateRange.endDate = endDate;
-    this.notify();
-  },
-};
+const subscribe = (listener: () => void) => searchStore.subscribe(listener);
+const getSnapshot = () => searchStore.state;
 
 export function useSearch(): UseSearchReturn {
-  const [, setTick] = useState(0);
+  const state = useSyncExternalStore(subscribe, getSnapshot);
   
-  useEffect(() => {
-    const unsubscribe = globalStore.subscribe(() => {
-      setTick(prev => prev + 1);
-    });
-    return unsubscribe;
-  }, []);
+  const updateValues = (key: string, value: string, label?: string) => {
+    searchStore.updateValues(key, value, label);
+  };
   
-  const updateValues = useCallback((key: string, value: string, label?: string) => {
-    globalStore.updateValues(key, value, label);
-  }, []);
-  
-  const updateDateRange = useCallback((startDate: string, endDate: string) => {
-    globalStore.updateDateRange(startDate, endDate);
-  }, []);
-  
+  const updateDateRange = (startDate: string, endDate: string) => {
+    searchStore.updateDateRange(startDate, endDate);
+  };
+
   return {
-    values: globalStore.state.values,
-    labels: globalStore.state.labels,
-    dateRange: globalStore.state.dateRange,
+    ...state,
     updateValues,
     updateDateRange,
   };

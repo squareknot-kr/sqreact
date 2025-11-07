@@ -4,22 +4,30 @@ import { Popover } from '@/shared/components/Popover';
 import { Tag } from '../Tag';
 import * as styles from './Search.css';
 import { useSearch } from '../useSearch';
+import { DateRange, SearchParams, SearchValues } from './type';
 
-type SearchParams = Record<string, string> & { startDate: string; endDate: string };
-
-type SearchProps = {
+interface SearchProps {
   children: React.ReactNode;
   onSearch: (values: SearchParams) => void;
-  disabled?: (values: Record<string, string>) => boolean;
-};
+  disabled?: (values: SearchValues) => boolean;
+}
 
-function SearchContent({ children, onSearch, disabled }: {
-  children: React.ReactNode;
-  onSearch: (values: SearchParams) => void;
-  disabled?: (values: Record<string, string>) => boolean;
-}) {
+interface SelectProps {
+  label: string;
+  options?: string[];
+  valueKey: string;
+  isLoading?: boolean;
+  disabled?: boolean | ((values: SearchValues) => boolean);
+}
+
+const RESET_SELECT_OPTION_VALUE = '';
+
+export function Search({ 
+  children, 
+  onSearch, 
+  disabled: setDisabled 
+}: SearchProps) {
   const { values, labels, dateRange, updateValues } = useSearch();
-  const hasTags = Object.keys(values).length > 0;
 
   return (
     <>
@@ -28,23 +36,18 @@ function SearchContent({ children, onSearch, disabled }: {
           {children}
         </div>
         <div className={styles.buttonContainer}>
-          <div className={styles.buttonLabel}>검색</div>
           <button
             type="button"
-            onClick={(e) => {
-              onSearch({ ...values, ...dateRange });
-              e.currentTarget.blur();
-            }}
-            disabled={disabled ? disabled(values) : false}
+            onClick={() => onSearch({ ...values, ...dateRange })}
+            disabled={setDisabled ? setDisabled(values) : undefined}
             className={styles.searchButton}
           >
-            <SearchIcon style={{ height: '16px', width: '16px', marginRight: '4px' }} />
-            <span style={{ fontSize: '14px', fontWeight: 500 }}>검색</span>
+            <SearchIcon />
+            <span className={styles.searchButtonLabel}>검색</span>
           </button>
         </div>
       </div>
-      
-      {hasTags && (
+      {values.length && (
         <div className={styles.tagsContainer}>
           {Object.entries(values).map(([key, value]) => (
             value && labels[key] && (
@@ -52,36 +55,14 @@ function SearchContent({ children, onSearch, disabled }: {
                 key={key}
                 label={labels[key]}
                 value={value}
-                onRemove={() => updateValues(key, '')}
+                onRemove={() => updateValues(key, RESET_SELECT_OPTION_VALUE)}
               />
-            )
-          ))}
+            )))}
         </div>
       )}
     </>
   );
 }
-
-export function Search({ 
-  children, 
-  onSearch, 
-  disabled,
-}: SearchProps) {
-  return (
-    <SearchContent onSearch={onSearch} disabled={disabled}>
-      {children}
-    </SearchContent>
-  );
-}
-
-type SelectProps = {
-  label: string;
-  options?: string[];
-  valueKey: string;
-  isLoading?: boolean;
-  required?: boolean;
-  disabled?: boolean | ((values: Record<string, string>) => boolean);
-};
 
 function Select({ 
   label, 
@@ -105,10 +86,7 @@ function Select({
   );
 }
 
-function DatePicker({ startDate = undefined, endDate = undefined }: { 
-  startDate?: string;
-  endDate?: string;
-}) {
+function DatePicker({ startDate, endDate }: Partial<DateRange>) {
   return <DatePickerComponent startDate={startDate} endDate={endDate} />;
 }
 

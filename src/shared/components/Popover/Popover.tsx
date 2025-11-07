@@ -76,7 +76,7 @@ export const Popover = ({
         <button
           type="button"
           onClick={handleToggle}
-          disabled={disabled || isLoading}
+          disabled={disabled}
           className={styles.button}
         >
           <span className={styles.buttonText}>

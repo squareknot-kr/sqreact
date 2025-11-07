@@ -2,7 +2,7 @@ import * as styles from './Tag.css';
 
 type TagProps = {
   label: string;
-  value: string;
+  value: string | number;
   onRemove: () => void;
 };
 

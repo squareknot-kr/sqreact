@@ -3,14 +3,14 @@ import { Label } from "@/shared/ui/Label";
 import { useSearch } from "../useSearch";
 import * as styles from './DatePicker.css';
 import { useEffect } from "react";
-import { getCurrentDate, getDateString } from "@/utils/date";
+import { getToday, formatDateToString } from "@/utils/date";
 
 export function DatePicker({ startDate = undefined, endDate = undefined }: { 
   startDate?: string;
   endDate?: string;
 }) {
   const { dateRange, updateDateRange } = useSearch();
-  const today = getDateString(getCurrentDate());
+  const today = formatDateToString(getToday());
 
   useEffect(() => {
     if (startDate || endDate) {
