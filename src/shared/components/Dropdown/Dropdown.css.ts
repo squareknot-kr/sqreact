@@ -7,7 +7,7 @@ export const dropdownContainer = style({
   maxWidth: '100%',
 });
 
-export const labelContainer = style({
+export const labelSection = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '4px',
@@ -75,11 +75,11 @@ export const iconRotated = style({
 const fadeInScale = keyframes({
   '0%': {
     opacity: 0,
-    transform: 'scale(0.8)',
+    transform: 'translateY(-4px)',
   },
   '100%': {
     opacity: 1,
-    transform: 'scale(1)',
+    transform: 'translateY(0)',
   },
 });
 
@@ -93,7 +93,6 @@ export const clearIconContainer = style({
   backgroundColor: 'rgb(229 231 235)',
   cursor: 'pointer',
   transition: 'background-color 0.15s',
-  animation: `${fadeInScale} 0.1s ease-out`,
   ':hover': {
     backgroundColor: 'rgb(209 213 219)',
   },
@@ -108,13 +107,11 @@ export const dropdown = style({
   backgroundColor: 'white',
   border: '1px solid rgb(229 231 235)',
   borderRadius: '8px',
-  boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
   maxHeight: '256px',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  transition: 'all 0.2s',
-  opacity: 1,
+  animation: `${fadeInScale} 0.1s ease-out`,
 });
 
 export const searchContainer = style({

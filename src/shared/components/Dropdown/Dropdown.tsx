@@ -1,179 +1,130 @@
-import { useRef, useEffect, useReducer } from 'react';
+import { useRef, useEffect, cloneElement, ReactNode, ButtonHTMLAttributes, ReactElement, useContext, useState } from 'react';
+import { DropdownContext } from './DropdownContext';
 import * as styles from './Dropdown.css';
 
-type DropdownProps = {
+interface DropdownProps {
   label: string;
-  options: string[];
   defaultValue?: string;
-  value?: string;
-  disabled?: boolean;
-  isLoading?: boolean;
-  style?: React.CSSProperties;
-  onChange?: (value: string) => void;
-};
-
-type DropdownState = {
-  isOpen: boolean;
-  value: string | undefined;
-  searchInputValue: string;
-}
-
-type DropdownAction = {
-  type: 'toggle' | 'search' | 'select' | 'clear';
-  payload?: string;
-}
-
-const dropdownReducer = (state: DropdownState, action: DropdownAction) => {
-  switch (action.type) {
-    case 'toggle':
-      return { 
-        ...state, 
-        isOpen: !state.isOpen,
-      };
-    case 'search':
-      return { 
-        ...state, 
-        searchInputValue: action.payload || ''
-      };
-    case 'select':
-      return { 
-        ...state, 
-        isOpen: false, 
-        value: action.payload,
-        searchInputValue: ''
-      };
-    case 'clear':
-      return {
-        ...state,
-        value: undefined,
-        searchInputValue: '',
-        isOpen: false,
-      };
-    default:
-      return state;
-  }
+  onChange: (value: string) => void;
+  children: ReactNode;
 }
 
 export const Dropdown = ({
-  defaultValue = '전체',
   label,
-  options,
-  value,
-  disabled = false,
-  isLoading = false,
-  style,
+  defaultValue = '선택',
   onChange,
+  children,
 }: DropdownProps) => {
-  const [state, dispatch] = useReducer(dropdownReducer, { isOpen: false, searchInputValue: '', value: undefined });
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const searchRef = useRef<HTMLInputElement>(null);
-
-  useEffect(function focusOnMount() {
-    if (!state.isOpen) return;
-
-    const onClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        dispatch({ type: 'toggle' });
-      }
-    };
-    
-    searchRef.current?.focus();
-    document.addEventListener('mousedown', onClickOutside);
-    
-    return () => {
-      document.removeEventListener('mousedown', onClickOutside);
-    };
-  }, [state.isOpen]);
-
-  const filteredOptionsOnSearch = options.filter(option =>
-    option?.toLowerCase().includes(state.searchInputValue?.toLowerCase() || '')
-  );
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  
+  const onSelectItem = (item: string) => {
+    setIsOpen(false);
+    setSearchValue('');
+    onChange(item);
+  }
 
   return (
-    <div className={styles.dropdownContainer} ref={dropdownRef} style={style}>
-      <div className={styles.labelContainer}>
-        <label className={styles.label}>{label}</label>
-        <button
-          type="button"
-          onClick={() => dispatch({ type: 'toggle' })}
-          disabled={disabled}
-          className={styles.button}
-        >
-          <span className={styles.buttonText}>
-            {value || state.value || defaultValue}
-          </span>
-          {state.isOpen ? (
-            <div
-              className={styles.clearIconContainer}
-              onClick={(e) => {
-                e.stopPropagation();
-                dispatch({ type: 'clear' });
-                onChange?.('');
-              }}
-            >
-              <svg
-                className={styles.icon}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </div>
-          ) : (
-            <svg
-              className={styles.icon}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          )}
-        </button>
-      </div>
-
-      {state.isOpen && (
-        <div className={styles.dropdown}>
-          <div className={styles.searchContainer}>
-            <input
-              ref={searchRef}
-              type="text"
-              value={state.searchInputValue}
-              onChange={(e) => {
-                dispatch({ type: 'search', payload: e.target.value });
-              }}
-              placeholder="검색..."
-              className={styles.searchInput}
-            />
-          </div>
-
-          <div className={styles.optionsContainer}>
-            {isLoading ? (
-              <div className={styles.emptyState}>로딩 중...</div>
-            ) : filteredOptionsOnSearch.length === 0 ? (
-              <div className={styles.emptyState}>검색 결과가 없습니다</div>
-            ) : (
-              <ul className={styles.optionsList}>
-                {filteredOptionsOnSearch.map((option) => (
-                  <li key={option}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        dispatch({ type: 'select', payload: option });
-                        onChange?.(option);
-                      }}
-                      className={`${styles.optionItem} ${(value || state.value) === option ? styles.optionItemSelected : ''}`}
-                    >
-                      {option}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+    <DropdownContext.Provider value={{ defaultValue, isOpen, setIsOpen, onSelectItem, searchValue, setSearchValue, onChangeValue: onChange }}>
+      <div className={styles.dropdownContainer}>
+        <div className={styles.labelSection}>
+          <label className={styles.label}>{label}</label>
         </div>
-      )}
-    </div>
+        {children}
+      </div>
+    </DropdownContext.Provider>
   );
-};
+}
+
+function Menu({ children }: { children: React.ReactNode }) {
+  const { isOpen } = useContext(DropdownContext);
+  if (!isOpen) return null;
+
+  return (
+    <div className={styles.dropdown}>
+      {children}
+    </div>
+  )
+}
+
+function Item({ children }: { children: string }) {
+  const { onSelectItem } = useContext(DropdownContext);
+  return (
+    <div className={styles.optionItem} onClick={() => onSelectItem(children)}>
+      {children}
+    </div>
+  )
+}
+
+function Search() {
+  const searchRef = useRef<HTMLInputElement>(null);
+  const { searchValue, setSearchValue, isOpen } = useContext(DropdownContext);
+
+  useEffect(function focusOnMount() {
+    if (isOpen && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [isOpen]);
+
+  return (
+    <div className={styles.searchContainer}>
+      <input
+        ref={searchRef}
+        type="text"
+        placeholder="검색..."
+        className={styles.searchInput}
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
+    </div>
+  )
+}
+
+interface TriggerProps {
+  as?: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
+}
+
+function Trigger({ as }: TriggerProps) {
+  const { setIsOpen } = useContext(DropdownContext);
+  return as ? cloneElement(as, {
+    ...as?.props ?? {},
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+      as?.props?.onClick?.(e);
+      setIsOpen(prev => !prev);
+    }
+  }) : null;
+}
+
+function FilteredItems({ options }: { options: string[] }) {
+  const { searchValue } = useContext(DropdownContext);
+
+  const filteredOptions = !searchValue.trim()
+    ? options
+    : options.filter(option =>
+        option.toLowerCase().includes(searchValue.toLowerCase())
+      );
+
+  if (filteredOptions.length === 0) {
+    return (
+      <div
+        style={{
+          padding: "16px",
+          textAlign: "center",
+          color: "rgb(156 163 175)",
+        }}
+      >
+        검색 결과가 없습니다
+      </div>
+    );
+  }
+
+  return filteredOptions.map(option => (
+    <Dropdown.Item key={option}>{option}</Dropdown.Item>
+  ));
+}
+
+Dropdown.Trigger = Trigger;
+Dropdown.Search = Search;
+Dropdown.Menu = Menu;
+Dropdown.Item = Item;
+Dropdown.FilteredItems = FilteredItems;

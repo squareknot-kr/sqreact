@@ -1,55 +1,48 @@
+// import { Search, PageList } from './src/index';
+import { Search } from '@/components';
+import { Select } from '@/shared/components/Select/Select';
+import { SelectButton } from '@/shared/components/SelectButton/SelectButton';
 import { useState } from 'react';
-import { Search, PageList } from './src/index';
-import { Dropdown } from '@/shared/components/Dropdown/Dropdown';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 25;
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    console.log('');
-  };
-
+  const [selectedValue, setSelectedValue] = useState('');
+  const options = ['바나나', '사과', '포도'];
   return (
     <div style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
-      <h1 style={{ marginBottom: '32px', fontSize: '24px', fontWeight: 'bold' }}>
-        sqreact 테스트
-      </h1>
-
       <div style={{ marginBottom: '40px' }}>
         <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>
           Search 컴포넌트
         </h2>
-        <Search onSearch={() => true}>
-          <Search.Select
-            label="상태"
-            options={['진행중', '완료', '취소']}
-            valueKey="status"
-          />
-          <Search.Select
-            label="카테고리"
-            options={['공지', '이벤트', '업데이트']}
-            valueKey="category"
-          />
-          <Search.DatePicker startDate="2025-10-01" endDate="2025-10-31" />
-        </Search>
-      </div>
 
+      </div>
+    <Search onSearch={(values) => console.log(values)}>
+      <Search.Select
+        label="템플릿"
+        valueKey="templateName"
+        options={['템플릿1', '템플릿2', '템플릿3']}
+      />
+      <Search.Select
+        label="고객사"
+        valueKey="clientName"
+        options={['고객사1', '고객사2', '고객사3']}
+      />
+      <Search.Select
+        label="상품"
+        valueKey="productName"
+        options={['상품1', '상품2', '상품3']}
+      />
+    </Search>
       <div>
         <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>
           PageList 컴포넌트
         </h2>
-        <PageList
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-        <Dropdown 
-          label="상태"
-          options={['진행중', '완료', '취소']}
-          defaultValue='선택'
-          onChange={(value) => console.log(value)}
+        <Select 
+          label="과일"
+          defaultValue='선택하세요'
+          options={options}
+          onChange={(value) => setSelectedValue(value)} 
+          trigger={<SelectButton style={{ width: '300px' }}>{selectedValue}</SelectButton>}
+          withSearch
         />
       </div>
     </div>

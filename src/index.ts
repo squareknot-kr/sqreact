@@ -4,11 +4,11 @@ import './components/Search/DatePicker/DatePicker.css';
 import './components/Search/Tag/Tag.css';
 import './components/Pagination/Pagination.css';
 import './shared/components/Dropdown/Dropdown.css';
-import './shared/ui/Button/Button.css';
-import './shared/ui/Input/Input.css';
-import './shared/ui/Label/Label.css';
+import './shared/components/Button/Button.css';
+import './shared/atoms/Input/Input.css';
+import './shared/atoms/Label/Label.css';
 
 // 컴포넌트 export
-export { Search, PageList } from './components';
+// export { Search, PageList } from './components';
 export { useSearch } from './components';
 export type { UseSearchReturn } from './components/Search/useSearch';

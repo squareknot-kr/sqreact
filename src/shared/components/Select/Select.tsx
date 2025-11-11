@@ -3,8 +3,8 @@ import { Dropdown } from "../Dropdown/Dropdown";
 
 interface SelectProps {
   label: string;
-  defaultValue: string;
-  trigger: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
+  defaultValue?: string;
+  trigger?: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
   options: string[];
   onChange: (value: string) => void;
   withSearch?: boolean;
@@ -19,7 +19,7 @@ export function Select({
   withSearch = false,
 }: SelectProps) {
   return (
-    <Dropdown label={label} defaultValue={defaultValue} onChange={onChange}>
+    <Dropdown label={label} onChange={onChange} defaultValue={defaultValue}>
       <Dropdown.Trigger as={trigger} />
       <Dropdown.Menu>
         {withSearch && <Dropdown.Search />}

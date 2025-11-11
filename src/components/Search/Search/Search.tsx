@@ -1,10 +1,10 @@
 import { SearchIcon } from '@/components/Search/Search/SearchIcon';
 import { DatePicker as DatePickerComponent } from '../DatePicker/DatePicker';
-import { Dropdown } from '@/shared/components/Dropdown';
 import { Tag } from '../Tag';
 import * as styles from './Search.css';
 import { useSearch } from '../useSearch';
 import { DateRange, SearchParams, SearchValues } from './type';
+import { DropdownForSearch } from '@/shared/components';
 
 interface SearchProps {
   children: React.ReactNode;
@@ -77,7 +77,7 @@ function Select({
   const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
 
   return (
-    <Dropdown
+    <DropdownForSearch
       label={label}
       options={[...options]}
       value={values[valueKey]}

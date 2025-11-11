@@ -1,6 +1,6 @@
 {
   "name": "sqreact",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "React components and utilities library",
   "type": "module",
   "main": "./dist/sqreact.umd.cjs",
@@ -20,7 +20,9 @@
   "files": [
     "dist"
   ],
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "vite --config vite.config.dev.ts",
     "build": "tsc && vite build",
@@ -77,5 +79,8 @@
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
     "vite-plugin-dts": "^3.6.4"
+  },
+  "dependencies": {
+    "lucide-react": "^0.553.0"
   }
 }

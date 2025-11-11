@@ -1,5 +1,5 @@
-import { Input } from "@/shared/ui/Input";
-import { Label } from "@/shared/ui/Label";
+import { Input } from "@/shared/atoms/Input";
+import { Label } from "@/shared/atoms/Label";
 import { useSearch } from "../useSearch";
 import * as styles from './DatePicker.css';
 import { useEffect } from "react";
