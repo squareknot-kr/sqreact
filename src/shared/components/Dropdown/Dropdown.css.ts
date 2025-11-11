@@ -10,7 +10,6 @@ export const dropdownContainer = style({
 export const labelSection = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '4px',
 });
 
 export const label = style({
@@ -18,7 +17,7 @@ export const label = style({
   fontWeight: 500,
   color: 'rgb(55 65 81)',
   lineHeight: 1.5,
-  marginBottom: '4px',
+  marginBottom: '10px',
 });
 
 export const button = style({
@@ -100,18 +99,15 @@ export const clearIconContainer = style({
 
 export const dropdown = style({
   position: 'absolute',
-  zIndex: 50,
   marginTop: '4px',
   width: 'max-content',
   minWidth: '450px',
-  backgroundColor: 'white',
   border: '1px solid rgb(229 231 235)',
   borderRadius: '8px',
   maxHeight: '256px',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  animation: `${fadeInScale} 0.1s ease-out`,
 });
 
 export const searchContainer = style({
@@ -132,9 +128,8 @@ export const searchInput = style({
   transition: 'colors 0.15s',
   boxSizing: 'border-box',
   ':focus': {
-    borderColor: 'rgb(99 102 241)',
+    border: '1.5px solid rgb(99 102 241)',
     backgroundColor: 'white',
-    boxShadow: '0 0 0 1px rgb(99 102 241)',
   },
 });
 

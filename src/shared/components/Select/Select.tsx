@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactElement } from "react";
 import { Dropdown } from "../Dropdown/Dropdown";
 
 interface SelectProps {
-  label: string;
+  label?: string;
   defaultValue?: string;
   trigger: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
   options: string[];

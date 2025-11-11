@@ -1,9 +1,10 @@
-import { useRef, useEffect, cloneElement, ReactNode, ButtonHTMLAttributes, ReactElement, useContext, useState } from 'react';
+import { useEffect, cloneElement, ReactNode, ButtonHTMLAttributes, ReactElement, useContext, useState, useRef } from 'react';
 import { DropdownContext } from './DropdownContext';
 import * as styles from './Dropdown.css';
+import { Motion } from '../Motion/Motion';
 
 interface DropdownProps {
-  label: string;
+  label?: string;
   defaultValue?: string;
   onChange: (value: string) => void;
   children: ReactNode;
@@ -27,9 +28,11 @@ export const Dropdown = ({
   return (
     <DropdownContext.Provider value={{ defaultValue, isOpen, setIsOpen, onSelectItem, searchValue, setSearchValue, onChangeValue: onChange }}>
       <div className={styles.dropdownContainer}>
-        <div className={styles.labelSection}>
-          <label className={styles.label}>{label}</label>
-        </div>
+        {label && 
+          <div className={styles.labelSection}>
+            <label className={styles.label}>{label}</label>
+          </div>
+        }
         {children}
       </div>
     </DropdownContext.Provider>
@@ -38,13 +41,12 @@ export const Dropdown = ({
 
 function Menu({ children }: { children: React.ReactNode }) {
   const { isOpen } = useContext(DropdownContext);
-  if (!isOpen) return null;
 
   return (
-    <div className={styles.dropdown}>
+    <Motion condition={isOpen} className={styles.dropdown}>
       {children}
-    </div>
-  )
+    </Motion>
+  );
 }
 
 function Item({ children }: { children: string }) {
