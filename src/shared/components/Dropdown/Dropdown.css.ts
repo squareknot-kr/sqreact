@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, keyframes } from '@vanilla-extract/css';
 
 export const dropdownContainer = style({
   position: 'relative',
@@ -62,14 +62,41 @@ export const buttonText = style({
 });
 
 export const icon = style({
-  width: '16px',
-  height: '16px',
+  width: '12px',
+  height: '12px',
   color: 'rgb(75 85 99)',
-  transition: 'transform 0.2s',
+  transition: 'transform 0.2s, opacity 0.2s',
 });
 
 export const iconRotated = style({
   transform: 'rotate(180deg)',
+});
+
+const fadeInScale = keyframes({
+  '0%': {
+    opacity: 0,
+    transform: 'scale(0.8)',
+  },
+  '100%': {
+    opacity: 1,
+    transform: 'scale(1)',
+  },
+});
+
+export const clearIconContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '18px',
+  height: '18px',
+  borderRadius: '50%',
+  backgroundColor: 'rgb(229 231 235)',
+  cursor: 'pointer',
+  transition: 'background-color 0.15s',
+  animation: `${fadeInScale} 0.1s ease-out`,
+  ':hover': {
+    backgroundColor: 'rgb(209 213 219)',
+  },
 });
 
 export const dropdown = style({

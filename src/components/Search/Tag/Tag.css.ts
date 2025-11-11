@@ -14,6 +14,11 @@ export const tag = style({
   fontSize: '14px',
   fontWeight: 500,
   color: 'rgb(67 56 202)',
+  cursor: 'pointer',
+  transition: 'background-color 0.15s',
+  ':hover': {
+    backgroundColor: 'rgb(224 231 255)',
+  },
 });
 
 export const tagText = style({

@@ -19,7 +19,7 @@ type DropdownState = {
 }
 
 type DropdownAction = {
-  type: 'toggle' | 'search' | 'select';
+  type: 'toggle' | 'search' | 'select' | 'clear';
   payload?: string;
 }
 
@@ -41,6 +41,13 @@ const dropdownReducer = (state: DropdownState, action: DropdownAction) => {
         isOpen: false, 
         value: action.payload,
         searchInputValue: ''
+      };
+    case 'clear':
+      return {
+        ...state,
+        value: undefined,
+        searchInputValue: '',
+        isOpen: false,
       };
     default:
       return state;
@@ -95,14 +102,34 @@ export const Dropdown = ({
           <span className={styles.buttonText}>
             {value || state.value || defaultValue}
           </span>
-          <svg
-            className={`${styles.icon} ${state.isOpen ? styles.iconRotated : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
+          {state.isOpen ? (
+            <div
+              className={styles.clearIconContainer}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch({ type: 'clear' });
+                onChange?.('');
+              }}
+            >
+              <svg
+                className={styles.icon}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+          ) : (
+            <svg
+              className={styles.icon}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          )}
         </button>
       </div>
 

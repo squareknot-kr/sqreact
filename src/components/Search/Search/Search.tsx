@@ -48,7 +48,7 @@ export function Search({
           </button>
         </div>
       </div>
-      {values.length && (
+      {Object.entries(values).some(([key, value]) => value && labels[key]) && (
         <div className={styles.tagsContainer}>
           {Object.entries(values).map(([key, value]) => (
             value && labels[key] && (
@@ -79,7 +79,7 @@ function Select({
   return (
     <Dropdown
       label={label}
-      options={['전체', ...options]}
+      options={[...options]}
       value={values[valueKey]}
       onChange={(value) => updateValues(valueKey, value, label)}
       disabled={isDisabled}

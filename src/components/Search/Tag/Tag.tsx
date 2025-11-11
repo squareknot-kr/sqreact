@@ -8,11 +8,14 @@ type TagProps = {
 
 export const Tag = ({ label, value, onRemove }: TagProps) => {
   return (
-    <div className={styles.tag}>
+    <div className={styles.tag} onClick={onRemove}>
       <span className={styles.tagText}>{label}: {value}</span>
       <button
         type="button"
-        onClick={onRemove}
+        onClick={(e) => {
+          e.stopPropagation();
+          onRemove();
+        }}
         className={styles.removeButton}
         aria-label="제거"
       >
