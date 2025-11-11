@@ -18,6 +18,7 @@ interface SelectProps {
   valueKey: string;
   isLoading?: boolean;
   disabled?: boolean | ((values: SearchValues) => boolean);
+  defaultValue?: string;
 }
 
 const RESET_SELECT_OPTION_VALUE = '';
@@ -70,6 +71,7 @@ function Select({
   valueKey, 
   isLoading, 
   disabled = false, 
+  defaultValue = '전체',
 }: SelectProps) {
   const { values, updateValues } = useSearch();
   const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
@@ -82,6 +84,7 @@ function Select({
       onChange={(value) => updateValues(valueKey, value, label)}
       disabled={isDisabled}
       isLoading={isLoading}
+      defaultValue={defaultValue}
     />
   );
 }
