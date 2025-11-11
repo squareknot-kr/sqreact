@@ -1,4 +1,4 @@
-import { useRef, useEffect, useReducer, Activity } from 'react';
+import { useRef, useEffect, useReducer } from 'react';
 import * as styles from './Dropdown.css';
 
 type DropdownProps = {
@@ -106,7 +106,7 @@ export const Dropdown = ({
         </button>
       </div>
 
-      <Activity mode={state.isOpen ? 'visible' : 'hidden'}>
+      {state.isOpen && (
         <div className={styles.dropdown}>
           <div className={styles.searchContainer}>
             <input
@@ -124,6 +124,8 @@ export const Dropdown = ({
           <div className={styles.optionsContainer}>
             {isLoading ? (
               <div className={styles.emptyState}>로딩 중...</div>
+            ) : filteredOptionsOnSearch.length === 0 ? (
+              <div className={styles.emptyState}>검색 결과가 없습니다</div>
             ) : (
               <ul className={styles.optionsList}>
                 {filteredOptionsOnSearch.map((option) => (
@@ -144,7 +146,7 @@ export const Dropdown = ({
             )}
           </div>
         </div>
-      </Activity>
+      )}
     </div>
   );
 };
