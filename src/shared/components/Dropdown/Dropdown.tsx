@@ -81,17 +81,33 @@ function Search() {
 }
 
 interface TriggerProps {
-  as: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
+  as: ReactElement<ButtonHTMLAttributes<HTMLButtonElement> & { ref?: React.Ref<HTMLButtonElement> }>;
 }
 
 function Trigger({ as }: TriggerProps) {
   const { setIsOpen } = useContext(DropdownContext);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(function closeDropdownWhenClickTriggerOutside() {
+    const closeDropdown = (event: MouseEvent) => {
+      if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', closeDropdown);
+    return () => {
+      document.removeEventListener('click', closeDropdown);
+    };
+  }, [setIsOpen]);
+
   return cloneElement(as, {
     ...as.props,
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
       as.props.onClick?.(e);
       setIsOpen(prev => !prev);
-    }
+    },
+    ref: buttonRef,
   });
 }
 

@@ -4,7 +4,7 @@ import { Dropdown } from "../Dropdown/Dropdown";
 interface SelectProps {
   label: string;
   defaultValue?: string;
-  trigger?: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
+  trigger: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
   options: string[];
   onChange: (value: string) => void;
   withSearch?: boolean;
