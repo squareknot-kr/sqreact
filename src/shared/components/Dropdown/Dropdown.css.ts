@@ -1,10 +1,16 @@
 import { style } from '@vanilla-extract/css';
 
-export const popoverContainer = style({
+export const dropdownContainer = style({
   position: 'relative',
   flex: '1 1 0%',
   minWidth: 0,
   maxWidth: '100%',
+});
+
+export const labelContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '4px',
 });
 
 export const label = style({

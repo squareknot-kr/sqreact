@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Search, PageList } from './src/index';
+import { Dropdown } from '@/shared/components/Dropdown/Dropdown';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,6 +44,12 @@ function App() {
           totalPages={totalPages}
           currentPage={currentPage}
           onPageChange={handlePageChange}
+        />
+        <Dropdown 
+          label="상태"
+          options={['진행중', '완료', '취소']}
+          defaultValue='선택'
+          onChange={(value) => console.log(value)}
         />
       </div>
     </div>

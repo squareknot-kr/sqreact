@@ -3,7 +3,7 @@ import './components/Search/Search/Search.css';
 import './components/Search/DatePicker/DatePicker.css';
 import './components/Search/Tag/Tag.css';
 import './components/Pagination/Pagination.css';
-import './shared/components/Popover/Popover.css';
+import './shared/components/Dropdown/Dropdown.css';
 import './shared/ui/Button/Button.css';
 import './shared/ui/Input/Input.css';
 import './shared/ui/Label/Label.css';

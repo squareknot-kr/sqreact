@@ -1,6 +1,6 @@
 import { SearchIcon } from '@/components/Search/Search/SearchIcon';
 import { DatePicker as DatePickerComponent } from '../DatePicker/DatePicker';
-import { Popover } from '@/shared/components/Popover';
+import { Dropdown } from '@/shared/components/Dropdown';
 import { Tag } from '../Tag';
 import * as styles from './Search.css';
 import { useSearch } from '../useSearch';
@@ -75,7 +75,7 @@ function Select({
   const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
 
   return (
-    <Popover
+    <Dropdown
       label={label}
       options={['전체', ...options]}
       value={values[valueKey]}
