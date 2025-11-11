@@ -87,7 +87,7 @@ interface TriggerProps {
 }
 
 function Trigger({ as }: TriggerProps) {
-  const { setIsOpen, menuRef } = useContext(DropdownContext);
+  const { setIsOpen, menuRef, setSearchValue } = useContext(DropdownContext);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(function closeDropdownWhenClickTriggerOutside() {
@@ -104,13 +104,14 @@ function Trigger({ as }: TriggerProps) {
     return () => {
       document.removeEventListener('click', closeDropdown);
     };
-  }, [setIsOpen]);
+  }, [setIsOpen, menuRef]);
 
   return cloneElement(as, {
     ...as.props,
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
       as.props.onClick?.(e);
       setIsOpen(prev => !prev);
+      setSearchValue('');
     },
     ref: buttonRef,
   });
