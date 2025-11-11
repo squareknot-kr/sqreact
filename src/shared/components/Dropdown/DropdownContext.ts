@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, RefObject } from "react";
 
 export const DropdownContext = createContext<{
   isOpen: boolean;
@@ -8,6 +8,7 @@ export const DropdownContext = createContext<{
   searchValue: string;
   setSearchValue: (value: string) => void;
   onChangeValue: (value: string) => void;
+  menuRef: RefObject<HTMLDivElement | null>;
 }>({
   isOpen: false,
   defaultValue: '',
@@ -16,4 +17,5 @@ export const DropdownContext = createContext<{
   searchValue: '',
   setSearchValue: () => {},
   onChangeValue: () => {},
+  menuRef: { current: null },
 });

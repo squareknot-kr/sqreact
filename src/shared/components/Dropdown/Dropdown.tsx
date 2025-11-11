@@ -18,6 +18,7 @@ export const Dropdown = ({
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const menuRef = useRef<HTMLDivElement>(null);
   
   const onSelectItem = (item: string) => {
     setIsOpen(false);
@@ -26,7 +27,7 @@ export const Dropdown = ({
   }
 
   return (
-    <DropdownContext.Provider value={{ defaultValue, isOpen, setIsOpen, onSelectItem, searchValue, setSearchValue, onChangeValue: onChange }}>
+    <DropdownContext.Provider value={{ defaultValue, isOpen, setIsOpen, onSelectItem, searchValue, setSearchValue, onChangeValue: onChange, menuRef }}>
       <div className={styles.dropdownContainer}>
         {label && 
           <div className={styles.labelSection}>
@@ -40,10 +41,10 @@ export const Dropdown = ({
 }
 
 function Menu({ children }: { children: React.ReactNode }) {
-  const { isOpen } = useContext(DropdownContext);
+  const { isOpen, menuRef } = useContext(DropdownContext);
 
   return (
-    <Motion condition={isOpen} className={styles.dropdown}>
+    <Motion condition={isOpen} className={styles.dropdown} ref={menuRef}>
       {children}
     </Motion>
   );
@@ -87,12 +88,15 @@ interface TriggerProps {
 }
 
 function Trigger({ as }: TriggerProps) {
-  const { setIsOpen } = useContext(DropdownContext);
+  const { setIsOpen, menuRef } = useContext(DropdownContext);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(function closeDropdownWhenClickTriggerOutside() {
     const closeDropdown = (event: MouseEvent) => {
-      if (buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const isClickInsideButton = buttonRef.current?.contains(target);
+      const isClickInsideMenu = menuRef?.current?.contains(target);
+      if (!isClickInsideButton && !isClickInsideMenu) {
         setIsOpen(false);
       }
     };
