@@ -22,7 +22,6 @@ export const Dropdown = ({
   
   const onSelectItem = (item: string) => {
     setIsOpen(false);
-    setSearchValue('');
     onChange(item);
   }
 

@@ -1,7 +1,14 @@
 import { ReactNode, RefObject } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export function Motion({ children, condition, className, ref }: { children: ReactNode, condition: boolean, className?: string, ref?: RefObject<HTMLDivElement | null> }) {
+interface MotionProps {
+  children: ReactNode;
+  condition: boolean;
+  className?: string;
+  ref?: RefObject<HTMLDivElement | null>;
+}
+
+export function Motion({ children, condition, className, ref }: MotionProps) {
   return (
     <AnimatePresence>
       {condition && (
