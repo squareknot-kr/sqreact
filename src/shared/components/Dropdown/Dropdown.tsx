@@ -81,18 +81,18 @@ function Search() {
 }
 
 interface TriggerProps {
-  as?: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
+  as: ReactElement<ButtonHTMLAttributes<HTMLButtonElement>>;
 }
 
 function Trigger({ as }: TriggerProps) {
   const { setIsOpen } = useContext(DropdownContext);
-  return as ? cloneElement(as, {
-    ...as?.props ?? {},
+  return cloneElement(as, {
+    ...as.props,
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
-      as?.props?.onClick?.(e);
+      as.props.onClick?.(e);
       setIsOpen(prev => !prev);
     }
-  }) : null;
+  });
 }
 
 function FilteredItems({ options }: { options: string[] }) {
