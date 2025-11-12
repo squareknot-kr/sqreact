@@ -1,0 +1,10 @@
+[id*="anchor--components-select"] {
+  min-height: 300px !important;
+}
+
+[id*="anchor--components-select"] .sb-story,
+[id*="anchor--components-select"] [data-test-id="story-container"],
+[id*="anchor--components-select"] .sb-story > div,
+[id*="story--components-select"] {
+  min-height: 300px !important;
+}
