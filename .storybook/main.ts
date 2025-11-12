@@ -15,9 +15,16 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {}
   },
+  managerHead: (head) => `
+    ${head}
+    <base href="/sqreact/">
+  `,
   async viteFinal(config) {
     return mergeConfig(config, {
       base: '/sqreact/',
+      build: {
+        assetsDir: 'assets',
+      },
       resolve: {
         alias: {
           '@storybook/addon-docs/mdx-react-shim': '@storybook/addon-docs/dist/mdx-react-shim.js',
