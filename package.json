@@ -8,10 +8,10 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "development": "./src/index.ts",
       "import": "./dist/sqreact.js",
-      "require": "./dist/sqreact.umd.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/sqreact.umd.cjs"
     },
     "./style.css": "./dist/style.css",
     "./css": "./dist/style.css",
