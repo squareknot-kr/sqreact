@@ -4,7 +4,7 @@ import { Tag } from '../Tag';
 import * as styles from './Search.css';
 import { useSearch } from '../useSearch';
 import { DateRange, SearchParams, SearchValues } from './type';
-import { DropdownForSearch } from '@/shared/components';
+import { DropdownForSearch } from '@/components/Dropdown/DropdownForSearch';
 
 interface SearchProps {
   children: React.ReactNode;
