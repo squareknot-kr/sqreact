@@ -206,6 +206,7 @@ return (
 };
 
 export const MultipleSelects: StoryObj<typeof Select> = {
+    tags: ['autodocs'],
     parameters: {
         layout: 'padded',
         docs: {
