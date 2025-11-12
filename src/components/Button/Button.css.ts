@@ -14,6 +14,7 @@ export const button = style({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  gap: spacing.sm,
   outline: 'none',
   boxSizing: 'border-box',
   color: colors.foreground,
@@ -44,6 +45,7 @@ export const buttonText = style({
   flex: 1,
   minWidth: 0,
   fontWeight: typography.fontWeight.medium,
+  textAlign: 'center',
 });
 
 export const icon = style({
