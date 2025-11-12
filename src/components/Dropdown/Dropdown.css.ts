@@ -71,17 +71,6 @@ export const iconRotated = style({
   transform: 'rotate(180deg)',
 });
 
-const fadeInScale = keyframes({
-  '0%': {
-    opacity: 0,
-    transform: 'translateY(-4px)',
-  },
-  '100%': {
-    opacity: 1,
-    transform: 'translateY(0)',
-  },
-});
-
 export const clearIconContainer = style({
   display: 'flex',
   alignItems: 'center',
