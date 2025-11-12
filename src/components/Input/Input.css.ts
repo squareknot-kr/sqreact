@@ -3,7 +3,7 @@ import { spacing } from '../../tokens';
 
 export const input = style({
   display: 'flex',
-  width: '100%',
+  width: '320px',
   borderRadius: '6px',
   border: '1px solid rgb(209 213 219)',
   backgroundColor: 'white',
@@ -36,4 +36,18 @@ export const wrapper = style({
   flexDirection: 'column',
   gap: spacing.md,
 });
+
+export const inputFullWidth = style([
+  input,
+  {
+    width: '100%',
+  },
+]);
+
+export const wrapperFullWidth = style([
+  wrapper,
+  {
+    width: '100%',
+  },
+]);
 

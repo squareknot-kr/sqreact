@@ -16,6 +16,7 @@ const meta: Meta<typeof Input> = {
                     value: '입력 값 (controlled component) / Input value (controlled component)',
                     onChange: '값 변경 시 호출되는 콜백 함수 / Callback function called when value changes',
                     disabled: '비활성화 여부 (boolean) / Whether the input is disabled (boolean)',
+                    fullWidth: '전체 너비 사용 여부 (boolean) / Whether to use full width (boolean)',
                 },
             },
         },
@@ -154,6 +155,70 @@ return (
                         입력된 값: {value}
                     </p>
                 )}
+            </div>
+        );
+    },
+};
+
+export const FullWidth: StoryObj<typeof Input> = {
+    parameters: {
+        layout: 'padded',
+        docs: {
+            description: {
+                story: '전체 너비를 사용하는 Input 컴포넌트에요.',
+            },
+            source: {
+                code: `<Input fullWidth placeholder="전체 너비 입력" />
+<Input fullWidth label="이름" placeholder="이름을 입력하세요" />`,
+                language: 'tsx',
+            },
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '500px', margin: '0 auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
+    render: () => {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <Input fullWidth placeholder="전체 너비 입력" />
+                <Input fullWidth label="이름" placeholder="이름을 입력하세요" />
+            </div>
+        );
+    },
+};
+
+export const FullWidthComparison: StoryObj<typeof Input> = {
+    parameters: {
+        layout: 'padded',
+        docs: {
+            description: {
+                story: '일반 Input과 fullWidth Input을 비교할 수 있어요.',
+            },
+            source: {
+                code: `<div style={{ maxWidth: '500px' }}>
+  <Input label="일반 너비" placeholder="일반 너비 입력" />
+  <Input fullWidth label="전체 너비" placeholder="전체 너비 입력" />
+</div>`,
+                language: 'tsx',
+            },
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '500px', margin: '0 auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
+    render: () => {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <Input label="일반 너비" placeholder="일반 너비 입력" />
+                <Input fullWidth label="전체 너비" placeholder="전체 너비 입력" />
             </div>
         );
     },
