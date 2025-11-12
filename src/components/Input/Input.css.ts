@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { spacing } from '../../tokens';
 
 export const input = style({
   display: 'flex',
@@ -28,5 +29,11 @@ export const input = style({
   '::placeholder': {
     color: 'rgb(156 163 175)',
   },
+});
+
+export const wrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: spacing.md,
 });
 

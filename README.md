@@ -71,13 +71,17 @@ import 'sqreact/style.css';
 ### 2. 컴포넌트 사용
 
 ```tsx
-import { Button, DateRangePicker, Select } from 'sqreact';
+import { Button, Input, DateRangePicker, Select } from 'sqreact';
 import 'sqreact/style.css';
 
 function App() {
   return (
     <div>
       <Button>클릭하세요</Button>
+      <Input 
+        label="이름"
+        placeholder="이름을 입력하세요"
+      />
       <DateRangePicker 
         label="기간 선택"
         onChange={(startDate, endDate) => {
@@ -98,8 +102,8 @@ function App() {
 
 ### 기본 컴포넌트
 
-- **Button** - 버튼 컴포넌트 (아이콘, 전체 너비 지원)
-- **Input** - 입력 필드 컴포넌트
+- **Button** - 버튼 컴포넌트 (아이콘, 전체 너비 지원, 커스텀 스타일링)
+- **Input** - 입력 필드 컴포넌트 (라벨 지원, 다양한 타입 지원)
 - **Label** - 라벨 컴포넌트
 
 ### 폼 컴포넌트

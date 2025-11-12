@@ -1,11 +1,14 @@
 import { InputHTMLAttributes, forwardRef } from 'react';
-import { input } from './Input.css';
+import { input, wrapper } from './Input.css';
+import { Label } from '../Label';
 
-type InputProps = InputHTMLAttributes<HTMLInputElement>;
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  label?: string;
+};
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className = '', type = 'text', ...props }, ref) => {
-    return (
+  ({ className = '', type = 'text', label, ...props }, ref) => {
+    const inputElement = (
       <input
         ref={ref}
         type={type}
@@ -13,5 +16,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {...props}
       />
     );
+
+    if (label) {
+      return (
+        <div className={wrapper}>
+          <Label>{label}</Label>
+          {inputElement}
+        </div>
+      );
+    }
+
+    return inputElement;
   }
 );

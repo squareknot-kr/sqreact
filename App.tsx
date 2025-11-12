@@ -2,6 +2,7 @@
 import { Search, DateRangePicker } from '@/components';
 import { Select } from '@/components/Select/Select';
 import { SelectButton } from '@/components/SelectButton/SelectButton';
+import { Input } from '@/components/Input';
 import { useState } from 'react';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   const [selectedValue2, setSelectedValue2] = useState('');
   const [selectedValue3, setSelectedValue3] = useState('');
   const [_, setDateRange] = useState({ startDate: '', endDate: '' });
+  const [inputValue, setInputValue] = useState('');
 
   const templateOptions = ['템플릿1', '템플릿2', '템플릿3'];
   const clientOptions = ['고객사1', '고객사2', '고객사3'];
@@ -52,6 +54,30 @@ function App() {
           setDateRange({ startDate, endDate });
         }}
       />
+    </div>
+
+    <div style={{ marginTop: '40px', marginBottom: '40px' }}>
+      <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>
+        Input 컴포넌트
+      </h2>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '400px' }}>
+        <Input
+          label="이름"
+          placeholder="이름을 입력하세요"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <Input
+          label="이메일"
+          type="email"
+          placeholder="이메일을 입력하세요"
+        />
+        <Input
+          label="비밀번호"
+          type="password"
+          placeholder="비밀번호를 입력하세요"
+        />
+      </div>
     </div>
     </div>
   );
