@@ -1,6 +1,9 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 
+const isBuild = process.env.STORYBOOK_BUILD === 'true' || process.env.NODE_ENV === 'production';
+const basePath = isBuild ? '/sqreact/' : '/';
+
 const config: StorybookConfig = {
   stories: [
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
@@ -15,13 +18,18 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {}
   },
-  managerHead: (head) => `
-    ${head}
-    <base href="/sqreact/">
-  `,
+  managerHead: (head) => {
+    if (isBuild) {
+      return `
+        ${head}
+        <base href="/sqreact/">
+      `;
+    }
+    return head;
+  },
   async viteFinal(config) {
     return mergeConfig(config, {
-      base: '/sqreact/',
+      base: basePath,
       build: {
         assetsDir: 'assets',
       },

@@ -8,7 +8,7 @@ function App() {
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedValue2, setSelectedValue2] = useState('');
   const [selectedValue3, setSelectedValue3] = useState('');
-  const [dateRange, setDateRange] = useState({ startDate: '', endDate: '' });
+  const [_, setDateRange] = useState({ startDate: '', endDate: '' });
 
   const templateOptions = ['템플릿1', '템플릿2', '템플릿3'];
   const clientOptions = ['고객사1', '고객사2', '고객사3'];
