@@ -1,5 +1,5 @@
 import { style, keyframes } from '@vanilla-extract/css';
-import { colors } from '../../shared/tokens';
+import { colors } from '../../tokens';
 
 const fadeInScale = keyframes({
   '0%': {

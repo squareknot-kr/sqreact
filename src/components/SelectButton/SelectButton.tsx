@@ -1,5 +1,4 @@
-import { Button } from "@/shared/atoms";
-import { ButtonProps } from "@/components/Button/Button";
+import { Button, ButtonProps } from "../Button/Button";
 import { ChevronDownIcon, X } from "lucide-react";
 import { useContext } from "react";
 import { DropdownContext } from "../Dropdown/DropdownContext";

@@ -5,9 +5,8 @@ import './components/Search/Tag/Tag.css';
 import './components/Pagination/Pagination.css';
 import './components/Dropdown/Dropdown.css';
 import './components/Button/Button.css';
-import './shared/atoms/Input/Input.css';
-import './shared/atoms/Label/Label.css';
-import './components/Select/Select.css';
+import './components/Input/Input.css';
+import './components/Label/Label.css';
 import './components/SelectButton/SelectButton.css';
 
 export { Search, PageList, Select, SelectButton, Dropdown } from './components';
