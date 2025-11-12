@@ -49,14 +49,99 @@ const meta: Meta<typeof Select> = {
 };
 
 export default meta;
-export const Default: StoryObj<typeof Select> = {};
+export const Default: StoryObj<typeof Select> = {
+    parameters: {
+        docs: {
+            description: {
+                story: '기본 Select 컴포넌트에요. 레이블과 옵션 목록을 표시해요.',
+            },
+            source: {
+                code: `const [selectedValue, setSelectedValue] = useState('선택');
+
+return (
+  <Select
+    label="가장 좋아하는 음식은?"
+    options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+    defaultValue="선택"
+    onChange={(value) => {
+      setSelectedValue(value);
+      console.log(value);
+    }}
+    trigger={
+      <SelectButton style={{ width: '240px' }}>
+        {selectedValue}
+      </SelectButton>
+    }
+  />
+);`,
+                language: 'tsx',
+            },
+        },
+    },
+};
 export const NoLabel: StoryObj<typeof Select> = {
+    parameters: {
+        docs: {
+            description: {
+                story: '레이블 없이 Select 컴포넌트를 사용할 수 있어요.',
+            },
+            source: {
+                code: `const [selectedValue, setSelectedValue] = useState('선택');
+
+return (
+  <Select
+    options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+    defaultValue="선택"
+    onChange={(value) => {
+      setSelectedValue(value);
+      console.log(value);
+    }}
+    trigger={
+      <SelectButton style={{ width: '240px' }}>
+        {selectedValue}
+      </SelectButton>
+    }
+  />
+);`,
+                language: 'tsx',
+            },
+        },
+    },
     args: {
         label: undefined,
     },
 };
 
 export const WithSearch: StoryObj<typeof Select> = {
+    parameters: {
+        docs: {
+            description: {
+                story: '검색 기능이 활성화된 Select에요. 옵션이 많을 때 유용해요.',
+            },
+            source: {
+                code: `const [selectedValue, setSelectedValue] = useState('선택');
+
+return (
+  <Select
+    label="가장 좋아하는 음식은?"
+    options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+    defaultValue="선택"
+    onChange={(value) => {
+      setSelectedValue(value);
+      console.log(value);
+    }}
+    withSearch
+    trigger={
+      <SelectButton style={{ width: '240px' }}>
+        {selectedValue}
+      </SelectButton>
+    }
+  />
+);`,
+                language: 'tsx',
+            },
+        },
+    },
     args: {
         withSearch: true,
     },
@@ -65,6 +150,33 @@ export const WithSearch: StoryObj<typeof Select> = {
 export const WithFullWidth: StoryObj<typeof Select> = {
     parameters: {
         layout: 'centered',
+        docs: {
+            description: {
+                story: 'trigger의 fullWidth 속성을 지정하면 컨테이너 전체 너비를 차지해요.',
+            },
+            source: {
+                code: `const [selectedValue, setSelectedValue] = useState('선택');
+
+return (
+  <Select
+    label="가장 좋아하는 음식은?"
+    options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+    defaultValue="선택"
+    onChange={(value) => {
+      setSelectedValue(value);
+      console.log(value);
+    }}
+    withSearch
+    trigger={
+      <SelectButton fullWidth>
+        {selectedValue}
+      </SelectButton>
+    }
+  />
+);`,
+                language: 'tsx',
+            },
+        },
     },
     decorators: [
         (Story) => (
@@ -90,5 +202,111 @@ export const WithFullWidth: StoryObj<typeof Select> = {
     },
     args: {
         withSearch: true,
+    },
+};
+
+export const MultipleSelects: StoryObj<typeof Select> = {
+    parameters: {
+        layout: 'padded',
+        docs: {
+            description: {
+                story: '여러 개의 Select 컴포넌트의 trigger에 fullWidth 속성을 지정하면 컨테이너 안에서 공간을 자연스럽게 나눠서 배치할 수 있어요.',
+            },
+            source: {
+                code: `const [food, setFood] = useState('선택');
+const [drink, setDrink] = useState('선택');
+const [dessert, setDessert] = useState('선택');
+
+return (
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '16px' }}>
+    <Select
+      label="음식"
+      options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+      defaultValue="선택"
+      onChange={(value) => {
+        setFood(value);
+        console.log('음식:', value);
+      }}
+      trigger={<SelectButton fullWidth>{food}</SelectButton>}
+    />
+    <Select
+      label="음료"
+      options={['콜라', '사이다', '오렌지주스', '커피', '녹차', '물']}
+      defaultValue="선택"
+      onChange={(value) => {
+        setDrink(value);
+        console.log('음료:', value);
+      }}
+      trigger={<SelectButton fullWidth>{drink}</SelectButton>}
+    />
+    <Select
+      label="디저트"
+      options={['케이크', '아이스크림', '쿠키', '초콜릿', '과일', '푸딩']}
+      defaultValue="선택"
+      onChange={(value) => {
+        setDessert(value);
+        console.log('디저트:', value);
+      }}
+      trigger={<SelectButton fullWidth>{dessert}</SelectButton>}
+    />
+  </div>
+);`,
+                language: 'tsx',
+            },
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ 
+                display: 'flex', 
+                flexDirection: 'row', 
+                gap: '16px',
+                maxWidth: '1200px',
+                margin: '0 auto',
+                padding: '20px'
+            }}>
+                <Story />
+            </div>
+        ),
+    ],
+    render: () => {
+        const [food, setFood] = useState('선택');
+        const [drink, setDrink] = useState('선택');
+        const [dessert, setDessert] = useState('선택');
+        
+        return (
+            <>
+                <Select
+                    label="음식"
+                    options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+                    defaultValue="선택"
+                    onChange={(value) => {
+                        setFood(value);
+                        console.log('음식:', value);
+                    }}
+                    trigger={<SelectButton fullWidth>{food}</SelectButton>}
+                />
+                <Select
+                    label="음료"
+                    options={['콜라', '사이다', '오렌지주스', '커피', '녹차', '물']}
+                    defaultValue="선택"
+                    onChange={(value) => {
+                        setDrink(value);
+                        console.log('음료:', value);
+                    }}
+                    trigger={<SelectButton fullWidth>{drink}</SelectButton>}
+                />
+                <Select
+                    label="디저트"
+                    options={['케이크', '아이스크림', '쿠키', '초콜릿', '과일', '푸딩']}
+                    defaultValue="선택"
+                    onChange={(value) => {
+                        setDessert(value);
+                        console.log('디저트:', value);
+                    }}
+                    trigger={<SelectButton fullWidth>{dessert}</SelectButton>}
+                />
+            </>
+        );
     },
 };
