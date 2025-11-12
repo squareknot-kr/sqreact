@@ -5,3 +5,4 @@ export { useSearch } from './Search/useSearch';
 export { Select } from './Select/Select';
 export { SelectButton } from './SelectButton/SelectButton';
 export { DropdownForSearch } from './Dropdown/DropdownForSearch';
+export { DateRangePicker } from './DateRangePicker';

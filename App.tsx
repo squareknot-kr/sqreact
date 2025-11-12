@@ -1,5 +1,5 @@
 // import { Search, PageList } from './src/index';
-import { Search } from '@/components';
+import { Search, DateRangePicker } from '@/components';
 import { Select } from '@/components/Select/Select';
 import { SelectButton } from '@/components/SelectButton/SelectButton';
 import { useState } from 'react';
@@ -8,6 +8,7 @@ function App() {
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedValue2, setSelectedValue2] = useState('');
   const [selectedValue3, setSelectedValue3] = useState('');
+  const [dateRange, setDateRange] = useState({ startDate: '', endDate: '' });
 
   const templateOptions = ['템플릿1', '템플릿2', '템플릿3'];
   const clientOptions = ['고객사1', '고객사2', '고객사3'];
@@ -41,6 +42,17 @@ function App() {
         options={productOptions}
       />
     </Search>
+    
+    <div style={{ marginTop: '40px', marginBottom: '40px' }}>
+      <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>
+        DateRangePicker 컴포넌트
+      </h2>
+      <DateRangePicker
+        onChange={(startDate, endDate) => {
+          setDateRange({ startDate, endDate });
+        }}
+      />
+    </div>
     </div>
   );
 }

@@ -96,6 +96,8 @@ export const dropdown = style({
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
+  zIndex: 10,
+  backgroundColor: 'white',
 });
 
 export const searchContainer = style({
