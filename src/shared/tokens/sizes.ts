@@ -23,4 +23,3 @@ export const sizes = {
     lg: '20px',
   },
 } as const;
-

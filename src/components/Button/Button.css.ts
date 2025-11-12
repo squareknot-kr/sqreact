@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { colors, sizes, spacing, typography } from '../../tokens';
+import { colors, sizes, spacing, typography } from '../../shared/tokens';
 
 export const button = style({
   height: sizes.button.md,

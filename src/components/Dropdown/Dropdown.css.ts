@@ -100,7 +100,6 @@ export const clearIconContainer = style({
 export const dropdown = style({
   position: 'absolute',
   marginTop: '4px',
-  width: 'max-content',
   minWidth: '450px',
   border: '1px solid rgb(229 231 235)',
   borderRadius: '8px',
