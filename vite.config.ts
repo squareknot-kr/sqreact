@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import dts from 'vite-plugin-dts';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { resolve } from 'path';
 import { fileURLToPath, URL } from 'url';
 
@@ -12,6 +13,12 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       exclude: ['App.tsx', 'main.tsx', 'index.html', 'vite.config.dev.ts'],
+    }),
+    visualizer({
+      filename: 'dist/stats.html',
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
     }),
   ],
   resolve: {
@@ -29,11 +36,18 @@ export default defineConfig({
     minify: 'esbuild',
     sourcemap: false,
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: (id) => {
+        if (id === 'react' || id === 'react-dom') return true;
+        if (id === 'framer-motion' || id.startsWith('framer-motion/')) return true;
+        if (id === 'lucide-react' || id.startsWith('lucide-react/')) return true;
+        return false;
+      },
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'framer-motion': 'FramerMotion',
+          'lucide-react': 'LucideReact',
         },
         entryFileNames: 'sqreact.js',
         chunkFileNames: 'chunk-[name].js',
@@ -47,4 +61,3 @@ export default defineConfig({
     cssMinify: true,
   },
 });
-

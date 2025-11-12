@@ -1,6 +1,6 @@
 # sqreact
 
-React 컴포넌트와 유틸리티 라이브러리입니다.
+UI 개발에 시간을 쓰지 않기 위해 만든 React 컴포넌트와 유틸리티 라이브러리입니다.
 
 A React components and utilities library.
 
@@ -12,16 +12,6 @@ Component documentation and examples are available in Storybook.
 
 👉 **[Storybook 보기 / View Storybook](https://squareknot-kr.github.io/sqreact/)**
 
-## 🎯 목적 / Purpose
-
-UI 개발에 시간을 쓰지 않고, 사용하기 편리한 추상화된 컴포넌트를 제공하기 위해 만들어졌습니다.
-
-This library was created to provide easy-to-use abstracted components, so you don't have to spend time building UI.
-
-현재 스퀘어노트의 백오피스 구현에 사용하고 있으며, 꾸준히 업데이트할 예정입니다.
-
-Currently used in Squarenote's backoffice implementation, and will be continuously updated.
-
 ## 📦 설치 / Installation
 
 ```bash
@@ -32,6 +22,26 @@ npm install sqreact
 
 - React 18.0.0 이상 또는 React 19.0.0 이상 / React 18.0.0 or higher, or React 19.0.0 or higher
 - React DOM 18.0.0 이상 또는 React DOM 19.0.0 이상 / React DOM 18.0.0 or higher, or React DOM 19.0.0 or higher
+
+### 선택적 의존성 / Optional Dependencies
+
+일부 컴포넌트를 사용할 때만 필요한 선택적 의존성이 있습니다:
+
+Some components require optional dependencies only when used:
+
+- **`framer-motion`** (^12.0.0): `Dropdown`, `Select` 컴포넌트 사용 시 필요 / Required when using `Dropdown` or `Select` components
+- **`lucide-react`** (^0.500.0): `SelectButton` 컴포넌트 사용 시 필요 / Required when using `SelectButton` component
+
+```bash
+# Dropdown 또는 Select를 사용하는 경우
+npm install framer-motion
+
+# SelectButton을 사용하는 경우
+npm install lucide-react
+
+# 둘 다 사용하는 경우
+npm install framer-motion lucide-react
+```
 
 ## 🚀 시작하기 / Getting Started
 

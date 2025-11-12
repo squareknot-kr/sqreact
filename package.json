@@ -1,6 +1,6 @@
 {
   "name": "sqreact",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "React components and utilities library",
   "type": "module",
   "main": "./dist/sqreact.umd.cjs",
@@ -54,7 +54,9 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "framer-motion": "^12.0.0",
+    "lucide-react": "^0.500.0"
   },
   "peerDependenciesMeta": {
     "react": {
@@ -62,6 +64,12 @@
     },
     "react-dom": {
       "optional": false
+    },
+    "framer-motion": {
+      "optional": true
+    },
+    "lucide-react": {
+      "optional": true
     }
   },
   "devDependencies": {
@@ -80,15 +88,15 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-storybook": "^10.0.7",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.553.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "rollup-plugin-visualizer": "^6.0.5",
     "storybook": "^10.0.7",
     "typescript": "^5.3.3",
     "vite": "^5.0.8",
     "vite-plugin-dts": "^3.6.4"
   },
-  "dependencies": {
-    "lucide-react": "^0.553.0",
-    "motion": "^12.23.24"
-  }
+  "dependencies": {}
 }
