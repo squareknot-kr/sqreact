@@ -6,3 +6,8 @@ export { Select } from './Select/Select';
 export { SelectButton } from './SelectButton/SelectButton';
 export { DropdownForSearch } from './Dropdown/DropdownForSearch';
 export { DateRangePicker } from './DateRangePicker';
+export { Input } from './Input';
+export { Label } from './Label';
+export { SectionCard } from './SectionCard/SectionCard';
+export { Motion } from './Motion/Motion';
+export { Button } from './Button/Button';

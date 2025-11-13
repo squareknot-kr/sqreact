@@ -3,7 +3,7 @@ import { colors, sizes, spacing, typography } from '../../tokens';
 
 export const button = style({
   height: sizes.button.md,
-  width: '80px',
+  width: '200px',
   paddingLeft: spacing.md,
   paddingRight: spacing.md,
   textAlign: 'left',
