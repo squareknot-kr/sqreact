@@ -11,8 +11,8 @@ const meta: Meta<typeof SectionCard> = {
             description: {
                 component: 'SectionCard 컴포넌트는 섹션을 감싸는 카드 형태의 컨테이너에요. 부모 컨테이너의 전체 너비(100%)를 차지하며, 제목과 설명을 표시하고 내부에 콘텐츠를 배치할 수 있어요.',
                 props: {
-                    title: '카드의 제목 / Card title',
-                    description: '카드의 설명 / Card description',
+                    title: '카드의 제목 (선택사항) / Card title (optional)',
+                    description: '카드의 설명 (선택사항) / Card description (optional)',
                     children: '카드 내부에 표시될 콘텐츠 / Content to display inside the card',
                     flex: 'flex 레이아웃 사용 여부 (boolean) / Whether to use flex layout (boolean)',
                 },
@@ -22,6 +22,7 @@ const meta: Meta<typeof SectionCard> = {
     args: {
         title: 'Section Card',
         description: 'This is a section card description',
+        flex: false,
     },
 };
 
@@ -195,6 +196,98 @@ export const WithoutFlex: StoryObj<typeof SectionCard> = {
                     </p>
                     <Button>Button</Button>
                 </div>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const WithoutTitleAndDescription: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'title과 description 없이 사용하는 SectionCard에요. 제목과 설명 없이 콘텐츠만 표시할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard>
+  <Button>Button</Button>
+  <Button>Another Button</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        flex: true,
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '600px' }}>
+            <SectionCard {...args}>
+                <Button>Button</Button>
+                <Button>Another Button</Button>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const WithTitleOnly: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'title만 있는 SectionCard에요. 설명 없이 제목만 표시할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Section Card"
+  flex
+>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Section Card',
+        flex: true,
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '600px' }}>
+            <SectionCard {...args}>
+                <Button>Button 1</Button>
+                <Button>Button 2</Button>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const WithDescriptionOnly: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'description만 있는 SectionCard에요. 제목 없이 설명만 표시할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard 
+  description="This is a section card with description only"
+  flex
+>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        description: 'This is a section card with description only',
+        flex: true,
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '600px' }}>
+            <SectionCard {...args}>
+                <Button>Button 1</Button>
+                <Button>Button 2</Button>
             </SectionCard>
         </div>
     ),
