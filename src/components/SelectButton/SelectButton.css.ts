@@ -40,3 +40,6 @@ export const chevronIcon = style({
   transition: 'transform 0.2s, opacity 0.2s',
 });
 
+export const selectButton = style({
+  width: '200px',
+});

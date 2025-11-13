@@ -23,7 +23,7 @@ export function SelectButton({ children, ...props }: SelectButtonProps) {
   );
 
   return (
-    <Button {...props} icon={isOpen ? closeIcon : chevronIcon}>
+    <Button {...props} icon={isOpen ? closeIcon : chevronIcon} className={styles.selectButton}>
       {value}
     </Button>
   );
