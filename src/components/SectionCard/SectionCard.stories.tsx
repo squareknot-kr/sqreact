@@ -7,6 +7,7 @@ const meta: Meta<typeof SectionCard> = {
     component: SectionCard,
     tags: ['autodocs'],
     parameters: {
+        layout: 'padded',
         docs: {
             description: {
                 component: 'SectionCard 컴포넌트는 섹션을 감싸는 카드 형태의 컨테이너에요. 부모 컨테이너의 전체 너비(100%)를 차지하며, 제목과 설명을 표시하고 내부에 콘텐츠를 배치할 수 있어요.',
@@ -15,6 +16,7 @@ const meta: Meta<typeof SectionCard> = {
                     description: '카드의 설명 (선택사항) / Card description (optional)',
                     children: '카드 내부에 표시될 콘텐츠 / Content to display inside the card',
                     flex: 'flex 레이아웃 사용 여부 (boolean) / Whether to use flex layout (boolean)',
+                    style: '커스텀 스타일 (CSSProperties) / Custom style (CSSProperties)',
                 },
             },
         },
@@ -46,7 +48,7 @@ export const Default: StoryObj<typeof SectionCard> = {
         },
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <Button>Button</Button>
             </SectionCard>
@@ -80,7 +82,7 @@ export const WithFlex: StoryObj<typeof SectionCard> = {
         flex: true,
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <Button>Button 1</Button>
                 <Button>Button 2</Button>
@@ -116,7 +118,7 @@ export const WithInputs: StoryObj<typeof SectionCard> = {
         flex: true,
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <Input label="이름" placeholder="이름을 입력하세요" />
                 <Input label="이메일" type="email" placeholder="이메일을 입력하세요" />
@@ -152,7 +154,7 @@ export const WithMultipleButtons: StoryObj<typeof SectionCard> = {
         flex: true,
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <Button>저장</Button>
                 <Button>취소</Button>
@@ -188,7 +190,7 @@ export const WithoutFlex: StoryObj<typeof SectionCard> = {
         flex: false,
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <div>
                     <p style={{ marginBottom: '16px', color: '#666' }}>
@@ -220,7 +222,7 @@ export const WithoutTitleAndDescription: StoryObj<typeof SectionCard> = {
         flex: true,
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <Button>Button</Button>
                 <Button>Another Button</Button>
@@ -252,7 +254,7 @@ export const WithTitleOnly: StoryObj<typeof SectionCard> = {
         flex: true,
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <Button>Button 1</Button>
                 <Button>Button 2</Button>
@@ -284,11 +286,45 @@ export const WithDescriptionOnly: StoryObj<typeof SectionCard> = {
         flex: true,
     },
     render: (args) => (
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
             <SectionCard {...args}>
                 <Button>Button 1</Button>
                 <Button>Button 2</Button>
             </SectionCard>
         </div>
+    ),
+};
+
+export const WithCustomStyle: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'style prop을 사용하여 SectionCard의 너비를 조정할 수 있어요. 좁게 만들거나 다른 스타일을 적용할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Narrow Section Card"
+  description="This is a narrow section card using style prop"
+  style={{ maxWidth: '400px', margin: '0 auto' }}
+  flex
+>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Narrow Section Card',
+        description: 'This is a narrow section card using style prop',
+        flex: true,
+        style: { maxWidth: '400px', margin: '0 auto' },
+    },
+    render: (args) => (
+        <SectionCard {...args}>
+            <Button>Button 1</Button>
+            <Button>Button 2</Button>
+        </SectionCard>
     ),
 };
