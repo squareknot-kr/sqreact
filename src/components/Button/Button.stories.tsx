@@ -8,7 +8,7 @@ const meta: Meta<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                component: 'Button 컴포넌트는 클릭 가능한 버튼을 표시하는 컴포넌트에요. 기본 너비는 200px이며, 아이콘을 추가하거나 전체 너비로 설정할 수 있어요.',
+                component: 'Button 컴포넌트는 클릭 가능한 버튼을 표시하는 컴포넌트에요. 아이콘을 추가하거나 전체 너비로 설정할 수 있어요.',
                 props: {
                     children: '버튼에 표시될 내용 / Content to display in the button',
                     icon: '아이콘 (ReactNode) / Icon (ReactNode)',
@@ -29,7 +29,7 @@ export const Default: StoryObj<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                story: '기본 Button 컴포넌트에요. 기본 너비는 200px입니다.',
+                story: '기본 Button 컴포넌트에요.',
             },
             source: {
                 code: `<Button>버튼</Button>`,
