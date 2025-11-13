@@ -56,4 +56,11 @@ export const searchStore: SearchStore = {
     this.state = { ...this.state };
     this.notify();
   },
+
+  resetAll() {
+    this.state.values = {};
+    this.state.labels = {};
+    this.state = { ...this.state };
+    this.notify();
+  },
 };

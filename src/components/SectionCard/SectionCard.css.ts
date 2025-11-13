@@ -19,7 +19,13 @@ export const sectionCardTitle = style({
 });
 
 export const sectionCardDescription = style({
-  marginBottom: '32px',
+  marginBottom: '36px',
   fontSize: '16px',
   color: 'rgb(75 85 99)',
+});
+
+export const flex = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '16px',
 });

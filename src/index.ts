@@ -10,4 +10,5 @@ import './components/Label/Label.css';
 import './components/SelectButton/SelectButton.css';
 
 export { Search, PageList, Select, SelectButton, Dropdown } from './components';
+export { useSearch } from './components/Search/useSearch';
 export type { UseSearchReturn } from './components/Search/useSearch';

@@ -24,4 +24,5 @@ export interface SearchStore {
   notify(): void;
   updateValues(key: string, value: string, label?: string): void;
   updateDateRange(startDate: string, endDate: string): void;
+  resetAll(): void;
 }

@@ -8,6 +8,7 @@ export type UseSearchReturn = {
   dateRange: DateRange;
   updateValues: (key: string, value: string, label?: string) => void;
   updateDateRange: (startDate: string, endDate: string) => void;
+  resetAll: () => void;
 };
 
 const subscribe = (listener: () => void) => searchStore.subscribe(listener);
@@ -24,9 +25,14 @@ export function useSearch(): UseSearchReturn {
     searchStore.updateDateRange(startDate, endDate);
   };
 
+  const resetAll = () => {
+    searchStore.resetAll();
+  };
+
   return {
     ...state,
     updateValues,
     updateDateRange,
+    resetAll,
   };
 }

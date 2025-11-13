@@ -28,7 +28,7 @@ export function Search({
   onSearch, 
   disabled: setDisabled 
 }: SearchProps) {
-  const { values, labels, dateRange, updateValues } = useSearch();
+  const { values, labels, dateRange, updateValues, resetAll } = useSearch();
 
   return (
     <>
@@ -50,13 +50,19 @@ export function Search({
       </div>
       {Object.entries(values).some(([key, value]) => value && labels[key]) && (
         <div className={styles.tagsContainer}>
-          {Object.entries(values).map(([key, value]) => (
+          {Object.entries(values).map(([key, value], index) => (
             value && labels[key] && (
               <Tag
                 key={key}
                 label={labels[key]}
                 value={value}
-                onRemove={() => updateValues(key, RESET_SELECT_OPTION_VALUE)}
+                onRemove={() => {
+                  if (index === 0) {
+                    resetAll();
+                  } else {
+                    updateValues(key, RESET_SELECT_OPTION_VALUE, labels[key]);
+                  }
+                }}
               />
             )))}
         </div>
@@ -71,7 +77,7 @@ function Select({
   valueKey, 
   isLoading, 
   disabled = false, 
-  defaultValue = '전체',
+  defaultValue = '선택',
 }: SelectProps) {
   const { values, updateValues } = useSearch();
   const isDisabled = typeof disabled === 'function' ? disabled(values) : disabled;
