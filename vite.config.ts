@@ -15,10 +15,9 @@ export default defineConfig({
       exclude: ['App.tsx', 'main.tsx', 'index.html', 'vite.config.dev.ts'],
     }),
     visualizer({
+      open: true,
       filename: 'dist/stats.html',
-      open: false,
-      gzipSize: true,
-      brotliSize: true,
+      template: 'treemap',
     }),
   ],
   resolve: {
@@ -34,26 +33,19 @@ export default defineConfig({
       fileName: (format) => `sqreact.${format === 'es' ? 'js' : 'umd.cjs'}`,
     },
     minify: 'esbuild',
-    sourcemap: false,
     rollupOptions: {
       external: (id) => {
         if (id === 'react' || id === 'react-dom') return true;
-        if (id === 'framer-motion' || id.startsWith('framer-motion/')) return true;
         if (id === 'lucide-react' || id.startsWith('lucide-react/')) return true;
+        if (id === 'framer-motion' || id.startsWith('framer-motion/')) return true;
         return false;
       },
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
-          'framer-motion': 'FramerMotion',
           'lucide-react': 'LucideReact',
-        },
-        entryFileNames: 'sqreact.js',
-        chunkFileNames: 'chunk-[name].js',
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith('.css')) return 'style.css';
-          return assetInfo.name || 'assets/[name][extname]';
+          'framer-motion': 'FramerMotion',
         },
       },
     },
