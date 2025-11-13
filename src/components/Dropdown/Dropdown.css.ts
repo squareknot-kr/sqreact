@@ -36,7 +36,7 @@ export const button = style({
   justifyContent: 'space-between',
   outline: 'none',
   boxSizing: 'border-box',
-  color: 'rgb(31 41 55)',
+  color: '#2E3438',
   ':hover': {
     borderColor: 'rgb(99 102 241)',
   },
@@ -51,7 +51,7 @@ export const button = style({
 });
 
 export const buttonText = style({
-  color: 'rgb(31 41 55)',
+  color: '#2E3438',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',

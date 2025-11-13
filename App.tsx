@@ -4,6 +4,8 @@ import { Select } from '@/components/Select/Select';
 import { SelectButton } from '@/components/SelectButton/SelectButton';
 import { Input } from '@/components/Input';
 import { useState } from 'react';
+import { SectionCard } from '@/components/SectionCard/SectionCard';
+import { Button } from '@/components/Button/Button';
 
 function App() {
   const [selectedValue, setSelectedValue] = useState('');
@@ -78,6 +80,13 @@ function App() {
           placeholder="비밀번호를 입력하세요"
         />
       </div>
+
+      <SectionCard 
+        title="Section Card" 
+        description="Section Card Description"
+      >
+        <Button>Button</Button>
+      </SectionCard>
     </div>
     </div>
   );

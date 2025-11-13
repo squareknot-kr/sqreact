@@ -13,7 +13,7 @@ export const input = style({
   paddingBottom: '8px',
   fontSize: '14px',
   lineHeight: '1.25rem',
-  color: 'rgb(31 41 55)',
+  color: '#2E3438',
   fontWeight: 500,
   transition: 'colors 0.15s',
   outline: 'none',

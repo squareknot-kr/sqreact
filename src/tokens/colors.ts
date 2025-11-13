@@ -21,13 +21,13 @@ export const colors = {
     500: 'rgb(107 114 128)',
     600: 'rgb(75 85 99)',
     700: 'rgb(55 65 81)',
-    800: 'rgb(31 41 55)',
+    800: '#2E3438',
     900: 'rgb(17 24 39)',
   },
   
   // Semantic
   background: 'white',
-  foreground: 'rgb(31 41 55)',
+  foreground: '#2E3438',
   border: 'rgb(209 213 219)',
   borderHover: 'rgb(99 102 241)',
   
@@ -39,7 +39,7 @@ export const colors = {
   
   // Text
   text: {
-    primary: 'rgb(31 41 55)',
+    primary: '#2E3438',
     secondary: 'rgb(75 85 99)',
     muted: 'rgb(156 163 175)',
   },
