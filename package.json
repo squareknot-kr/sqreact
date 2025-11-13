@@ -1,6 +1,6 @@
 {
   "name": "sqreact",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "React components and utilities library",
   "type": "module",
   "main": "./dist/sqreact.umd.cjs",
@@ -29,7 +29,7 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "STORYBOOK_BUILD=true storybook build"
   },
   "keywords": [
     "react",

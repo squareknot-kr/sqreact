@@ -37,7 +37,7 @@ export const Default: StoryObj<typeof Button> = {
             },
         },
     },
-};
+}
 
 export const WithIcon: StoryObj<typeof Button> = {
     parameters: {

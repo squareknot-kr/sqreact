@@ -37,12 +37,37 @@ const config: StorybookConfig = {
       base: basePath,
       build: {
         assetsDir: 'assets',
+        rollupOptions: {
+          output: {
+            manualChunks: (id) => {
+              if (id.includes('node_modules') && !id.includes('@storybook')) {
+                return 'vendor';
+              }
+            },
+          },
+        },
       },
       resolve: {
         alias: {
           '@storybook/addon-docs/mdx-react-shim': '@storybook/addon-docs/dist/mdx-react-shim.js',
           '@': resolve(__dirname, '../src'),
         },
+      },
+      define: {
+        'process.env.NODE_ENV': JSON.stringify(isBuild ? 'production' : 'development'),
+        __DEV__: !isBuild,
+      },
+      optimizeDeps: {
+        esbuildOptions: {
+          define: {
+            global: 'globalThis',
+            'process.env.NODE_ENV': JSON.stringify(isBuild ? 'production' : 'development'),
+          },
+        },
+      },
+      esbuild: {
+        drop: isBuild ? ['console', 'debugger'] : [],
+        legalComments: 'none',
       },
     });
   },
