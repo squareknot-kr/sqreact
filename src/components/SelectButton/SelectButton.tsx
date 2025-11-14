@@ -9,7 +9,7 @@ interface SelectButtonProps extends Omit<ButtonProps, "children"> {
   style?: React.CSSProperties;
 }
 
-export function SelectButton({ value, style, className, ...props }: SelectButtonProps) {
+export function SelectButton({ value, style, className, disabled, ...props }: SelectButtonProps) {
   const { isOpen, defaultValue, onChangeValue } = useContext(DropdownContext);
   const displayValue = value || defaultValue;
 
@@ -26,6 +26,7 @@ export function SelectButton({ value, style, className, ...props }: SelectButton
   return (
     <Button 
       {...props} 
+      disabled={disabled}
       icon={isOpen ? closeIcon : chevronIcon} 
       className={`${styles.selectButton} ${className || ''}`}
       style={style}
