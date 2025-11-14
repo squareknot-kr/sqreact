@@ -5,12 +5,13 @@ import { DropdownContext } from "../Dropdown/DropdownContext";
 import * as styles from './SelectButton.css';
 
 interface SelectButtonProps extends Omit<ButtonProps, "children"> {
-  children: string;
+  value?: string;
+  style?: React.CSSProperties;
 }
 
-export function SelectButton({ children, ...props }: SelectButtonProps) {
+export function SelectButton({ value, style, className, ...props }: SelectButtonProps) {
   const { isOpen, defaultValue, onChangeValue } = useContext(DropdownContext);
-  const value = children || defaultValue;
+  const displayValue = value || defaultValue;
 
   const closeIcon = (
     <span className={styles.closeIconWrapper}>
@@ -23,8 +24,13 @@ export function SelectButton({ children, ...props }: SelectButtonProps) {
   );
 
   return (
-    <Button {...props} icon={isOpen ? closeIcon : chevronIcon} className={styles.selectButton}>
-      {value}
+    <Button 
+      {...props} 
+      icon={isOpen ? closeIcon : chevronIcon} 
+      className={`${styles.selectButton} ${className || ''}`}
+      style={style}
+    >
+      {displayValue}
     </Button>
   );
 }

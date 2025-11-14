@@ -12,6 +12,7 @@ type DateRangePickerProps = {
   onChange?: (startDate: string, endDate: string) => void;
   className?: string;
   fullWidth?: boolean;
+  style?: React.CSSProperties;
 };
 
 export function DateRangePicker({ 
@@ -21,6 +22,7 @@ export function DateRangePicker({
   onChange,
   className,
   fullWidth = false,
+  style,
 }: DateRangePickerProps) {
   const today = formatDateToString(getToday());
   const [startDate, setStartDate] = useState(initialStartDate || getDateRange(150, getToday()).startDate);
@@ -66,8 +68,12 @@ export function DateRangePicker({
   };
   
   return (
-    <div className={`${styles.datePickerContainer} ${fullWidth ? styles.datePickerContainerFullWidth : ''} ${className || ''}`}>
-      {label && <Label>{label}</Label>}
+    <div className={`${styles.datePickerContainer} ${fullWidth ? styles.datePickerContainerFullWidth : ''} ${className || ''}`} style={style}>
+      {label && (
+        <div className={styles.labelSection}>
+          <Label>{label}</Label>
+        </div>
+      )}
       <div className={`${styles.dateInputsContainer} ${fullWidth ? styles.dateInputsContainerFullWidth : ''}`}>
         <div className={`${styles.dateInputWrapper} ${fullWidth ? styles.dateInputWrapperFullWidth : ''}`}>
           <Input
@@ -76,7 +82,7 @@ export function DateRangePicker({
             value={startDate}
             onChange={(e) => onChangeStartDate(e.target.value)}
             max={today}
-            className={`${styles.dateInput} ${fullWidth ? styles.dateInputFullWidth : ''}`}
+            className={styles.dateInput}
           />
           <Calendar 
             className={styles.calendarIcon} 
@@ -92,7 +98,7 @@ export function DateRangePicker({
             value={endDate}
             onChange={(e) => onChangeEndDate(e.target.value)}
             max={today}
-            className={`${styles.dateInput} ${fullWidth ? styles.dateInputFullWidth : ''}`}
+            className={styles.dateInput}
           />
           <Calendar 
             className={styles.calendarIcon} 

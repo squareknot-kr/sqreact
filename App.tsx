@@ -1,5 +1,4 @@
-// import { Search, PageList } from './src/index';
-import { Search, DateRangePicker } from '@/components';
+import { DateRangePicker, SelectButton, Select, Button } from '@/components';
 import { Input } from '@/components/Input';
 import { useState } from 'react';
 import { SectionCard } from '@/components/SectionCard/SectionCard';
@@ -8,8 +7,6 @@ function App() {
   const [_, setDateRange] = useState({ startDate: '', endDate: '' });
 
   const templateOptions = ['템플릿1', '템플릿2', '템플릿3'];
-  const clientOptions = ['고객사1', '고객사2', '고객사3'];
-  const productOptions = ['상품1', '상품2', '상품3'];
   
   return (
     <div style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
@@ -19,28 +16,26 @@ function App() {
         </h2>
 
       </div>
-    <Search onSearch={(values) => console.log(values)}>
-      <Search.Select
-        label="템플릿"
-        valueKey="template"
-        options={templateOptions}
-        defaultValue='선택'
-      />
-      <Search.Select
-        label="고객사"
-        valueKey="client"
-        options={clientOptions}
-        defaultValue='선택'
-      />
-      <Search.Select
-        label="상품"
-        valueKey="product"
-        options={productOptions}
-        defaultValue='선택'
-      />
-      <Search.DatePicker
-      />
-    </Search>
+      <SectionCard flexRow alignItems="flex-end" justifyContent="space-between">
+          <Select
+            label="템플릿"
+            defaultValue="선택"
+            trigger={<SelectButton value="템플릿1" />}
+            options={templateOptions}
+            withSearch
+            onChange={() => {}}
+          />
+          <DateRangePicker
+            label="기간"
+            startDate={'2025-01-01'}
+            endDate={'2025-01-31'}
+          />
+          <Button
+            onClick={() => {}}
+          >
+            검색
+          </Button>
+        </SectionCard>
     
     <div style={{ marginTop: '40px', marginBottom: '40px' }}>
       <h2 style={{ marginBottom: '16px', fontSize: '18px', fontWeight: '600' }}>

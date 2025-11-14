@@ -23,9 +23,10 @@ interface PageListProps {
   currentPage: number;
   onPageChange: (page: number) => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export const PageList = memo(function PageList({ totalPages, currentPage, onPageChange, className }: PageListProps) {
+export const PageList = memo(function PageList({ totalPages, currentPage, onPageChange, className, style }: PageListProps) {
   const totalGroups = Math.ceil(totalPages / 10);
   const currentGroup = Math.ceil(currentPage / 10);
   
@@ -38,7 +39,7 @@ export const PageList = memo(function PageList({ totalPages, currentPage, onPage
   );
 
   return (
-    <div className={`${styles.container} ${className || ''}`}>
+    <div className={`${styles.container} ${className || ''}`} style={style}>
       <div className={styles.pagesContainer}>
         {currentGroup > 1 && (
           <button

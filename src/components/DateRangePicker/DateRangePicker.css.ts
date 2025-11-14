@@ -3,7 +3,12 @@ import { style } from '@vanilla-extract/css';
 export const datePickerContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '10px',
+});
+
+export const labelSection = style({
+  display: 'flex',
+  flexDirection: 'column',
+  marginBottom: '10px',
 });
 
 export const dateInputsContainer = style({
@@ -17,6 +22,7 @@ export const dateInputWrapper = style({
   position: 'relative',
   display: 'inline-flex',
   alignItems: 'center',
+  minWidth: '140px',
 });
 
 export const dateInput = style({
@@ -26,7 +32,7 @@ export const dateInput = style({
   fontFamily: "'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
   borderColor: 'rgb(209 213 219)',
   height: '38px',
-  width: '140px !important',
+  width: '100%',
   boxSizing: 'border-box',
   transition: 'border-color 0.1s ease-out',
   '::-webkit-calendar-picker-indicator': {
@@ -63,7 +69,8 @@ export const separator = style({
 });
 
 export const datePickerContainerFullWidth = style({
-  width: '100%',
+  flex: 1,
+  minWidth: 0,
 });
 
 export const dateInputsContainerFullWidth = style({
@@ -73,9 +80,5 @@ export const dateInputsContainerFullWidth = style({
 export const dateInputWrapperFullWidth = style({
   flex: 1,
   minWidth: 0,
-});
-
-export const dateInputFullWidth = style({
-  width: '100% !important',
 });
 

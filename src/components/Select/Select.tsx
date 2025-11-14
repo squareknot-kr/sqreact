@@ -9,6 +9,7 @@ interface SelectProps {
   onChange: (value: string) => void;
   withSearch?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export function Select({
@@ -19,9 +20,10 @@ export function Select({
   onChange,
   withSearch = false,
   className,
+  style,
 }: SelectProps) {
   return (
-    <Dropdown label={label} onChange={onChange} defaultValue={defaultValue} className={className}>
+    <Dropdown label={label} onChange={onChange} defaultValue={defaultValue} className={className} style={style}>
       <Dropdown.Trigger as={trigger} />
       <Dropdown.Menu>
         {withSearch && <Dropdown.Search />}

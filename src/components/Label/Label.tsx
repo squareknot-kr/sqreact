@@ -4,11 +4,12 @@ import { label } from './Label.css';
 type LabelProps = LabelHTMLAttributes<HTMLLabelElement>;
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(
-  ({ className = '', children, ...props }, ref) => {
+  ({ className = '', children, style, ...props }, ref) => {
     return (
       <label
         ref={ref}
         className={`${label} ${className || ''}`}
+        style={style}
         {...props}
       >
         {children}

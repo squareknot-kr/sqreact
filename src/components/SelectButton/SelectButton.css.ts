@@ -41,5 +41,5 @@ export const chevronIcon = style({
 });
 
 export const selectButton = style({
-  width: '200px',
+  width: '100%',
 });

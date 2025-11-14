@@ -17,6 +17,8 @@ const meta: Meta<typeof SectionCard> = {
                     children: '카드 내부에 표시될 콘텐츠 / Content to display inside the card',
                     flexRow: '가로 방향 flex 레이아웃 사용 여부 (boolean) / Whether to use row flex layout (boolean)',
                     flexColumn: '세로 방향 flex 레이아웃 사용 여부 (boolean) / Whether to use column flex layout (boolean)',
+                    alignItems: '세로 축 정렬 방식 (flex-start | flex-end | center | stretch) / Vertical alignment (flex-start | flex-end | center | stretch)',
+                    justifyContent: '가로 축 정렬 방식 (flex-start | flex-end | center | space-between | space-around | space-evenly) / Horizontal alignment (flex-start | flex-end | center | space-between | space-around | space-evenly)',
                     style: '커스텀 스타일 (CSSProperties) / Custom style (CSSProperties)',
                     className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
                 },
@@ -500,6 +502,120 @@ export const MixedContent: StoryObj<typeof SectionCard> = {
                 <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
                     추가 정보를 여기에 표시할 수 있어요.
                 </p>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const WithAlignItems: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'alignItems prop을 사용하여 세로 축 정렬을 설정할 수 있어요. flex-end를 사용하면 버튼이 하단에 정렬돼요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Section Card"
+  description="Buttons aligned to bottom"
+  flexRow
+  alignItems="flex-end"
+>
+  <Input label="이름" placeholder="이름을 입력하세요" />
+  <Input label="이메일" placeholder="이메일을 입력하세요" />
+  <Button>검색</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Section Card',
+        description: 'Buttons aligned to bottom',
+        flexRow: true,
+        alignItems: 'flex-end',
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
+            <SectionCard {...args}>
+                <Input label="이름" placeholder="이름을 입력하세요" />
+                <Input label="이메일" placeholder="이메일을 입력하세요" />
+                <Button>검색</Button>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const WithJustifyContent: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'justifyContent prop을 사용하여 가로 축 정렬을 설정할 수 있어요. space-between을 사용하면 요소들이 양 끝에 배치되고 중간 공간이 균등하게 분배돼요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Section Card"
+  description="Buttons with space-between"
+  flexRow
+  justifyContent="space-between"
+>
+  <Button>저장</Button>
+  <Button>취소</Button>
+  <Button>삭제</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Section Card',
+        description: 'Buttons with space-between',
+        flexRow: true,
+        justifyContent: 'space-between',
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
+            <SectionCard {...args}>
+                <Button>저장</Button>
+                <Button>취소</Button>
+                <Button>삭제</Button>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const WithAlignAndJustify: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'alignItems와 justifyContent를 함께 사용하여 정렬을 세밀하게 조정할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Section Card"
+  description="Combined alignment options"
+  flexRow
+  alignItems="flex-end"
+  justifyContent="space-between"
+>
+  <Input label="검색어" placeholder="검색어를 입력하세요" />
+  <Button>검색</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Section Card',
+        description: 'Combined alignment options',
+        flexRow: true,
+        alignItems: 'flex-end',
+        justifyContent: 'space-between',
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
+            <SectionCard {...args}>
+                <Input label="검색어" placeholder="검색어를 입력하세요" />
+                <Button>검색</Button>
             </SectionCard>
         </div>
     ),

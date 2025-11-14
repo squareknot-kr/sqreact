@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Select } from "./Select";
 import { SelectButton } from "../SelectButton/SelectButton";
 
-const DEFAULT_TRIGGER_WIDTH = '240px';
 const FULL_TRIGGER_WIDTH = '500px';
 
 const meta: Meta<typeof Select> = {
@@ -36,7 +35,7 @@ const meta: Meta<typeof Select> = {
                     setSelectedValue(value);
                     args.onChange?.(value);
                 }}
-                trigger={<SelectButton style={{ width: DEFAULT_TRIGGER_WIDTH }}>{selectedValue}</SelectButton>}
+                trigger={<SelectButton value={selectedValue} />}
             />
         );
     },
@@ -69,9 +68,7 @@ return (
       console.log(value);
     }}
     trigger={
-      <SelectButton style={{ width: '240px' }}>
-        {selectedValue}
-      </SelectButton>
+      <SelectButton value={selectedValue} />
     }
   />
 );`,
@@ -98,9 +95,7 @@ return (
       console.log(value);
     }}
     trigger={
-      <SelectButton style={{ width: '240px' }}>
-        {selectedValue}
-      </SelectButton>
+      <SelectButton value={selectedValue} />
     }
   />
 );`,
@@ -133,9 +128,7 @@ return (
     }}
     withSearch
     trigger={
-      <SelectButton style={{ width: '240px' }}>
-        {selectedValue}
-      </SelectButton>
+      <SelectButton value={selectedValue} />
     }
   />
 );`,
@@ -169,9 +162,7 @@ return (
     }}
     withSearch
     trigger={
-      <SelectButton fullWidth>
-        {selectedValue}
-      </SelectButton>
+      <SelectButton fullWidth value={selectedValue} />
     }
   />
 );`,
@@ -197,7 +188,7 @@ return (
                     setSelectedValue(value);
                     args.onChange?.(value);
                 }}
-                trigger={<SelectButton fullWidth>{selectedValue}</SelectButton>}
+                trigger={<SelectButton fullWidth value={selectedValue} />}
             />
         );
     },
@@ -229,7 +220,7 @@ return (
         setFood(value);
         console.log('음식:', value);
       }}
-      trigger={<SelectButton fullWidth>{food}</SelectButton>}
+      trigger={<SelectButton fullWidth value={food} />}
     />
     <Select
       label="음료"
@@ -239,7 +230,7 @@ return (
         setDrink(value);
         console.log('음료:', value);
       }}
-      trigger={<SelectButton fullWidth>{drink}</SelectButton>}
+      trigger={<SelectButton fullWidth value={drink} />}
     />
     <Select
       label="디저트"
@@ -249,7 +240,7 @@ return (
         setDessert(value);
         console.log('디저트:', value);
       }}
-      trigger={<SelectButton fullWidth>{dessert}</SelectButton>}
+      trigger={<SelectButton fullWidth value={dessert} />}
     />
   </div>
 );`,
@@ -286,7 +277,7 @@ return (
                         setFood(value);
                         console.log('음식:', value);
                     }}
-                    trigger={<SelectButton fullWidth>{food}</SelectButton>}
+                    trigger={<SelectButton fullWidth value={food} />}
                 />
                 <Select
                     label="음료"
@@ -296,7 +287,7 @@ return (
                         setDrink(value);
                         console.log('음료:', value);
                     }}
-                    trigger={<SelectButton fullWidth>{drink}</SelectButton>}
+                    trigger={<SelectButton fullWidth value={drink} />}
                 />
                 <Select
                     label="디저트"
@@ -306,7 +297,7 @@ return (
                         setDessert(value);
                         console.log('디저트:', value);
                     }}
-                    trigger={<SelectButton fullWidth>{dessert}</SelectButton>}
+                    trigger={<SelectButton fullWidth value={dessert} />}
                 />
             </>
         );
@@ -325,7 +316,7 @@ export const WithClassName: StoryObj<typeof Select> = {
   options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
   onChange={(value) => console.log(value)}
   className="border-2 border-blue-500 rounded-lg"
-  trigger={<SelectButton>선택</SelectButton>}
+  trigger={<SelectButton value="선택" />}
 />`,
                 language: 'tsx',
             },
@@ -343,8 +334,83 @@ export const WithClassName: StoryObj<typeof Select> = {
                     args.onChange?.(value);
                 }}
                 className="border-2 border-blue-500 rounded-lg p-2"
-                trigger={<SelectButton style={{ width: DEFAULT_TRIGGER_WIDTH }}>{selectedValue}</SelectButton>}
+                trigger={<SelectButton value={selectedValue} />}
             />
+        );
+    },
+};
+
+export const WithCustomWidth: StoryObj<typeof Select> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'SelectButton의 style prop이나 className을 사용하여 너비를 지정할 수 있어요. 기본적으로는 부모 컨테이너의 전체 너비를 차지합니다.',
+            },
+            source: {
+                code: `const [selectedValue, setSelectedValue] = useState('선택');
+
+return (
+  <div style={{ display: 'flex', gap: '16px' }}>
+    <Select
+      label="고정 너비"
+      options={['옵션1', '옵션2', '옵션3']}
+      onChange={(value) => setSelectedValue(value)}
+      trigger={
+        <SelectButton style={{ width: '200px' }} value={selectedValue} />
+      }
+    />
+    <Select
+      label="Tailwind 클래스"
+      options={['옵션1', '옵션2', '옵션3']}
+      onChange={(value) => setSelectedValue(value)}
+      trigger={
+        <SelectButton className="w-64" value={selectedValue} />
+      }
+    />
+  </div>
+);`,
+                language: 'tsx',
+            },
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
+    render: (args) => {
+        const [selectedValue1, setSelectedValue1] = useState('선택');
+        const [selectedValue2, setSelectedValue2] = useState('선택');
+        
+        return (
+            <div style={{ display: 'flex', gap: '16px' }}>
+                <Select
+                    label="고정 너비 (style prop)"
+                    options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+                    defaultValue="선택"
+                    onChange={(value) => {
+                        setSelectedValue1(value);
+                        args.onChange?.(value);
+                    }}
+                    trigger={
+                        <SelectButton style={{ width: '200px' }} value={selectedValue1} />
+                    }
+                />
+                <Select
+                    label="Tailwind 클래스 (className)"
+                    options={['콜라', '사이다', '오렌지주스', '커피', '녹차', '물']}
+                    defaultValue="선택"
+                    onChange={(value) => {
+                        setSelectedValue2(value);
+                        args.onChange?.(value);
+                    }}
+                    trigger={
+                        <SelectButton className="w-64" value={selectedValue2} />
+                    }
+                />
+            </div>
         );
     },
 };

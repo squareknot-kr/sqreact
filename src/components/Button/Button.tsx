@@ -8,12 +8,13 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, icon, fullWidth = false, className, ...props }, ref) => {
+  ({ children, icon, fullWidth = false, className, style, ...props }, ref) => {
     return (
       <button
         ref={ref}
         type="button"
         className={`${styles.button} ${fullWidth ? styles.buttonFullWidth : ''} ${className || ''}`}
+        style={style}
         {...props}
       >
         <span className={styles.buttonText}>
