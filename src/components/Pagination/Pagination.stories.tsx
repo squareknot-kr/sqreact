@@ -14,6 +14,7 @@ const meta: Meta<typeof PageList> = {
                     totalPages: '전체 페이지 수 / Total number of pages',
                     currentPage: '현재 페이지 번호 / Current page number',
                     onPageChange: '페이지 변경 시 호출되는 콜백 함수 / Callback function called when page changes',
+                    className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
                 },
             },
             canvas: {
@@ -61,5 +62,39 @@ export const LastPage: StoryObj<typeof PageList> = {
     args: {
         totalPages: 30,
         currentPage: 30,
+    },
+};
+
+export const WithClassName: StoryObj<typeof PageList> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+            },
+            source: {
+                code: `<PageList
+  totalPages={25}
+  currentPage={1}
+  onPageChange={(page) => console.log('Page changed to:', page)}
+  className="border-2 border-blue-500 rounded-lg p-4"
+/>`,
+                language: 'tsx',
+            },
+        },
+    },
+    render: (args) => {
+        const [currentPage, setCurrentPage] = useState(args.currentPage || 1);
+        
+        return (
+            <PageList
+                {...args}
+                currentPage={currentPage}
+                onPageChange={(page) => {
+                    setCurrentPage(page);
+                    args.onPageChange?.(page);
+                }}
+                className="border-2 border-blue-500 rounded-lg p-4"
+            />
+        );
     },
 };

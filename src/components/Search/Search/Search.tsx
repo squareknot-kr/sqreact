@@ -10,6 +10,7 @@ interface SearchProps {
   children: React.ReactNode;
   onSearch: (values: SearchParams) => void;
   disabled?: (values: SearchValues) => boolean;
+  className?: string;
 }
 
 interface SelectProps {
@@ -26,13 +27,14 @@ const RESET_SELECT_OPTION_VALUE = '';
 export function Search({ 
   children, 
   onSearch, 
-  disabled: setDisabled 
+  disabled: setDisabled,
+  className,
 }: SearchProps) {
   const { values, labels, dateRange, updateValues, resetAll } = useSearch();
 
   return (
     <>
-      <div className={styles.searchContainer}>
+      <div className={`${styles.searchContainer} ${className || ''}`}>
         <div className={styles.childrenContainer}>
           {children}
         </div>

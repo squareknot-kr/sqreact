@@ -17,6 +17,7 @@ const meta: Meta<typeof Input> = {
                     onChange: '값 변경 시 호출되는 콜백 함수 / Callback function called when value changes',
                     disabled: '비활성화 여부 (boolean) / Whether the input is disabled (boolean)',
                     fullWidth: '전체 너비 사용 여부 (boolean) / Whether to use full width (boolean)',
+                    className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
                 },
             },
         },
@@ -219,6 +220,39 @@ export const FullWidthComparison: StoryObj<typeof Input> = {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <Input label="일반 너비" placeholder="일반 너비 입력" />
                 <Input fullWidth label="전체 너비" placeholder="전체 너비 입력" />
+            </div>
+        );
+    },
+};
+
+export const WithClassName: StoryObj<typeof Input> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+            },
+            source: {
+                code: `<Input
+  label="이름"
+  placeholder="이름을 입력하세요"
+  className="border-2 border-blue-500 focus:border-blue-700"
+/>`,
+                language: 'tsx',
+            },
+        },
+    },
+    render: () => {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <Input
+                    label="이름"
+                    placeholder="이름을 입력하세요"
+                    className="border-2 border-blue-500 focus:border-blue-700"
+                />
+                <Input
+                    placeholder="Tailwind 스타일 입력"
+                    className="bg-gray-100 text-gray-800"
+                />
             </div>
         );
     },

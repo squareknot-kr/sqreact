@@ -8,6 +8,7 @@ interface DropdownProps {
   defaultValue?: string;
   onChange: (value: string) => void;
   children: ReactNode;
+  className?: string;
 }
 
 export const Dropdown = ({
@@ -15,6 +16,7 @@ export const Dropdown = ({
   defaultValue = '선택',
   onChange,
   children,
+  className,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -27,7 +29,7 @@ export const Dropdown = ({
 
   return (
     <DropdownContext.Provider value={{ defaultValue, isOpen, setIsOpen, onSelectItem, searchValue, setSearchValue, onChangeValue: onChange, menuRef }}>
-      <div className={styles.dropdownContainer}>
+      <div className={`${styles.dropdownContainer} ${className || ''}`}>
         {label && 
           <div className={styles.labelSection}>
             <label className={styles.label}>{label}</label>

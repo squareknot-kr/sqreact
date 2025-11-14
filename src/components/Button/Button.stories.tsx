@@ -13,6 +13,7 @@ const meta: Meta<typeof Button> = {
                     children: '버튼에 표시될 내용 / Content to display in the button',
                     icon: '아이콘 (ReactNode) / Icon (ReactNode)',
                     fullWidth: '전체 너비 사용 여부 (boolean) / Whether to use full width (boolean)',
+                    className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
                 },
             },
         },
@@ -340,6 +341,34 @@ export const MultipleButtons: StoryObj<typeof Button> = {
                     <Button fullWidth icon={plusIcon}>추가</Button>
                 </div>
             </>
+        );
+    },
+};
+
+export const WithClassName: StoryObj<typeof Button> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+            },
+            source: {
+                code: `<Button className="bg-blue-500 text-white hover:bg-blue-600">
+  Tailwind 스타일 버튼
+</Button>`,
+                language: 'tsx',
+            },
+        },
+    },
+    render: () => {
+        return (
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <Button className="bg-blue-500 text-white hover:bg-blue-600">
+                    Tailwind 스타일 버튼
+                </Button>
+                <Button className="bg-red-500 text-white hover:bg-red-600">
+                    다른 스타일 버튼
+                </Button>
+            </div>
         );
     },
 };

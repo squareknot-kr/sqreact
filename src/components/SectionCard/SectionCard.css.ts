@@ -24,7 +24,13 @@ export const sectionCardDescription = style({
   color: 'rgb(75 85 99)',
 });
 
-export const flex = style({
+export const flexRow = style({
+  display: 'flex',
+  flexDirection: 'row',
+  gap: '16px',
+});
+
+export const flexColumn = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '16px',

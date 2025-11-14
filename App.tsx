@@ -64,7 +64,7 @@ function App() {
       <SectionCard 
         title="Section Card" 
         description="Section Card Description"
-        flex
+        flexRow
       >
         <Input label="이름" placeholder="이름을 입력하세요" />
         <Input label="이메일" type="email" placeholder="이메일을 입력하세요" />

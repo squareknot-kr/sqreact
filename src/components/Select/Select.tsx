@@ -8,6 +8,7 @@ interface SelectProps {
   options: string[];
   onChange: (value: string) => void;
   withSearch?: boolean;
+  className?: string;
 }
 
 export function Select({
@@ -17,9 +18,10 @@ export function Select({
   options,
   onChange,
   withSearch = false,
+  className,
 }: SelectProps) {
   return (
-    <Dropdown label={label} onChange={onChange} defaultValue={defaultValue}>
+    <Dropdown label={label} onChange={onChange} defaultValue={defaultValue} className={className}>
       <Dropdown.Trigger as={trigger} />
       <Dropdown.Menu>
         {withSearch && <Dropdown.Search />}

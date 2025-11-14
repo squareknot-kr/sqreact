@@ -10,6 +10,8 @@ type DateRangePickerProps = {
   startDate?: string;
   endDate?: string;
   onChange?: (startDate: string, endDate: string) => void;
+  className?: string;
+  fullWidth?: boolean;
 };
 
 export function DateRangePicker({ 
@@ -17,6 +19,8 @@ export function DateRangePicker({
   startDate: initialStartDate,
   endDate: initialEndDate,
   onChange,
+  className,
+  fullWidth = false,
 }: DateRangePickerProps) {
   const today = formatDateToString(getToday());
   const [startDate, setStartDate] = useState(initialStartDate || getDateRange(150, getToday()).startDate);
@@ -62,17 +66,17 @@ export function DateRangePicker({
   };
   
   return (
-    <div className={styles.datePickerContainer}>
+    <div className={`${styles.datePickerContainer} ${fullWidth ? styles.datePickerContainerFullWidth : ''} ${className || ''}`}>
       {label && <Label>{label}</Label>}
-      <div className={styles.dateInputsContainer}>
-        <div className={styles.dateInputWrapper}>
+      <div className={`${styles.dateInputsContainer} ${fullWidth ? styles.dateInputsContainerFullWidth : ''}`}>
+        <div className={`${styles.dateInputWrapper} ${fullWidth ? styles.dateInputWrapperFullWidth : ''}`}>
           <Input
             ref={startDateInputRef}
             type="date"
             value={startDate}
             onChange={(e) => onChangeStartDate(e.target.value)}
             max={today}
-            className={styles.dateInput}
+            className={`${styles.dateInput} ${fullWidth ? styles.dateInputFullWidth : ''}`}
           />
           <Calendar 
             className={styles.calendarIcon} 
@@ -81,14 +85,14 @@ export function DateRangePicker({
           />
         </div>
         <span className={styles.separator}>~</span>
-        <div className={styles.dateInputWrapper}>
+        <div className={`${styles.dateInputWrapper} ${fullWidth ? styles.dateInputWrapperFullWidth : ''}`}>
           <Input
             ref={endDateInputRef}
             type="date"
             value={endDate}
             onChange={(e) => onChangeEndDate(e.target.value)}
             max={today}
-            className={styles.dateInput}
+            className={`${styles.dateInput} ${fullWidth ? styles.dateInputFullWidth : ''}`}
           />
           <Calendar 
             className={styles.calendarIcon} 

@@ -33,6 +33,8 @@ const meta: Meta<typeof DateRangePicker> = {
                     startDate: '시작일 (YYYY-MM-DD 형식, 선택사항) / Start date in YYYY-MM-DD format (optional)',
                     endDate: '종료일 (YYYY-MM-DD 형식, 선택사항) / End date in YYYY-MM-DD format (optional)',
                     onChange: '날짜 범위 변경 시 호출되는 콜백 함수 (startDate, endDate) / Callback function called when date range changes',
+                    className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
+                    fullWidth: '전체 너비 사용 여부 (boolean) / Whether to use full width (boolean). Input들이 부모 컨테이너 크기에 따라 분배됩니다.',
                 },
             },
         },
@@ -170,6 +172,147 @@ return (
                     args.onChange?.(startDate, endDate);
                 }}
             />
+        );
+    },
+};
+
+export const WithClassName: StoryObj<typeof DateRangePicker> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+            },
+            source: {
+                code: `<DateRangePicker
+  label="기간"
+  className="border-2 border-blue-500 rounded-lg p-4"
+  onChange={(startDate, endDate) => {
+    console.log({ startDate, endDate });
+  }}
+/>`,
+                language: 'tsx',
+            },
+        },
+    },
+    render: (args) => {
+        const [dateRange, setDateRange] = useState({ 
+            startDate: args.startDate || getDateRange(150, getToday()).startDate,
+            endDate: args.endDate || formatDateToString(getToday())
+        });
+        
+        return (
+            <DateRangePicker
+                {...args}
+                className="border-2 border-blue-500 rounded-lg p-4"
+                startDate={dateRange.startDate}
+                endDate={dateRange.endDate}
+                onChange={(startDate, endDate) => {
+                    setDateRange({ startDate, endDate });
+                    args.onChange?.(startDate, endDate);
+                }}
+            />
+        );
+    },
+};
+
+export const FullWidth: StoryObj<typeof DateRangePicker> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'fullWidth prop을 사용하면 DateRangePicker가 전체 너비를 사용하고, Input들이 부모 컨테이너 크기에 따라 분배되어요.',
+            },
+            source: {
+                code: `<DateRangePicker
+  label="기간"
+  fullWidth
+  onChange={(startDate, endDate) => {
+    console.log({ startDate, endDate });
+  }}
+/>`,
+                language: 'tsx',
+            },
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
+    render: (args) => {
+        const [dateRange, setDateRange] = useState({ 
+            startDate: args.startDate || getDateRange(150, getToday()).startDate,
+            endDate: args.endDate || formatDateToString(getToday())
+        });
+        
+        return (
+            <DateRangePicker
+                {...args}
+                fullWidth={true}
+                startDate={dateRange.startDate}
+                endDate={dateRange.endDate}
+                onChange={(startDate, endDate) => {
+                    setDateRange({ startDate, endDate });
+                    args.onChange?.(startDate, endDate);
+                }}
+            />
+        );
+    },
+};
+
+export const FullWidthComparison: StoryObj<typeof DateRangePicker> = {
+    parameters: {
+        docs: {
+            description: {
+                story: '일반 DateRangePicker와 fullWidth DateRangePicker를 비교할 수 있어요.',
+            },
+            source: {
+                code: `<div style={{ maxWidth: '600px' }}>
+  <DateRangePicker label="일반 너비" onChange={...} />
+  <DateRangePicker label="전체 너비" fullWidth onChange={...} />
+</div>`,
+                language: 'tsx',
+            },
+        },
+    },
+    decorators: [
+        (Story) => (
+            <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+                <Story />
+            </div>
+        ),
+    ],
+    render: () => {
+        const [dateRange1, setDateRange1] = useState({ 
+            startDate: getDateRange(150, getToday()).startDate,
+            endDate: formatDateToString(getToday())
+        });
+        const [dateRange2, setDateRange2] = useState({ 
+            startDate: getDateRange(150, getToday()).startDate,
+            endDate: formatDateToString(getToday())
+        });
+        
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                <DateRangePicker
+                    label="일반 너비"
+                    startDate={dateRange1.startDate}
+                    endDate={dateRange1.endDate}
+                    onChange={(startDate, endDate) => {
+                        setDateRange1({ startDate, endDate });
+                    }}
+                />
+                <DateRangePicker
+                    label="전체 너비"
+                    fullWidth
+                    startDate={dateRange2.startDate}
+                    endDate={dateRange2.endDate}
+                    onChange={(startDate, endDate) => {
+                        setDateRange2({ startDate, endDate });
+                    }}
+                />
+            </div>
         );
     },
 };

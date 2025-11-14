@@ -15,8 +15,10 @@ const meta: Meta<typeof SectionCard> = {
                     title: '카드의 제목 (선택사항) / Card title (optional)',
                     description: '카드의 설명 (선택사항) / Card description (optional)',
                     children: '카드 내부에 표시될 콘텐츠 / Content to display inside the card',
-                    flex: 'flex 레이아웃 사용 여부 (boolean) / Whether to use flex layout (boolean)',
+                    flexRow: '가로 방향 flex 레이아웃 사용 여부 (boolean) / Whether to use row flex layout (boolean)',
+                    flexColumn: '세로 방향 flex 레이아웃 사용 여부 (boolean) / Whether to use column flex layout (boolean)',
                     style: '커스텀 스타일 (CSSProperties) / Custom style (CSSProperties)',
+                    className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
                 },
             },
         },
@@ -24,7 +26,6 @@ const meta: Meta<typeof SectionCard> = {
     args: {
         title: 'Section Card',
         description: 'This is a section card description',
-        flex: false,
     },
 };
 
@@ -56,17 +57,17 @@ export const Default: StoryObj<typeof SectionCard> = {
     ),
 };
 
-export const WithFlex: StoryObj<typeof SectionCard> = {
+export const WithFlexColumn: StoryObj<typeof SectionCard> = {
     parameters: {
         docs: {
             description: {
-                story: 'flex prop을 사용하여 내부 콘텐츠를 flex 레이아웃으로 배치할 수 있어요.',
+                story: 'flexColumn prop을 사용하여 내부 콘텐츠를 세로 방향 flex 레이아웃으로 배치할 수 있어요.',
             },
             source: {
                 code: `<SectionCard 
   title="Section Card"
-  description="This is a section card with flex layout"
-  flex
+  description="This is a section card with column flex layout"
+  flexColumn
 >
   <Button>Button 1</Button>
   <Button>Button 2</Button>
@@ -78,8 +79,44 @@ export const WithFlex: StoryObj<typeof SectionCard> = {
     },
     args: {
         title: 'Section Card',
-        description: 'This is a section card with flex layout',
-        flex: true,
+        description: 'This is a section card with column flex layout',
+        flexColumn: true,
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
+            <SectionCard {...args}>
+                <Button>Button 1</Button>
+                <Button>Button 2</Button>
+                <Button>Button 3</Button>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const WithFlexRow: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'flexRow prop을 사용하여 내부 콘텐츠를 가로 방향 flex 레이아웃으로 배치할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Section Card"
+  description="This is a section card with row flex layout"
+  flexRow
+>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+  <Button>Button 3</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Section Card',
+        description: 'This is a section card with row flex layout',
+        flexRow: true,
     },
     render: (args) => (
         <div style={{ maxWidth: '1200px', width: '100%' }}>
@@ -102,7 +139,7 @@ export const WithInputs: StoryObj<typeof SectionCard> = {
                 code: `<SectionCard 
   title="Form Section"
   description="Fill out the form below"
-  flex
+  flexColumn
 >
   <Input label="이름" placeholder="이름을 입력하세요" />
   <Input label="이메일" type="email" placeholder="이메일을 입력하세요" />
@@ -115,7 +152,7 @@ export const WithInputs: StoryObj<typeof SectionCard> = {
     args: {
         title: 'Form Section',
         description: 'Fill out the form below',
-        flex: true,
+        flexColumn: true,
     },
     render: (args) => (
         <div style={{ maxWidth: '1200px', width: '100%' }}>
@@ -138,7 +175,7 @@ export const WithMultipleButtons: StoryObj<typeof SectionCard> = {
                 code: `<SectionCard 
   title="Actions"
   description="Choose an action"
-  flex
+  flexRow
 >
   <Button>저장</Button>
   <Button>취소</Button>
@@ -151,7 +188,7 @@ export const WithMultipleButtons: StoryObj<typeof SectionCard> = {
     args: {
         title: 'Actions',
         description: 'Choose an action',
-        flex: true,
+        flexRow: true,
     },
     render: (args) => (
         <div style={{ maxWidth: '1200px', width: '100%' }}>
@@ -168,7 +205,7 @@ export const WithoutFlex: StoryObj<typeof SectionCard> = {
     parameters: {
         docs: {
             description: {
-                story: 'flex prop 없이 사용하는 SectionCard에요. 기본 레이아웃으로 콘텐츠가 배치돼요.',
+                story: 'flexRow나 flexColumn prop 없이 사용하는 SectionCard에요. 기본 레이아웃으로 콘텐츠가 배치돼요.',
             },
             source: {
                 code: `<SectionCard 
@@ -187,7 +224,6 @@ export const WithoutFlex: StoryObj<typeof SectionCard> = {
     args: {
         title: 'Section Card',
         description: 'This is a section card without flex layout',
-        flex: false,
     },
     render: (args) => (
         <div style={{ maxWidth: '1200px', width: '100%' }}>
@@ -219,7 +255,7 @@ export const WithoutTitleAndDescription: StoryObj<typeof SectionCard> = {
         },
     },
     args: {
-        flex: true,
+        flexRow: true,
     },
     render: (args) => (
         <div style={{ maxWidth: '1200px', width: '100%' }}>
@@ -240,7 +276,7 @@ export const WithTitleOnly: StoryObj<typeof SectionCard> = {
             source: {
                 code: `<SectionCard 
   title="Section Card"
-  flex
+  flexRow
 >
   <Button>Button 1</Button>
   <Button>Button 2</Button>
@@ -251,7 +287,7 @@ export const WithTitleOnly: StoryObj<typeof SectionCard> = {
     },
     args: {
         title: 'Section Card',
-        flex: true,
+        flexRow: true,
     },
     render: (args) => (
         <div style={{ maxWidth: '1200px', width: '100%' }}>
@@ -272,7 +308,7 @@ export const WithDescriptionOnly: StoryObj<typeof SectionCard> = {
             source: {
                 code: `<SectionCard 
   description="This is a section card with description only"
-  flex
+  flexColumn
 >
   <Button>Button 1</Button>
   <Button>Button 2</Button>
@@ -283,7 +319,7 @@ export const WithDescriptionOnly: StoryObj<typeof SectionCard> = {
     },
     args: {
         description: 'This is a section card with description only',
-        flex: true,
+        flexRow: true,
     },
     render: (args) => (
         <div style={{ maxWidth: '1200px', width: '100%' }}>
@@ -306,7 +342,7 @@ export const WithCustomStyle: StoryObj<typeof SectionCard> = {
   title="Narrow Section Card"
   description="This is a narrow section card using style prop"
   style={{ maxWidth: '400px', margin: '0 auto' }}
-  flex
+  flexColumn
 >
   <Button>Button 1</Button>
   <Button>Button 2</Button>
@@ -318,7 +354,7 @@ export const WithCustomStyle: StoryObj<typeof SectionCard> = {
     args: {
         title: 'Narrow Section Card',
         description: 'This is a narrow section card using style prop',
-        flex: true,
+        flexColumn: true,
         style: { maxWidth: '400px', margin: '0 auto' },
     },
     render: (args) => (
@@ -326,5 +362,145 @@ export const WithCustomStyle: StoryObj<typeof SectionCard> = {
             <Button>Button 1</Button>
             <Button>Button 2</Button>
         </SectionCard>
+    ),
+};
+
+export const WithClassName: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'className prop을 사용하여 추가 CSS 클래스를 적용할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Custom Styled Card"
+  description="This card has custom className"
+  className="custom-card"
+  flexRow
+>
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Custom Styled Card',
+        description: 'This card has custom className',
+        flexRow: true,
+        className: 'custom-card',
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
+            <style>{`
+                .custom-card {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                }
+                .custom-card h2 {
+                    color: white;
+                }
+                .custom-card p {
+                    color: rgba(255, 255, 255, 0.9);
+                }
+            `}</style>
+            <SectionCard {...args}>
+                <Button>Button 1</Button>
+                <Button>Button 2</Button>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const ComplexLayout: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: '복잡한 레이아웃을 구성하는 예제에요. 여러 컴포넌트를 조합해서 사용할 수 있어요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Dashboard"
+  description="Welcome to your dashboard"
+  flexColumn
+>
+  <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+    <Input label="검색" placeholder="검색어를 입력하세요" fullWidth />
+    <Button>검색</Button>
+  </div>
+  <div style={{ display: 'flex', gap: '12px' }}>
+    <Button fullWidth>저장</Button>
+    <Button fullWidth>취소</Button>
+  </div>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Dashboard',
+        description: 'Welcome to your dashboard',
+        flexColumn: true,
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
+            <SectionCard {...args}>
+                <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+                    <Input label="검색" placeholder="검색어를 입력하세요" fullWidth />
+                    <Button>검색</Button>
+                </div>
+                <div style={{ display: 'flex', gap: '12px' }}>
+                    <Button fullWidth>저장</Button>
+                    <Button fullWidth>취소</Button>
+                </div>
+            </SectionCard>
+        </div>
+    ),
+};
+
+export const MixedContent: StoryObj<typeof SectionCard> = {
+    parameters: {
+        docs: {
+            description: {
+                story: '다양한 타입의 콘텐츠를 섞어서 사용하는 예제에요.',
+            },
+            source: {
+                code: `<SectionCard 
+  title="Mixed Content"
+  description="This card contains various types of content"
+  flexColumn
+>
+  <Input label="이름" placeholder="이름을 입력하세요" />
+  <div style={{ display: 'flex', gap: '12px' }}>
+    <Button>확인</Button>
+    <Button>취소</Button>
+  </div>
+  <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
+    추가 정보를 여기에 표시할 수 있어요.
+  </p>
+</SectionCard>`,
+                language: 'tsx',
+            },
+        },
+    },
+    args: {
+        title: 'Mixed Content',
+        description: 'This card contains various types of content',
+        flexColumn: true,
+    },
+    render: (args) => (
+        <div style={{ maxWidth: '1200px', width: '100%' }}>
+            <SectionCard {...args}>
+                <Input label="이름" placeholder="이름을 입력하세요" />
+                <div style={{ display: 'flex', gap: '12px' }}>
+                    <Button>확인</Button>
+                    <Button>취소</Button>
+                </div>
+                <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
+                    추가 정보를 여기에 표시할 수 있어요.
+                </p>
+            </SectionCard>
+        </div>
     ),
 };

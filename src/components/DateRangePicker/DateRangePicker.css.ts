@@ -62,3 +62,20 @@ export const separator = style({
   fontWeight: 500,
 });
 
+export const datePickerContainerFullWidth = style({
+  width: '100%',
+});
+
+export const dateInputsContainerFullWidth = style({
+  width: '100%',
+});
+
+export const dateInputWrapperFullWidth = style({
+  flex: 1,
+  minWidth: 0,
+});
+
+export const dateInputFullWidth = style({
+  width: '100% !important',
+});
+

@@ -20,6 +20,7 @@ const meta: Meta<typeof Select> = {
                     defaultValue: '기본 선택 값 / Default selected value',
                     onChange: '선택 값 변경 시 호출되는 콜백 함수 / Callback function called when selected value changes',
                     trigger: '트리거 컴포넌트 / Trigger component',
+                    className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
                 },
             },
         },
@@ -308,6 +309,42 @@ return (
                     trigger={<SelectButton fullWidth>{dessert}</SelectButton>}
                 />
             </>
+        );
+    },
+};
+
+export const WithClassName: StoryObj<typeof Select> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+            },
+            source: {
+                code: `<Select
+  label="가장 좋아하는 음식은?"
+  options={['김치볶음밥', '제육볶음', '불닭게티', '비빔밥', '라면', '햄버거']}
+  onChange={(value) => console.log(value)}
+  className="border-2 border-blue-500 rounded-lg"
+  trigger={<SelectButton>선택</SelectButton>}
+/>`,
+                language: 'tsx',
+            },
+        },
+    },
+    render: (args) => {
+        const [selectedValue, setSelectedValue] = useState(args.defaultValue || '선택');
+        
+        return (
+            <Select
+                {...args}
+                defaultValue={args.defaultValue || '선택'}
+                onChange={(value) => {
+                    setSelectedValue(value);
+                    args.onChange?.(value);
+                }}
+                className="border-2 border-blue-500 rounded-lg p-2"
+                trigger={<SelectButton style={{ width: DEFAULT_TRIGGER_WIDTH }}>{selectedValue}</SelectButton>}
+            />
         );
     },
 };
