@@ -5,6 +5,18 @@ import * as styles from "./Button.css.ts";
 const meta: Meta<typeof Button> = {
     component: Button,
     tags: ['autodocs'],
+    decorators: [
+        (Story) => (
+            <>
+                <style>{`
+                    span[class*="buttonText"] {
+                        color: #2E3438 !important;
+                    }
+                `}</style>
+                <Story />
+            </>
+        ),
+    ],
     parameters: {
         docs: {
             description: {

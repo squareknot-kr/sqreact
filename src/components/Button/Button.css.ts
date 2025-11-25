@@ -41,6 +41,11 @@ export const buttonText = style({
   textAlign: 'center',
 });
 
+// Storybook 전용 기본 텍스트 색상 (사용하는 쪽에서는 className으로 오버라이드 가능)
+export const buttonTextDefault = style({
+  color: colors.text.primary,
+});
+
 export const icon = style({
   width: sizes.icon.sm,
   height: sizes.icon.sm,

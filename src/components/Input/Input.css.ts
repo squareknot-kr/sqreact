@@ -12,7 +12,6 @@ export const input = style({
   paddingBottom: '8px',
   fontSize: '14px',
   lineHeight: '1.25rem',
-  color: '#2E3438',
   fontWeight: 500,
   transition: 'colors 0.15s',
   outline: 'none',
@@ -53,5 +52,6 @@ export const wrapperFullWidth = style([
 // Storybook 전용 기본 스타일 (사용하는 쪽에서는 className으로 오버라이드 가능)
 export const inputDefault = style({
   width: '320px',
+  color: '#2E3438',
 });
 
