@@ -7,9 +7,7 @@ export const input = style({
   paddingRight: '12px',
   paddingTop: '8px',
   paddingBottom: '8px',
-  fontSize: '14px',
   lineHeight: '1.25rem',
-  fontWeight: 500,
   transition: 'colors 0.15s',
   outline: 'none',
   boxSizing: 'border-box',
@@ -53,5 +51,7 @@ export const inputDefault = style({
   backgroundColor: 'white',
   borderRadius: '6px',
   border: '1px solid rgb(209 213 219)',
+  fontSize: '14px',
+  fontWeight: 500,
 });
 
