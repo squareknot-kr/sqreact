@@ -1,4 +1,4 @@
-import { useEffect, cloneElement, ReactNode, ButtonHTMLAttributes, ReactElement, useContext, useState, useRef } from 'react';
+import React, { useEffect, cloneElement, ReactNode, ButtonHTMLAttributes, ReactElement, useContext, useState, useRef } from 'react';
 import { DropdownContext } from './DropdownContext';
 import * as styles from './Dropdown.css';
 import { Motion } from '../Motion/Motion';
@@ -45,10 +45,24 @@ export const Dropdown = ({
 
 function Menu({ children }: { children: React.ReactNode }) {
   const { isOpen, menuRef } = useContext(DropdownContext);
+  
+  // children을 배열로 변환하여 Search와 나머지를 구분
+  const childrenArray = React.Children.toArray(children);
+  const searchElement = childrenArray.find((child) => 
+    React.isValidElement(child) && child.type === Search
+  );
+  const otherChildren = childrenArray.filter((child) => 
+    !(React.isValidElement(child) && child.type === Search)
+  );
 
   return (
     <Motion condition={isOpen} className={styles.dropdown} ref={menuRef}>
-      {children}
+      {searchElement && <div className={styles.searchContainer}>{searchElement}</div>}
+      <div className={styles.optionsContainer}>
+        <div className={styles.optionsList}>
+          {otherChildren}
+        </div>
+      </div>
     </Motion>
   );
 }

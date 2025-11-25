@@ -6,7 +6,7 @@ import { SectionCard } from '@/components/SectionCard/SectionCard';
 function App() {
   const [_, setDateRange] = useState({ startDate: '', endDate: '' });
 
-  const templateOptions = ['템플릿1', '템플릿2', '템플릿3'];
+  const templateOptions = ['템플릿1', '템플릿2', '템플릿3', '템플릿4', '템플릿5', '템플릿6', '템플릿7', '템플릿8', '템플릿9', '템플릿10'];
   
   return (
     <div style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
