@@ -13,7 +13,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         type="button"
-        className={`${styles.button} ${fullWidth ? styles.buttonFullWidth : ''} ${className || ''}`}
+        className={`${className || ''} ${styles.button} ${fullWidth ? styles.buttonFullWidth : ''}`}
         style={style}
         {...props}
       >

@@ -18,7 +18,7 @@ export function SectionCard({ children, title, description, flexRow, flexColumn,
   if (justifyContent) containerStyle.justifyContent = justifyContent;
   
   return (
-    <div className={`${styles.sectionCard} ${className}`} style={style}>
+    <div className={`${className || ''} ${styles.sectionCard}`} style={style}>
       {title && <h2 className={styles.sectionCardTitle}>{title}</h2>}
       {description && <p className={styles.sectionCardDescription}>{description}</p>}
       <div 

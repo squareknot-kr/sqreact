@@ -39,7 +39,7 @@ export const PageList = memo(function PageList({ totalPages, currentPage, onPage
   );
 
   return (
-    <div className={`${styles.container} ${className || ''}`} style={style}>
+    <div className={`${className || ''} ${styles.container}`} style={style}>
       <div className={styles.pagesContainer}>
         {currentGroup > 1 && (
           <button

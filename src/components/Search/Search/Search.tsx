@@ -34,7 +34,7 @@ export function Search({
 
   return (
     <>
-      <div className={`${styles.searchContainer} ${className || ''}`}>
+      <div className={`${className || ''} ${styles.searchContainer}`}>
         <div className={styles.childrenContainer}>
           {children}
         </div>

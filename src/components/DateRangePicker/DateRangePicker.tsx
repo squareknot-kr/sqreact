@@ -68,7 +68,7 @@ export function DateRangePicker({
   };
   
   return (
-    <div className={`${styles.datePickerContainer} ${fullWidth ? styles.datePickerContainerFullWidth : ''} ${className || ''}`} style={style}>
+    <div className={`${className || ''} ${styles.datePickerContainer} ${fullWidth ? styles.datePickerContainerFullWidth : ''}`} style={style}>
       {label && (
         <div className={styles.labelSection}>
           <Label>{label}</Label>

@@ -9,6 +9,7 @@ interface DropdownForSearchProps {
   disabled?: boolean;
   isLoading?: boolean;
   onChange: (value: string) => void;
+  className?: string;
 }
 
 const EMPTY_MESSAGE = '검색 결과가 없습니다';
@@ -22,6 +23,7 @@ export function DropdownForSearch({
   disabled = false,
   isLoading = false,
   onChange,
+  className,
 }: DropdownForSearchProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -66,7 +68,7 @@ export function DropdownForSearch({
   };
 
   return (
-    <div className={styles.dropdownContainer} ref={dropdownRef}>
+    <div className={`${className || ''} ${styles.dropdownContainer}`} ref={dropdownRef}>
       <div className={styles.labelSection}>
         <label className={styles.label}>{label}</label>
         <button

@@ -14,7 +14,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <input
         ref={ref}
         type={type}
-        className={`${fullWidth ? inputFullWidth : input} ${className || ''}`}
+        className={`${className || ''} ${fullWidth ? inputFullWidth : input}`}
         style={style}
         {...props}
       />

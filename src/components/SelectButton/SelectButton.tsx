@@ -28,7 +28,7 @@ export function SelectButton({ value, style, className, disabled, ...props }: Se
       {...props} 
       disabled={disabled}
       icon={isOpen ? closeIcon : chevronIcon} 
-      className={`${styles.selectButton} ${className || ''}`}
+      className={`${className || ''} ${styles.selectButton}`}
       style={style}
     >
       {displayValue}

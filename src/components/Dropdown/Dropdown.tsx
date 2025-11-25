@@ -31,7 +31,7 @@ export const Dropdown = ({
 
   return (
     <DropdownContext.Provider value={{ defaultValue, isOpen, setIsOpen, onSelectItem, searchValue, setSearchValue, onChangeValue: onChange, menuRef }}>
-      <div className={`${styles.dropdownContainer} ${className || ''}`} style={style}>
+      <div className={`${className || ''} ${styles.dropdownContainer}`} style={style}>
         {label && 
           <div className={styles.labelSection}>
             <label className={styles.label}>{label}</label>
