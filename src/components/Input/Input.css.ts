@@ -5,7 +5,6 @@ export const input = style({
   display: 'flex',
   borderRadius: '6px',
   border: '1px solid rgb(209 213 219)',
-  backgroundColor: 'white',
   paddingLeft: '12px',
   paddingRight: '12px',
   paddingTop: '8px',
@@ -53,5 +52,6 @@ export const wrapperFullWidth = style([
 export const inputDefault = style({
   width: '320px',
   color: '#2E3438',
+  backgroundColor: 'white',
 });
 
