@@ -6,7 +6,6 @@ export const button = style({
   paddingLeft: spacing.md,
   paddingRight: spacing.md,
   textAlign: 'left',
-  fontSize: typography.fontSize.md,
   fontWeight: typography.fontWeight.medium,
   borderRadius: sizes.radius.md,
   display: 'inline-flex',
@@ -58,6 +57,7 @@ export const buttonDefault = style({
   height: sizes.button.md,
   backgroundColor: colors.background,
   color: colors.foreground,
+  fontSize: typography.fontSize.md,
   border: `1px solid ${colors.border}`,
   ':hover': {
     borderColor: colors.borderHover,
