@@ -27,7 +27,7 @@ const meta: Meta<typeof DateRangePicker> = {
     parameters: {
         docs: {
             description: {
-                component: 'DateRangePicker 컴포넌트는 시작일과 종료일을 선택할 수 있는 컴포넌트에요.',
+                component: 'DateRangePicker 컴포넌트는 시작일과 종료일을 선택할 수 있는 컴포넌트에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
                 props: {
                     label: 'DateRangePicker 위에 표시되는 라벨 (선택사항) / Label displayed above DateRangePicker (optional)',
                     startDate: '시작일 (YYYY-MM-DD 형식, 선택사항) / Start date in YYYY-MM-DD format (optional)',
@@ -80,7 +80,7 @@ export const Default: StoryObj<typeof DateRangePicker> = {
     parameters: {
         docs: {
             description: {
-                story: '기본적으로 150일 전부터 오늘까지의 기간이 설정되어 있어요.',
+                story: '기본적으로 150일 전부터 오늘까지의 기간이 설정되어 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `const [dateRange, setDateRange] = useState({ 
@@ -104,7 +104,7 @@ export const NoLabel: StoryObj<typeof DateRangePicker> = {
     parameters: {
         docs: {
             description: {
-                story: '레이블 없이 DateRangePicker 컴포넌트를 사용할 수 있어요.',
+                story: '레이블 없이 DateRangePicker 컴포넌트를 사용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `const [dateRange, setDateRange] = useState({ 
@@ -134,7 +134,7 @@ export const WithInitialDates: StoryObj<typeof DateRangePicker> = {
     parameters: {
         docs: {
             description: {
-                story: '초기 시작일과 종료일을 지정할 수 있어요.',
+                story: '초기 시작일과 종료일을 지정할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `const [dateRange, setDateRange] = useState({ 
@@ -180,7 +180,7 @@ export const WithClassName: StoryObj<typeof DateRangePicker> = {
     parameters: {
         docs: {
             description: {
-                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<DateRangePicker
@@ -219,7 +219,7 @@ export const FullWidth: StoryObj<typeof DateRangePicker> = {
     parameters: {
         docs: {
             description: {
-                story: 'fullWidth prop을 사용하면 DateRangePicker가 전체 너비를 사용하고, Input들이 부모 컨테이너 크기에 따라 분배되어요.',
+                story: 'fullWidth prop을 사용하면 DateRangePicker가 전체 너비를 사용하고, Input들이 부모 컨테이너 크기에 따라 분배되어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<DateRangePicker
@@ -265,7 +265,7 @@ export const FullWidthComparison: StoryObj<typeof DateRangePicker> = {
     parameters: {
         docs: {
             description: {
-                story: '일반 DateRangePicker와 fullWidth DateRangePicker를 비교할 수 있어요.',
+                story: '일반 DateRangePicker와 fullWidth DateRangePicker를 비교할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<div style={{ maxWidth: '600px' }}>

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Input } from "./Input";
+import * as styles from "./Input.css";
 
 const meta: Meta<typeof Input> = {
     component: Input,
@@ -8,7 +9,7 @@ const meta: Meta<typeof Input> = {
     parameters: {
         docs: {
             description: {
-                component: 'Input 컴포넌트는 텍스트 입력 필드를 표시하는 컴포넌트에요. label prop을 사용하여 라벨을 함께 표시할 수 있어요.',
+                component: 'Input 컴포넌트는 텍스트 입력 필드를 표시하는 컴포넌트에요. label prop을 사용하여 라벨을 함께 표시할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다. width, border, backgroundColor 등 모든 스타일을 className으로 자유롭게 오버라이드할 수 있어요.',
                 props: {
                     label: '입력 필드 위에 표시되는 라벨 (선택사항) / Label displayed above input field (optional)',
                     type: '입력 필드 타입 (text, email, password 등) / Input field type (text, email, password, etc.)',
@@ -24,6 +25,7 @@ const meta: Meta<typeof Input> = {
     },
     args: {
         placeholder: '입력하세요',
+        className: styles.inputDefault,
     },
 };
 
@@ -33,7 +35,7 @@ export const Default: StoryObj<typeof Input> = {
     parameters: {
         docs: {
             description: {
-                story: '기본 Input 컴포넌트에요.',
+                story: '기본 Input 컴포넌트에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<Input placeholder="입력하세요" />`,
@@ -47,7 +49,7 @@ export const WithLabel: StoryObj<typeof Input> = {
     parameters: {
         docs: {
             description: {
-                story: '라벨이 있는 Input 컴포넌트에요.',
+                story: '라벨이 있는 Input 컴포넌트에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<Input label="이름" placeholder="이름을 입력하세요" />`,
@@ -66,7 +68,7 @@ export const DifferentTypes: StoryObj<typeof Input> = {
         layout: 'padded',
         docs: {
             description: {
-                story: '다양한 타입의 Input 컴포넌트를 사용할 수 있어요.',
+                story: '다양한 타입의 Input 컴포넌트를 사용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -104,7 +106,7 @@ export const Disabled: StoryObj<typeof Input> = {
     parameters: {
         docs: {
             description: {
-                story: '비활성화된 Input 컴포넌트에요.',
+                story: '비활성화된 Input 컴포넌트에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<Input label="이름" placeholder="입력할 수 없습니다" disabled />`,
@@ -123,7 +125,7 @@ export const Controlled: StoryObj<typeof Input> = {
     parameters: {
         docs: {
             description: {
-                story: 'controlled component로 사용하는 Input이에요.',
+                story: 'controlled component로 사용하는 Input이에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `const [value, setValue] = useState('');
@@ -166,7 +168,7 @@ export const FullWidth: StoryObj<typeof Input> = {
         layout: 'padded',
         docs: {
             description: {
-                story: '전체 너비를 사용하는 Input 컴포넌트에요.',
+                story: '전체 너비를 사용하는 Input 컴포넌트에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<Input fullWidth placeholder="전체 너비 입력" />
@@ -197,7 +199,7 @@ export const FullWidthComparison: StoryObj<typeof Input> = {
         layout: 'padded',
         docs: {
             description: {
-                story: '일반 Input과 fullWidth Input을 비교할 수 있어요.',
+                story: '일반 Input과 fullWidth Input을 비교할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<div style={{ maxWidth: '500px' }}>
@@ -229,7 +231,7 @@ export const WithClassName: StoryObj<typeof Input> = {
     parameters: {
         docs: {
             description: {
-                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<Input

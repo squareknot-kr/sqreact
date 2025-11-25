@@ -9,7 +9,9 @@ const meta: Meta<typeof PageList> = {
         docs: {
             description: {
                 component: `PageList 컴포넌트는 페이지네이션을 표시하고 사용자가 페이지를 이동할 수 있게 해요.
-10개씩 그룹으로 나뉘어 표시되며, 이전/다음 버튼으로 그룹 간 이동이 가능해요.`,
+10개씩 그룹으로 나뉘어 표시되며, 이전/다음 버튼으로 그룹 간 이동이 가능해요.
+
+**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.`,
                 props: {
                     totalPages: '전체 페이지 수 / Total number of pages',
                     currentPage: '현재 페이지 번호 / Current page number',
@@ -69,7 +71,7 @@ export const WithClassName: StoryObj<typeof PageList> = {
     parameters: {
         docs: {
             description: {
-                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<PageList

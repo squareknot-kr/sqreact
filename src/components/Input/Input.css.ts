@@ -3,7 +3,6 @@ import { spacing } from '../../tokens';
 
 export const input = style({
   display: 'flex',
-  width: '320px',
   borderRadius: '6px',
   border: '1px solid rgb(209 213 219)',
   backgroundColor: 'white',
@@ -50,4 +49,9 @@ export const wrapperFullWidth = style([
     width: '100%',
   },
 ]);
+
+// Storybook 전용 기본 스타일 (사용하는 쪽에서는 className으로 오버라이드 가능)
+export const inputDefault = style({
+  width: '320px',
+});
 

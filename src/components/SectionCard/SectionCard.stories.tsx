@@ -10,7 +10,7 @@ const meta: Meta<typeof SectionCard> = {
         layout: 'padded',
         docs: {
             description: {
-                component: 'SectionCard 컴포넌트는 섹션을 감싸는 카드 형태의 컨테이너에요. 부모 컨테이너의 전체 너비(100%)를 차지하며, 제목과 설명을 표시하고 내부에 콘텐츠를 배치할 수 있어요.',
+                component: 'SectionCard 컴포넌트는 섹션을 감싸는 카드 형태의 컨테이너에요. 부모 컨테이너의 전체 너비(100%)를 차지하며, 제목과 설명을 표시하고 내부에 콘텐츠를 배치할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
                 props: {
                     title: '카드의 제목 (선택사항) / Card title (optional)',
                     description: '카드의 설명 (선택사항) / Card description (optional)',
@@ -37,7 +37,7 @@ export const Default: StoryObj<typeof SectionCard> = {
     parameters: {
         docs: {
             description: {
-                story: '기본 SectionCard 컴포넌트에요.',
+                story: '기본 SectionCard 컴포넌트에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<SectionCard 
@@ -371,7 +371,7 @@ export const WithClassName: StoryObj<typeof SectionCard> = {
     parameters: {
         docs: {
             description: {
-                story: 'className prop을 사용하여 추가 CSS 클래스를 적용할 수 있어요.',
+                story: 'className prop을 사용하여 추가 CSS 클래스를 적용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
             },
             source: {
                 code: `<SectionCard 

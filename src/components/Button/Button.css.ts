@@ -2,15 +2,12 @@ import { style } from "@vanilla-extract/css";
 import { colors, sizes, spacing, typography } from '../../tokens';
 
 export const button = style({
-  height: sizes.button.md,
   minWidth: '80px',
   paddingLeft: spacing.md,
   paddingRight: spacing.md,
   textAlign: 'left',
   fontSize: typography.fontSize.md,
   fontWeight: typography.fontWeight.medium,
-  backgroundColor: colors.background,
-  border: `1px solid ${colors.border}`,
   borderRadius: sizes.radius.md,
   display: 'inline-flex',
   alignItems: 'center',
@@ -18,12 +15,8 @@ export const button = style({
   gap: spacing.sm,
   outline: 'none',
   boxSizing: 'border-box',
-  color: colors.foreground,
   cursor: 'pointer',
   transition: 'all 0.2s',
-  ':hover': {
-    borderColor: colors.borderHover,
-  },
   ':focus': {
     outline: 'none',
     boxShadow: 'none',
@@ -39,7 +32,6 @@ export const buttonFullWidth = style({
 });
 
 export const buttonText = style({
-  color: colors.text.primary,
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
@@ -54,4 +46,15 @@ export const icon = style({
   height: sizes.icon.sm,
   color: colors.text.secondary,
   transition: 'transform 0.2s, opacity 0.2s',
+});
+
+// Storybook 전용 기본 스타일 (사용하는 쪽에서는 className으로 오버라이드 가능)
+export const buttonDefault = style({
+  height: sizes.button.md,
+  backgroundColor: colors.background,
+  color: colors.foreground,
+  border: `1px solid ${colors.border}`,
+  ':hover': {
+    borderColor: colors.borderHover,
+  },
 });
