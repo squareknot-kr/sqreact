@@ -3,8 +3,6 @@ import { spacing } from '../../tokens';
 
 export const input = style({
   display: 'flex',
-  borderRadius: '6px',
-  border: '1px solid rgb(209 213 219)',
   paddingLeft: '12px',
   paddingRight: '12px',
   paddingTop: '8px',
@@ -53,5 +51,7 @@ export const inputDefault = style({
   width: '320px',
   color: '#2E3438',
   backgroundColor: 'white',
+  borderRadius: '6px',
+  border: '1px solid rgb(209 213 219)',
 });
 
