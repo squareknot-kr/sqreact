@@ -45,24 +45,10 @@ export const Dropdown = ({
 
 function Menu({ children }: { children: React.ReactNode }) {
   const { isOpen, menuRef } = useContext(DropdownContext);
-  
-  // children을 배열로 변환하여 Search와 나머지를 구분
-  const childrenArray = React.Children.toArray(children);
-  const searchElement = childrenArray.find((child) => 
-    React.isValidElement(child) && child.type === Search
-  );
-  const otherChildren = childrenArray.filter((child) => 
-    !(React.isValidElement(child) && child.type === Search)
-  );
 
   return (
     <Motion condition={isOpen} className={styles.dropdown} ref={menuRef}>
-      {searchElement && <div className={styles.searchContainer}>{searchElement}</div>}
-      <div className={styles.optionsContainer}>
-        <div className={styles.optionsList}>
-          {otherChildren}
-        </div>
-      </div>
+      {children}
     </Motion>
   );
 }
@@ -146,21 +132,29 @@ function FilteredItems({ options }: { options: string[] }) {
 
   if (filteredOptions.length === 0) {
     return (
-      <div
-        style={{
-          padding: "16px",
-          textAlign: "center",
-          color: "rgb(156 163 175)",
-        }}
-      >
-        검색 결과가 없습니다
+      <div className={styles.optionsContainer}>
+        <div
+          style={{
+            padding: "16px",
+            textAlign: "center",
+            color: "rgb(156 163 175)",
+          }}
+        >
+          검색 결과가 없습니다
+        </div>
       </div>
     );
   }
 
-  return filteredOptions.map(option => (
-    <Dropdown.Item key={option}>{option}</Dropdown.Item>
-  ));
+  return (
+    <div className={styles.optionsContainer}>
+      <div className={styles.optionsList}>
+        {filteredOptions.map(option => (
+          <Dropdown.Item key={option}>{option}</Dropdown.Item>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 Dropdown.Trigger = Trigger;
