@@ -20,7 +20,7 @@ const meta: Meta<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                component: 'Button 컴포넌트는 클릭 가능한 버튼을 표시하는 컴포넌트에요. 아이콘을 추가하거나 전체 너비로 설정할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다. height, backgroundColor, color, border 등 모든 스타일을 className으로 자유롭게 오버라이드할 수 있어요.',
+                component: 'Button 컴포넌트는 클릭 가능한 버튼을 표시하는 컴포넌트에요. 아이콘을 추가하거나 전체 너비로 설정할 수 있어요.\n\n**className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다. height, backgroundColor, color, border 등 모든 스타일을 className으로 자유롭게 오버라이드할 수 있어요.',
                 props: {
                     children: '버튼에 표시될 내용 / Content to display in the button',
                     icon: '아이콘 (ReactNode) / Icon (ReactNode)',
@@ -43,7 +43,7 @@ export const Default: StoryObj<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                story: '기본 Button 컴포넌트에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '기본 Button 컴포넌트에요.',
             },
             source: {
                 code: `<Button>버튼</Button>`,
@@ -57,7 +57,7 @@ export const WithIcon: StoryObj<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                story: '아이콘이 표시되는 버튼이에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '아이콘이 표시되는 버튼이에요.',
             },
             source: {
                 code: `<Button 
@@ -97,7 +97,7 @@ export const FullWidth: StoryObj<typeof Button> = {
         layout: 'padded',
         docs: {
             description: {
-                story: '전체 너비를 사용하는 버튼이에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '전체 너비를 사용하는 버튼이에요.',
             },
             source: {
                 code: `<Button fullWidth>전체 너비 버튼</Button>`,
@@ -122,7 +122,7 @@ export const Disabled: StoryObj<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                story: '비활성화된 버튼이에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '비활성화된 버튼이에요.',
             },
             source: {
                 code: `<Button disabled>비활성화된 버튼</Button>`,
@@ -141,7 +141,7 @@ export const WithIconAndFullWidth: StoryObj<typeof Button> = {
         layout: 'padded',
         docs: {
             description: {
-                story: '아이콘과 전체 너비를 함께 사용하는 버튼이에요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '아이콘과 전체 너비를 함께 사용하는 버튼이에요.',
             },
             source: {
                 code: `<Button 
@@ -191,7 +191,7 @@ export const WithStyle: StoryObj<typeof Button> = {
         layout: 'padded',
         docs: {
             description: {
-                story: 'style prop을 사용하여 커스텀 스타일을 적용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: 'style prop을 사용하여 커스텀 스타일을 적용할 수 있어요.',
             },
             source: {
                 code: `<div style={{ display: 'flex', gap: '12px' }}>
@@ -286,7 +286,7 @@ export const MultipleButtons: StoryObj<typeof Button> = {
         layout: 'padded',
         docs: {
             description: {
-                story: '여러 개의 버튼을 함께 사용할 수 있어요. fullWidth 속성을 사용하면 컨테이너 안에서 공간을 자연스럽게 나눠서 배치할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '여러 개의 버튼을 함께 사용할 수 있어요. fullWidth 속성을 사용하면 컨테이너 안에서 공간을 자연스럽게 나눠서 배치할 수 있어요.',
             },
             source: {
                 code: `<div style={{ display: 'flex', gap: '12px' }}>
@@ -362,7 +362,7 @@ export const WithClassName: StoryObj<typeof Button> = {
     parameters: {
         docs: {
             description: {
-                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
             },
             source: {
                 code: `<Button className="bg-blue-500 text-white hover:bg-blue-600">

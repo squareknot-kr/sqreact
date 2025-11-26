@@ -11,7 +11,7 @@ const meta: Meta<typeof Select> = {
     parameters: {
         docs: {
             description: {
-                component: 'Select 컴포넌트는 드롭다운 메뉴를 표시하고 사용자가 옵션을 선택할 수 있게 해요. 메뉴가 자연스럽게 열고 닫히는 모션이 적용되어 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                component: 'Select 컴포넌트는 드롭다운 메뉴를 표시하고 사용자가 옵션을 선택할 수 있게 해요. 메뉴가 자연스럽게 열고 닫히는 모션이 적용되어 있어요.\n\n**className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
                 props: {
                     label: 'Select 카드 위에 표시되는 소제목(라벨) / Label displayed above Select card',
                     options: '옵션으로 띄워 줄 아이템 목록 (Array) / Array of items to display as options',
@@ -53,7 +53,7 @@ export const Default: StoryObj<typeof Select> = {
     parameters: {
         docs: {
             description: {
-                story: '기본 Select 컴포넌트에요. 레이블과 옵션 목록을 표시해요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '기본 Select 컴포넌트에요. 레이블과 옵션 목록을 표시해요.',
             },
             source: {
                 code: `const [selectedValue, setSelectedValue] = useState('선택');
@@ -81,7 +81,7 @@ export const NoLabel: StoryObj<typeof Select> = {
     parameters: {
         docs: {
             description: {
-                story: '레이블 없이 Select 컴포넌트를 사용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '레이블 없이 Select 컴포넌트를 사용할 수 있어요.',
             },
             source: {
                 code: `const [selectedValue, setSelectedValue] = useState('선택');
@@ -112,7 +112,7 @@ export const WithSearch: StoryObj<typeof Select> = {
     parameters: {
         docs: {
             description: {
-                story: '검색 기능이 활성화된 Select에요. 옵션이 많을 때 유용해요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '검색 기능이 활성화된 Select에요. 옵션이 많을 때 유용해요.',
             },
             source: {
                 code: `const [selectedValue, setSelectedValue] = useState('선택');
@@ -146,7 +146,7 @@ export const WithFullWidth: StoryObj<typeof Select> = {
         layout: 'centered',
         docs: {
             description: {
-                story: 'trigger의 fullWidth 속성을 지정하면 컨테이너 전체 너비를 차지해요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: 'trigger의 fullWidth 속성을 지정하면 컨테이너 전체 너비를 차지해요.',
             },
             source: {
                 code: `const [selectedValue, setSelectedValue] = useState('선택');
@@ -203,7 +203,7 @@ export const MultipleSelects: StoryObj<typeof Select> = {
         layout: 'padded',
         docs: {
             description: {
-                story: '여러 개의 Select 컴포넌트의 trigger에 fullWidth 속성을 지정하면 컨테이너 안에서 공간을 자연스럽게 나눠서 배치할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: '여러 개의 Select 컴포넌트의 trigger에 fullWidth 속성을 지정하면 컨테이너 안에서 공간을 자연스럽게 나눠서 배치할 수 있어요.',
             },
             source: {
                 code: `const [food, setFood] = useState('선택');
@@ -308,7 +308,7 @@ export const WithClassName: StoryObj<typeof Select> = {
     parameters: {
         docs: {
             description: {
-                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: 'className prop을 사용하여 Tailwind CSS 등 외부 스타일을 적용할 수 있어요.',
             },
             source: {
                 code: `<Select
@@ -344,7 +344,7 @@ export const WithCustomWidth: StoryObj<typeof Select> = {
     parameters: {
         docs: {
             description: {
-                story: 'SelectButton의 style prop이나 className을 사용하여 너비를 지정할 수 있어요. 기본적으로는 부모 컨테이너의 전체 너비를 차지합니다.\n\n**⚠️ className 우선순위**: className prop으로 전달된 스타일이 기본 스타일보다 우선 적용됩니다.',
+                story: 'SelectButton의 style prop이나 className을 사용하여 너비를 지정할 수 있어요. 기본적으로는 부모 컨테이너의 전체 너비를 차지합니다.',
             },
             source: {
                 code: `const [selectedValue, setSelectedValue] = useState('선택');

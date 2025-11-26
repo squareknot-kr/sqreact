@@ -11,3 +11,4 @@ export { Label } from './Label';
 export { SectionCard } from './SectionCard/SectionCard';
 export { Motion } from './Motion/Motion';
 export { Button } from './Button/Button';
+export { Checkbox } from './Checkbox';
