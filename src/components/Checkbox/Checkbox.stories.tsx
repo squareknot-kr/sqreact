@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Checkbox } from "./Checkbox";
-import * as styles from "./Checkbox.css.ts";
 import { Check } from "lucide-react";
 
 const meta: Meta<typeof Checkbox> = {
