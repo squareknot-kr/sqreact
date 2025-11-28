@@ -1,4 +1,5 @@
 import { style, keyframes } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 import { colors } from '../../tokens';
 
 const fadeInScale = keyframes({
@@ -40,6 +41,11 @@ export const chevronIcon = style({
   transition: 'transform 0.2s, opacity 0.2s',
 });
 
-export const selectButton = style({
-  width: '100%',
+// Base 스타일을 recipe로 정의 (className으로 오버라이드 가능)
+export const selectButtonRecipe = recipe({
+  base: {
+    width: '100%',
+  },
 });
+
+export const selectButton = selectButtonRecipe();

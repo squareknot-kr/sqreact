@@ -17,6 +17,8 @@ const meta: Meta<typeof PageList> = {
                     currentPage: '현재 페이지 번호 / Current page number',
                     onPageChange: '페이지 변경 시 호출되는 콜백 함수 / Callback function called when page changes',
                     className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
+                    backgroundColor: '페이지네이션 버튼의 배경색 (string) / Background color for pagination buttons (string)',
+                    color: '페이지네이션 버튼의 글씨색 (string) / Text color for pagination buttons (string)',
                 },
             },
             canvas: {
@@ -96,6 +98,42 @@ export const WithClassName: StoryObj<typeof PageList> = {
                     args.onPageChange?.(page);
                 }}
                 className="border-2 border-blue-500 rounded-lg p-4"
+            />
+        );
+    },
+};
+
+export const WithCustomColors: StoryObj<typeof PageList> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'backgroundColor와 color prop을 사용하여 페이지네이션 버튼의 배경색과 글씨색을 커스터마이징할 수 있어요.',
+            },
+            source: {
+                code: `<PageList
+  totalPages={25}
+  currentPage={1}
+  onPageChange={(page) => console.log('Page changed to:', page)}
+  backgroundColor="#3b82f6"
+  color="white"
+/>`,
+                language: 'tsx',
+            },
+        },
+    },
+    render: (args) => {
+        const [currentPage, setCurrentPage] = useState(args.currentPage || 1);
+        
+        return (
+            <PageList
+                {...args}
+                currentPage={currentPage}
+                onPageChange={(page) => {
+                    setCurrentPage(page);
+                    args.onPageChange?.(page);
+                }}
+                backgroundColor="#3b82f6"
+                color="white"
             />
         );
     },

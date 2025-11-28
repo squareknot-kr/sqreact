@@ -17,6 +17,7 @@ const meta: Meta<typeof Input> = {
                     onChange: '값 변경 시 호출되는 콜백 함수 / Callback function called when value changes',
                     disabled: '비활성화 여부 (boolean) / Whether the input is disabled (boolean)',
                     fullWidth: '전체 너비 사용 여부 (boolean) / Whether to use full width (boolean)',
+                    width: '입력 필드의 너비 (string | number) / Width of the input field (string | number)',
                     className: '추가 CSS 클래스명 (string) / Additional CSS class name (string)',
                 },
             },
@@ -220,6 +221,43 @@ export const FullWidthComparison: StoryObj<typeof Input> = {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <Input label="일반 너비" placeholder="일반 너비 입력" />
                 <Input fullWidth label="전체 너비" placeholder="전체 너비 입력" />
+            </div>
+        );
+    },
+};
+
+export const WithWidth: StoryObj<typeof Input> = {
+    parameters: {
+        docs: {
+            description: {
+                story: 'width prop을 사용하여 입력 필드의 너비를 지정할 수 있어요.',
+            },
+            source: {
+                code: `<Input
+  label="이름"
+  placeholder="이름을 입력하세요"
+  width="500px"
+/>
+<Input
+  placeholder="숫자로 너비 지정"
+  width={200}
+/>`,
+                language: 'tsx',
+            },
+        },
+    },
+    render: () => {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <Input
+                    label="이름"
+                    placeholder="이름을 입력하세요"
+                    width="500px"
+                />
+                <Input
+                    placeholder="숫자로 너비 지정 (200px)"
+                    width={200}
+                />
             </div>
         );
     },
