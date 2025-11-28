@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Input } from "./Input";
-import * as styles from "./Input.css";
 
 const meta: Meta<typeof Input> = {
     component: Input,
@@ -25,7 +24,6 @@ const meta: Meta<typeof Input> = {
     },
     args: {
         placeholder: '입력하세요',
-        className: styles.inputDefault,
     },
 };
 

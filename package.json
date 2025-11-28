@@ -60,6 +60,7 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vanilla-extract/css": "^1.17.4",
+    "@vanilla-extract/recipes": "^0.5.7",
     "@vanilla-extract/vite-plugin": "^5.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.55.0",
@@ -77,9 +78,9 @@
     "vite-plugin-dts": "^3.6.4"
   },
   "dependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
     "framer-motion": "^12.0.0",
-    "lucide-react": "^0.500.0"
+    "lucide-react": "^0.500.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   }
 }

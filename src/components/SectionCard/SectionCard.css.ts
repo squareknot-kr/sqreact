@@ -1,15 +1,21 @@
+import { recipe } from "@vanilla-extract/recipes";
 import { style } from "@vanilla-extract/css";
 import { colors } from "@/tokens";
 
-export const sectionCard = style({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-  backgroundColor: 'white',
-  borderRadius: '8px',
-  padding: '24px',
-  border: `0.8px solid ${colors.border}`,
+// Base 스타일을 recipe로 정의 (className으로 오버라이드 가능)
+export const sectionCardRecipe = recipe({
+  base: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    padding: '24px',
+    border: `0.8px solid ${colors.border}`,
+  },
 });
+
+export const sectionCard = sectionCardRecipe();
 
 export const sectionCardTitle = style({
   fontSize: '32px',

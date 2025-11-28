@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { recipe } from '@vanilla-extract/recipes';
 
 export const datePickerContainer = style({
   display: 'flex',
@@ -25,31 +26,36 @@ export const dateInputWrapper = style({
   minWidth: '140px',
 });
 
-export const dateInput = style({
-  paddingLeft: '12px',
-  fontSize: '14px',
-  fontWeight: 400,
-  fontFamily: "'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
-  borderColor: 'rgb(209 213 219)',
-  height: '38px',
-  width: '100%',
-  boxSizing: 'border-box',
-  transition: 'border-color 0.1s ease-out',
-  '::-webkit-calendar-picker-indicator': {
-    display: 'none',
-  },
-  '::-webkit-inner-spin-button': {
-    display: 'none',
-  },
-  '::-webkit-outer-spin-button': {
-    display: 'none',
-  },
-  ':focus': {
-    borderColor: 'rgb(99 102 241)',
-    outline: 'none',
-    boxShadow: 'none',
+// Base 스타일을 recipe로 정의 (className으로 오버라이드 가능)
+export const dateInputRecipe = recipe({
+  base: {
+    paddingLeft: '12px',
+    fontSize: '14px',
+    fontWeight: 400,
+    fontFamily: "'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+    borderColor: 'rgb(209 213 219)',
+    height: '38px',
+    width: '100%',
+    boxSizing: 'border-box',
+    transition: 'border-color 0.1s ease-out',
+    '::-webkit-calendar-picker-indicator': {
+      display: 'none',
+    },
+    '::-webkit-inner-spin-button': {
+      display: 'none',
+    },
+    '::-webkit-outer-spin-button': {
+      display: 'none',
+    },
+    ':focus': {
+      borderColor: 'rgb(99 102 241)',
+      outline: 'none',
+      boxShadow: 'none',
+    },
   },
 });
+
+export const dateInput = dateInputRecipe();
 
 export const calendarIcon = style({
   position: 'absolute',
